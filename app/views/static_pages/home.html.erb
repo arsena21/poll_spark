@@ -2,5 +2,9 @@
 <p>
   What do you care about? 
 </p>
-<%= link_to "Sign up now to vote!", signup_path, class: "btn btn-large btn-primary" %>
-</div>
+
+
+	<% if !signed_in? %>
+	<%= link_to "Sign up now to vote!", signup_path, class: "btn btn-large btn-primary" %>
+	<% end %>
+
