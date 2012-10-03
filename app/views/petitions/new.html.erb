@@ -1,0 +1,14 @@
+<% provide(:title, "New Petition") %>
+<h1>Create a new petition</h1>
+
+<div class="row">
+  <div class="span6 offset3">
+    <%= form_for(@petition) do |f| %>
+
+      <%= f.label :name %>
+      <%= f.text_field :name %>
+
+      <%= f.submit "Create", class: "btn btn-large btn-primary" %>
+    <% end %>
+  </div>
+</div>

@@ -1,0 +1,10 @@
+<% provide(:title, 'All petitions') %>
+<h1>What do YOU care about?</h1>
+
+<ul class="petitions">
+  <% @petitions.each do |petition| %>
+    <li>
+      <%= link_to petition.name, petition %>
+    </li>
+  <% end %>
+</ul>
