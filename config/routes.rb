@@ -1,15 +1,15 @@
 PollSpark::Application.routes.draw do
-	resources :petitions, only: [:new, :create, :index]
-
+    root :to => 'petitions#index'	
 	resources :users
     resources :sessions, only: [:new, :create, :destroy]
+	resources :petitions, only: [:new, :create, :show, :index]
+
 
 match '/newpetition',  to: 'petitions#new'
-match '/petitions', to: 'petitions#index'
 match '/signin',  to: 'sessions#new'
 match '/signout', to: 'sessions#destroy', via: :delete
 match '/signup', to: 'users#new'
-match '/petition', to: 'static_pages#petition'
+match '/petitionnow', to: 'static_pages#petition'
 match '/about', to: 'static_pages#about'
 match '/contact', to: 'static_pages#contact'
 match '/news', to: 'static_pages#news'
@@ -64,7 +64,7 @@ match '/news', to: 'static_pages#news'
 
   # You can have the root of your site routed with "root"
   # just remember to delete public/index.html.
-    root :to => 'petitions#index'
+
 
   # See how all your routes lay out with "rake routes"
 

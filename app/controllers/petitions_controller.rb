@@ -4,19 +4,24 @@ class PetitionsController < ApplicationController
     @petition = Petition.new(params[:petition])
     if @petition.save
       flash[:success] = "New Petition created!"
-      redirect_to root_path
+      redirect_to petitions_path
 	else
-	  redirect_to petitions_path
+	  redirect_to newpetition_path
     end
   end
   
   def new
-		@petition = Petition.new
+	@petition = Petition.new
   end
   
+
   def index
-    @petitions = Petition.all
+  	@petitions = Petition.all
   end
+ 
+  def show
+  	@petition = Petition.find(params[:id])
+  end  
   
 
 end

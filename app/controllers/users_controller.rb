@@ -15,7 +15,7 @@ class UsersController < ApplicationController
     if @user.save
 	  sign_in @user
       flash[:success] = "Welcome to PollSpark!"
-      redirect_to root_path
+      redirect_to users_path
     else
       render 'new'
     end
