@@ -23,5 +23,21 @@ class PetitionsController < ApplicationController
   	@petition = Petition.find(params[:id])
   end  
   
-
+  def edit
+  	@petition = Petition.find(params[:id])
+  end
+  
+  def update
+	petition = Petition.find(params[:id])
+	if (current_user.vote != 0)
+		uprating petition 	
+		votes_down current_user
+		flash[:success] = "Vote count changed!"
+		redirect_to petitions_path
+	else if (current_user.vote = 0)
+		flash[:failure] = "No more votes!"
+		redirect_to petitions_path
+	end
+  end
+end
 end

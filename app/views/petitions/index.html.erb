@@ -1,10 +1,20 @@
 <% provide(:title, 'All petitions') %>
-<h1>What do YOU care about?</h1>
+<h1>What do <i>you</i> want to change?</h1>
 
 <ul class="petitions">
   <% @petitions.each do |petition| %>
     <li>
-      <%= link_to petition.name, petition %>
+	  <div class="petitions">
+	  
+      <%= link_to petition.name, edit_petition_path(petition)	, {:style=>'color:#000000;'} %>
+	  
+	  <br />
+	  <div class="link">
+	  <%= petition.rating %> Votes
+	  </div>
+	  </div>
     </li>
   <% end %>
 </ul>
+
+

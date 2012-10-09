@@ -22,6 +22,10 @@ textarea {
   resize: vertical;
 }
 
+.yellow {
+color: #E8A317;
+}
+
 .center {
   text-align: center;
   h1 {
@@ -100,3 +104,20 @@ footer {
     }
   }
 }
+
+/* petitions index */
+
+.petitions {
+  list-style: none;
+  margin: 0;
+  font-weight: bold;
+  font-size:20px;
+  li {
+    overflow: auto;
+    padding: 10px 0;
+  }
+  .link {
+  font-size:12px;
+  }
+}
+

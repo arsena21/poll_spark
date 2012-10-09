@@ -4,12 +4,11 @@
     <section>
       <h1>
 		<%= @petition.name %>
-		<%= current_user.vote %>
 	 </h1>
 		<% if signed_in? %>
 			<%= form_for(@petition) do |f| %>	
-				 <%= f.submit "Change vote!", class: "btn btn-large btn-primary" %>
-		    <% end %>
+			  <%= f.submit "Change vote!", class: "btn btn-large btn-primary" %>
+		   	<% end %>
 	    <% else %>
 			 <%= link_to "Sign in to vote!", signin_path, class: "btn btn-large btn-primary" %>
         <% end %>	

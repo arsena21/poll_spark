@@ -2,8 +2,7 @@ PollSpark::Application.routes.draw do
     root :to => 'petitions#index'	
 	resources :users
     resources :sessions, only: [:new, :create, :destroy]
-	resources :petitions, only: [:new, :create, :show, :index]
-
+	resources :petitions, only: [:new, :create, :show, :index, :edit, :update]
 
 match '/newpetition',  to: 'petitions#new'
 match '/signin',  to: 'sessions#new'

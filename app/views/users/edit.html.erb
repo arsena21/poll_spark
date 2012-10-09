@@ -1,0 +1,22 @@
+<% provide(:title, @user.name) %>
+<div class="row">
+  <aside class="span4">
+    <section>
+      <h1>
+        <%= gravatar_for current_user %>
+		<%= current_user.name %>
+		
+			<%= form_for(current_user) do |f| %>
+			      <%= render 'shared/error_messages' %>  
+							<%= f.label :name %>
+							<%= f.text_field :name %>						
+							<%= f.label :password %>
+							<%= f.password_field :password %>
+							<%= f.label :password_confirmation, "Confirm Password" %>
+							<%= f.password_field :password_confirmation %>	
+				 <%= f.submit "Change Settings", class: "btn btn-large btn-primary" %>
+		    <% end %>
+	 </h1>
+    </section>
+  </aside>
+</div>
