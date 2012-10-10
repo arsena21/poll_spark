@@ -11,13 +11,15 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121008162210) do
+ActiveRecord::Schema.define(:version => 20121009211534) do
 
   create_table "petitions", :force => true do |t|
     t.string   "name"
     t.integer  "rating"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
+    t.string   "description"
+    t.string   "pics"
   end
 
   create_table "users", :force => true do |t|
@@ -29,6 +31,7 @@ ActiveRecord::Schema.define(:version => 20121008162210) do
     t.string   "password_digest"
     t.string   "remember_token"
     t.integer  "vote"
+    t.string   "avatars"
   end
 
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true

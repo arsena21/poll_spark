@@ -4,7 +4,8 @@ gem 'rails', '3.2.8'
 gem 'bootstrap-sass', '2.0.4'
 gem 'bcrypt-ruby', '3.0.1'
 gem 'dragonfly', '0.9.12'
-
+gem 'carrierwave'
+gem 'mini_magick'
 
 group :development, :test do
   gem 'sqlite3', '1.3.5'

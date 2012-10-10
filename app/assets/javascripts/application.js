@@ -14,3 +14,12 @@
 //= require jquery_ujs
 //= require bootstrap
 //= require_tree .
+
+
+
+$(function() {
+	$("#alert").click(function() {
+		alert("Hello World!");
+		return false;
+	})
+})

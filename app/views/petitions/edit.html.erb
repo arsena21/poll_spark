@@ -1,11 +1,17 @@
 <% provide(:title, @petition.id) %>
 <div class="row">
-  <aside class="span4">
+
     <section>
       <h1>
 		<%= @petition.name %>
-	 </h1>
+	 </h1>	
+	<%= @petition.description  %> <br />
+	<%= image_tag(@petition.pics_url) if @petition.pics? %>
+
+	<br /><br /><br />
+	
 		<% if signed_in? %>
+			
 			<%= form_for(@petition) do |f| %>	
 			  <%= f.submit "Change vote!", class: "btn btn-large btn-primary" %>
 		   	<% end %>
@@ -13,5 +19,5 @@
 			 <%= link_to "Sign in to vote!", signin_path, class: "btn btn-large btn-primary" %>
         <% end %>	
     </section>
-  </aside>
+
 </div>

@@ -6,5 +6,7 @@ class CreatePetitions < ActiveRecord::Migration
 
       t.timestamps
     end
+	
+	
   end
 end

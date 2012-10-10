@@ -16,7 +16,7 @@ class PetitionsController < ApplicationController
   
 
   def index
-  	@petitions = Petition.all
+  	@petitions = Petition.find(:all, :limit =>16)
   end
  
   def show

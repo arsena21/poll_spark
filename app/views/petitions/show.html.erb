@@ -5,6 +5,8 @@
       <h1>
 		<%= @petition.name %>
 		<%= current_user.vote %>
+		<%= @petition.description %>
+
 	 </h1>
 		<% if signed_in? %>
 			<%= form_for(@petition) do |f| %>	
