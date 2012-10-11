@@ -1,17 +1,19 @@
-<% provide(:title, 'All petitions') %>
-<h1>What do <i id="alert">you</i> want to change?</h1>
-
-  <% @petitions.in_groups_of(2, false) do |row_petitions| %>
-      <% for petition in row_petitions %>
-			<div class="petitions">
-				<%= link_to petition.name, edit_petition_path(petition)	, {:style=>'color:#000000;'} %>
-				<div class="link">
-				  <%= petition.rating %> Votes
-				</div>
-			</div>
-	  <% end %>	
-  <% end %>
-  
+<% provide :toppage do  %>
+	What do YOU want to change?
+<%end%>
+<section id="wrapper1">
+	<div id="container">
+		<% @petitions.each do |petition| %>
+					<div class="block">
+						<div class="imgholder">
+							<%= link_to image_tag(petition.pics_url), edit_petition_path(petition)  %>
+						</div>
+						<strong><%= link_to petition.name, edit_petition_path(petition)	, {:style=>'color:#000000;'} %></strong>
+						<div class="meta"><%= petition.rating %> Votes</div>
+					</div>
+		<% end %>
+	</div>
+</section>	 
   
 
 

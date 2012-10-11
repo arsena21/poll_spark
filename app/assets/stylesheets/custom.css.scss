@@ -10,6 +10,30 @@ html {
   overflow-y: scroll;
 }
 
+#bar{
+	border-top: 1px solid $grayMediumLight;
+	width: 100px;
+		margin-left: 20px;
+}
+
+#sides {
+  	position:relative;
+	font-size: 1.0em;
+	letter-spacing: 0.5px;
+	text-align: right;
+	font-weight: normal;
+	margin-bottom: 10px;
+	margin-top: 10px;
+	margin-left: 20px;
+	width: 100px;
+}
+
+#container{
+	position:relative;
+	width:1100px;
+	margin:0 auto;
+}
+
 body {
   padding-top: 60px;
 }
@@ -42,7 +66,8 @@ h1, h2, h3, h4, h5, h6 {
 h1 {
   font-size: 3em;
   letter-spacing: -2px;
-  margin-bottom: 30px;
+  margin-bottom: 35px;
+    margin-top: 20px;
   text-align: center;
 }
 
@@ -108,7 +133,7 @@ footer {
 /* petitions index */
 
 .petitions {
-  width:200px;
+  width:400px;
   padding:10px;
   border:1px solid gray;
   margin:10px;
@@ -125,3 +150,112 @@ footer {
   }
 }
 
+#wrapper1{
+
+	width:100%;
+}
+
+#container{
+	position:relative;
+	width:900px;
+	margin:0 auto;
+}
+
+
+.block{
+	padding: 15px;
+	background:#fff;
+	margin-bottom:10px;
+	line-height:1.7;
+	box-shadow: 0 1px 3px rgba(34,25,25,0.4);
+	-moz-box-shadow: 0 1px 3px rgba(34,25,25,0.4);
+	-webkit-box-shadow: 0 1px 3px rgba(34,25,25,0.4);
+	
+	transition: box-shadow 1s;
+	-moz-transition: -moz-box-shadow 1s;
+	-webkit-transition: -webkit-box-shadow 1s;
+}
+.block:hover {
+	box-shadow: 0 1px 13px rgba(34,25,25,1);
+	-moz-box-shadow: 0 1px 13px rgba(34,25,25,1);
+	-webkit-box-shadow: 0 1px 13px rgba(34,25,25,1);
+}
+
+.block h3{
+	font-size:22px;
+	color:#7A8489;
+	margin:0 5px;
+	padding-bottom:5px;
+	padding-left:10px;
+	text-align:left;
+	text-shadow:1px 1px 0 #fff, 2px 2px 1px #ccc;
+	font-family:'Arial Narrow', Arial, Helvetica, sans-serif;
+	border-bottom:4px double #ccc;
+}
+.block pre{
+	background:#F4FAFC;
+	padding:15px;
+	margin:0 25px;
+	border:1px solid #ADC6D1;
+	line-height:1.8;
+}
+
+.options strong{
+	font-size:14px;
+	text-decoration:underline;
+}
+.options em{
+	font-size:12px;
+	font-weight:bold;
+	color:#219EE2;
+}
+.options span{
+	color:#888;
+	font-size:12px;
+}
+
+.log p{
+	font-size:12px;
+}
+
+.nobox{
+	text-align:center;
+	padding:25px 15px;
+}
+.nobox h2{
+	font-size:50px;
+	margin:15px 0;
+	text-shadow:2px 1px 1px #F7F5F5, 3px 2px 1px #888;
+	letter-spacing:5px;
+	color:#4F4848;
+	font-family:'DistantGalaxyRegular', Arial, Helvetica, sans-serif;
+}
+.nobox h2 span{
+	color: #DB6D00;
+	letter-spacing:5px;
+	display:inline-block;
+	padding:0 7px;
+	font-size:57px;
+}
+.nobox h3{
+	font-size:22px;
+	font-weight:normal;
+	font-style:italic;
+	color:#878787;
+	text-shadow:1px 1px 0 #fff;
+	letter-spacing:1px;
+}
+
+img {
+    width:  175px;
+}
+
+.imgholder{
+	width:auto;
+	height:auto;
+	overflow:hidden;
+	margin:0 auto;
+	display:block;
+	background:none;
+	border-color:#ccc;
+}

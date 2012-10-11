@@ -1,23 +1,26 @@
-<% provide(:title, @petition.id) %>
-<div class="row">
-
+<% provide :title do  %>
+	<%= @petition.name %>
+<%end%>
+<% provide :toppage do  %>
+	<%= @petition.name %>
+<%end%>
+<div class="row-fluid" id="wrapper1">
     <section>
-      <h1>
-		<%= @petition.name %>
-	 </h1>	
 	<%= @petition.description  %> <br />
 	<%= image_tag(@petition.pics_url) if @petition.pics? %>
 
 	<br /><br /><br />
 	
 		<% if signed_in? %>
-			
-			<%= form_for(@petition) do |f| %>	
-			  <%= f.submit "Change vote!", class: "btn btn-large btn-primary" %>
-		   	<% end %>
+			<% if current_user.vote != 0 %>
+				<%= form_for(@petition) do |f| %>	
+				<%= f.submit "Change vote!", class: "btn btn-large btn-primary" %>
+			<% end %>
+			<% else %>
+				<a href="#" class="btn btn-info">Sorry, you have run out of votes...</a>
+			<% end %>
 	    <% else %>
 			 <%= link_to "Sign in to vote!", signin_path, class: "btn btn-large btn-primary" %>
         <% end %>	
     </section>
-
 </div>

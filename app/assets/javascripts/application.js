@@ -17,9 +17,3 @@
 
 
 
-$(function() {
-	$("#alert").click(function() {
-		alert("Hello World!");
-		return false;
-	})
-})

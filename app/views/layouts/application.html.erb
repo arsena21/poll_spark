@@ -9,12 +9,22 @@
   </head>
   <body>
     <%= render 'layouts/header' %>
-    <div class="container">
-	  <% flash.each do |key, value| %>
-        <div class="alert alert-<%= key %>"><%= value %></div>
-      <% end %>
-	  <%= yield %>
-      <%= render 'layouts/footer' %>
-    </div>
+	<h1><%= infull_title(yield(:toppage)) %></h1>
+	<div class="container-fluid">
+	  <div class="row-fluid">
+		<div class="span2">
+			<%= render 'layouts/sidebar' %>
+		</div>
+		<div class="span6 offset3">
+			<div class="container">
+			  <% flash.each do |key, value| %>
+				<div class="alert alert-<%= key %>"><%= value %></div>
+			  <% end %>
+			  <%= yield %>
+			</div>		  
+		</div>
+	  </div>
+	  <%= render 'layouts/footer' %>
+	</div>
   </body>
 </html>

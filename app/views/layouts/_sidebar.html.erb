@@ -1,0 +1,18 @@
+<ul class="unstyled">
+	<% if signed_in? %>
+			<li>
+				<%= link_to '#' do %>
+					<div id=bar></div>
+					<div id="sides">
+					<span class="yellow"><strong><%= (votes_left current_user) %></strong> <span>Votes left!</span></span>
+					</div>
+				<% end %>
+			</li>
+	<% end %>
+		<div id=bar></div>
+		<li id="sides"><%= link_to "Current Petition", petitionnow_path %></li>
+         <% if signed_in? %>
+			<div id=bar></div>
+			<li id="sides"><%= link_to "Create New Petition", newpetition_path %></li>
+		<% end %>
+</ul>
