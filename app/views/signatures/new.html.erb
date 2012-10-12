@@ -1,0 +1,45 @@
+<% provide :title do  %>
+Help eliminate toxins from our houses!
+<%end%>
+<% provide :toppage do  %>
+Help eliminate toxins from our houses!
+
+<%end%>
+
+<p>
+  Sign the petition below.
+</p>
+<%= @totals %> signatures
+<div class="row">
+  <div class="span6 offset3">
+    <%= form_for(@signature) do |f| %>
+      <%= render 'shared/error_messages2' %>
+
+
+      <%= f.label :name %>
+      <%= f.text_field :name, :value => current_user.name %>
+
+      <%= f.label :email %>
+      <%= f.text_field :email, :value => current_user.email %>
+
+      <%= f.label :country %>
+      <%= f.text_field :country, :value => current_user.country %>
+	  
+
+      <%= f.hidden_field :total, :value => @totals + 1 %>
+		
+      <%= f.submit "Sign the petition!", class: "btn btn-large btn-primary" %>
+    <% end %>
+  </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+

@@ -6,10 +6,27 @@ Help eliminate toxins from our houses!
 
 <%end%>
 
-
-
-
 <p>
   Sign the petition below.
 </p>
+
+<div class="row">
+  <div class="span6 offset3">
+    <%= form_for(@petition) do |f| %>
+      <%= render 'shared/error_messages' %>
+
+
+      <%= f.label :name %>
+      <%= f.text_field :name %>
+
+      <%= f.label :email %>
+      <%= f.text_field :email %>
+
+      <%= f.label :country %>
+      <%= f.password_field :country %>
+
+      <%= f.submit "Create my account", class: "btn btn-large btn-primary" %>
+    <% end %>
+  </div>
+</div>
 

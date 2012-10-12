@@ -1,5 +1,5 @@
 class User < ActiveRecord::Base
-  attr_accessible :name, :email, :vote, :password, :password_confirmation
+  attr_accessible :name, :email, :vote, :country, :password, :password_confirmation
   has_secure_password
   after_initialize :bobo
 

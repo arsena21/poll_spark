@@ -1,6 +1,8 @@
 PollSpark::Application.routes.draw do
+
     root :to => 'petitions#index'	
 	resources :users
+	resources :signatures
     resources :sessions, only: [:new, :create, :destroy]
 	resources :petitions, only: [:new, :create, :show, :index, :edit, :update]
 
@@ -8,7 +10,7 @@ match '/newpetition',  to: 'petitions#new'
 match '/signin',  to: 'sessions#new'
 match '/signout', to: 'sessions#destroy', via: :delete
 match '/signup', to: 'users#new'
-match '/petitionnow', to: 'static_pages#petition'
+match '/petitionnow', to: 'signatures#new'
 match '/about', to: 'static_pages#about'
 match '/contact', to: 'static_pages#contact'
 match '/news', to: 'static_pages#news'

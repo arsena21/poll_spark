@@ -1,10 +1,14 @@
-<% provide(:title, @user.name) %>
+<% provide :title do  %>
+	<%= @user.name %>
+<%end%>
+<% provide :toppage do  %>
+	<%= @user.name %>
+<%end%>
 <div class="row">
   <aside class="span4">
     <section>
-      <h1>
+      
         <%= gravatar_for current_user %>
-		<%= current_user.name %>
 		
 			<%= form_for(current_user) do |f| %>
 			      <%= render 'shared/error_messages' %>  
@@ -16,7 +20,7 @@
 							<%= f.password_field :password_confirmation %>	
 				 <%= f.submit "Change Settings", class: "btn btn-large btn-primary" %>
 		    <% end %>
-	 </h1>
+	 
     </section>
   </aside>
 </div>
