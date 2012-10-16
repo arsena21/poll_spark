@@ -4,7 +4,7 @@ PollSpark::Application.routes.draw do
 	resources :users
 	resources :signatures
     resources :sessions, only: [:new, :create, :destroy]
-	resources :petitions, only: [:new, :create, :show, :index, :edit, :update]
+	resources :petitions, only: [:new, :create, :show, :index, :edit, :update, :destroy]
 
 match '/newpetition',  to: 'petitions#new'
 match '/signin',  to: 'sessions#new'

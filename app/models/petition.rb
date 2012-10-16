@@ -1,7 +1,7 @@
 class Petition < ActiveRecord::Base
   after_initialize :pipi
   mount_uploader :pics, AvatarUploader
-  attr_accessible :name, :rating, :description, :pics
+  attr_accessible :name, :rating, :description, :pics, :pass
   
   validates :name, presence: true
   validates :rating, presence: true, :numericality => 
@@ -11,8 +11,11 @@ class Petition < ActiveRecord::Base
 def pipi
   if new_record?
     self.rating ||= 0
+	self.pass = "no"
   end
 end
+
+
 
 
 

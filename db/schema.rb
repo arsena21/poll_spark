@@ -11,7 +11,15 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121011203942) do
+ActiveRecord::Schema.define(:version => 20121016154956) do
+
+  create_table "newpetitions", :force => true do |t|
+    t.string   "name"
+    t.string   "email"
+    t.string   "description"
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
+  end
 
   create_table "petitions", :force => true do |t|
     t.string   "name"
@@ -20,28 +28,31 @@ ActiveRecord::Schema.define(:version => 20121011203942) do
     t.datetime "updated_at",  :null => false
     t.string   "description"
     t.string   "pics"
+    t.string   "pass"
   end
 
   create_table "signatures", :force => true do |t|
     t.string   "name"
     t.string   "email"
     t.string   "country"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.datetime "created_at",     :null => false
+    t.datetime "updated_at",     :null => false
     t.integer  "total"
+    t.string   "remember_token"
   end
 
   create_table "users", :force => true do |t|
     t.string   "name"
     t.string   "email"
     t.string   "string"
-    t.datetime "created_at",      :null => false
-    t.datetime "updated_at",      :null => false
+    t.datetime "created_at",                         :null => false
+    t.datetime "updated_at",                         :null => false
     t.string   "password_digest"
     t.string   "remember_token"
     t.integer  "vote"
     t.string   "avatars"
     t.string   "country"
+    t.boolean  "admin",           :default => false
   end
 
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true

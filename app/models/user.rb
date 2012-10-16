@@ -1,5 +1,7 @@
 class User < ActiveRecord::Base
-  attr_accessible :name, :email, :vote, :country, :password, :password_confirmation
+  belongs_to :signatures 
+ 
+  attr_accessible :name, :email, :vote, :country, :password, :password_confirmation, :remember_token
   has_secure_password
   after_initialize :bobo
 
@@ -23,7 +25,7 @@ def bobo
 end
   
   
-private
+
     def create_remember_token
         if new_record?
 			self.remember_token = SecureRandom.urlsafe_base64

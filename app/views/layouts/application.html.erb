@@ -2,7 +2,10 @@
 <html>
   <head>
     <title><%= full_title(yield(:title)) %></title>
-    <%= stylesheet_link_tag    "application", media: "all" %>
+    <script src="jquery.signaturepad.js"></script>
+	<script src="http://ajax.cdnjs.com/ajax/libs/json2/20110223/json2.js"></script>
+	<script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.8.23/jquery-ui.min.js"></script>
+	<%= stylesheet_link_tag    "application", media: "all" %>
     <%= javascript_include_tag "jquery", "application" %>
     <%= csrf_meta_tags %>
     <%= render 'layouts/shim' %>    
@@ -25,6 +28,5 @@
 		</div>
 	  </div>
 	  <%= render 'layouts/footer' %>
-	</div>
   </body>
 </html>

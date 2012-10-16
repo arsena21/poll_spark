@@ -1,19 +1,45 @@
 <% provide :toppage do  %>
 	What do YOU want to change?
 <%end%>
+
 <section id="wrapper1">
 	<div id="container">
 		<% @petitions.each do |petition| %>
-					<div class="block">
-						<div class="imgholder">
-							<%= link_to image_tag(petition.pics_url), edit_petition_path(petition)  %>
+					<% if petition.pass == "pass" %>
+						<div class="block">
+							<div class="imgholder">
+								<%= link_to image_tag(petition.pics_url), edit_petition_path(petition)  %>
+							</div>
+							<strong><%= link_to petition.name, edit_petition_path(petition)	, {:style=>'color:#000000;'} %></strong>
+							<div class="meta"><%= petition.rating %> Votes</div>
 						</div>
-						<strong><%= link_to petition.name, edit_petition_path(petition)	, {:style=>'color:#000000;'} %></strong>
-						<div class="meta"><%= petition.rating %> Votes</div>
-					</div>
+					<% end %>					
 		<% end %>
 	</div>
-</section>	 
+</section>	
+
+<%if signed_in? %>
+<% if current_user.admin? %>
+	<section id="wrapper1">
+		<div id="container">
+			NOT YET PASSED
+			<% @petitions.each do |petition| %>
+						<% if petition.pass == "no" %>
+							<div class="block">
+								<div class="imgholder">
+									<%= link_to image_tag(petition.pics_url), edit_petition_path(petition)  %>
+								</div>
+								<strong><%= link_to petition.name, edit_petition_path(petition)	, {:style=>'color:#000000;'} %></strong>
+								<div class="meta"><%= petition.rating %> Votes</div>
+							</div>
+						<% end %>	
+			<% end %>
+		</div>
+	</section>
+<% end %>
+<% end %>	
+				
+ 
   
 
 

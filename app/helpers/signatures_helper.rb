@@ -2,10 +2,10 @@ module SignaturesHelper
 	def last
 		return Signature.last.total
 	end
-
-	def uptotal(signatur)
-		signatur.total = 2
-		signatur.save
+	
+	
+	def test
+		Signature.find_by_remember_token(current_user.remember_token).present?
 	end
 	
 end

@@ -6,12 +6,24 @@ Help eliminate toxins from our houses!
 
 <%end%>
 
-<p>
-  Sign the petition below.
-</p>
+
 <%= @totals %> signatures
 <div class="row">
   <div class="span6 offset3">
+	<% if @b == "no user" %>
+		<p>
+		Sorry, you are not signed in!		
+		</p>	
+	<% end %>
+	<% if @b == "already signed" %> 
+		<p>
+		Sorry, you have already signed... :(  
+		</p>
+	<% end %>
+	<% if @b == "ok to sign" %>
+	<p>
+	  Sign the petition below!
+	</p>
     <%= form_for(@signature) do |f| %>
       <%= render 'shared/error_messages2' %>
 
@@ -26,12 +38,39 @@ Help eliminate toxins from our houses!
       <%= f.text_field :country, :value => current_user.country %>
 	  
 
-      <%= f.hidden_field :total, :value => @totals + 1 %>
-		
+      <%= f.text_field :total, :value => @totals + 1 %>
+	  <%= f.hidden_field :remember_token, :value => current_user.remember_token %>
+	  
+	  
       <%= f.submit "Sign the petition!", class: "btn btn-large btn-primary" %>
     <% end %>
+<% end %>
+		
+		
+		<form method="post" action="" class="sigPad">
+		  <ul class="sigNav">
+			<li class="drawIt"><a href="#draw-it">Draw your Signature</a></li>
+			<li class="clearButton"><a href="#clear">Clear</a></li>
+		  </ul>
+		  <div class="sig sigWrapper">
+			<div class="typed"></div>
+			<canvas class="pad" width="400" height="100"></canvas>
+			<input type="hidden" name="output" class="output">
+		  </div>
+		</form>
+
+
+
+<script type="text/javascript">
+	$(document).ready(function () {
+	  $('.sigPad').signaturePad({drawOnly:true});
+	});
+</script>
+		
+		
   </div>
 </div>
+
 
 
 

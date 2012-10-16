@@ -4,13 +4,13 @@
 <% provide :toppage do  %>
 	<%= @petition.name %>
 <%end%>
+
 <div class="row-fluid" id="wrapper1">
     <section>
 	<%= @petition.description  %> <br />
 	<%= image_tag(@petition.pics_url) if @petition.pics? %>
-
 	<br /><br /><br />
-	
+		<% if !current_user.admin? %>
 		<% if signed_in? %>
 			<% if current_user.vote != 0 %>
 				<%= form_for(@petition) do |f| %>	
@@ -21,8 +21,25 @@
 			<% end %>
 	    <% else %>
 			 <%= link_to "Sign in to vote!", signin_path, class: "btn btn-large btn-primary" %>
-        <% end %>	
+        <% end %>
+		<% end %>
     </section>
 </div>
 
-
+<div class="row-fluid" id="wrapper1">
+    <section>	
+		<% if current_user.admin? %>
+				<%= form_for(@petition) do |f| %>
+				  <%= f.label :name %>
+				  <%= f.text_field :name %>
+				  <%= f.label :pass %>
+				  <%= f.text_field :pass %>	  
+				  <%= f.label :description %>
+				  <%= f.text_area :description, :size => "40x8" %>
+				  <%= f.submit "Save", class: "btn btn-large btn-primary" %>
+				<% end %>
+			<%= link_to "delete", @petition, method: :delete,
+										  data: { confirm: "You sure?" }, class: "btn btn-large btn-primary" %>
+		<% end %>		
+    </section>
+</div>
