@@ -17,6 +17,16 @@ html {
 	width: 100px;
 		margin-left: 20px;
 }
+#bar2{
+	border-top: 1px solid $grayMediumLight;
+
+	position: center;
+}
+
+.section{
+width: 500px;
+
+}
 
 #sides {
   	position:relative;
@@ -44,8 +54,14 @@ section {
   overflow: auto;
 }
 
-textarea {
-  resize: vertical;
+.petitionform{
+width: 700px;
+overflow: auto;
+}
+.linkform{
+width: 700px;
+height: 100px;
+overflow: auto;
 }
 
 .yellow {

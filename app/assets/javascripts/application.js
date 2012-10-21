@@ -12,7 +12,7 @@
 //
 //= require jquery
 //= require jquery_ujs
-//= require bootstrap
+//= require wysihtml5-0.3.0
 //= require_tree .
 
 

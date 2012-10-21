@@ -10,9 +10,26 @@
 			</li>
 	<% end %>
 		<div id=bar></div>
-		<li id="sides"><%= link_to "Current Petition", petitionnow_path %></li>
+		<li id="sides"><%= link_to "Current Campaign", petitionnow_path %></li>
          <% if signed_in? %>
+			<% if current_user.petitioner == "yes" %>
 			<div id=bar></div>
-			<li id="sides"><%= link_to "Create New Petition", newpetition_path %></li>
+			<li id="sides"><%= link_to "My Campaign", edit_petition_path(current_user.petition_id) %></li>
+				<% if current_page? edit_petition_path(current_user.petition_id) %>
+				<div id=bar></div>
+				<li id="sides"><%= link_to "Campaign Tips", tips_path %></li>
+				<%end%>
+				<% if current_page? tips_path %>
+				<div id=bar></div>
+				<li id="sides"><%= link_to "Campaign Tips", tips_path %></li>					
+				<%end%>
+			<%else%>
+			<div id=bar></div>
+			<li id="sides"><%= link_to "Create New Campaign", newpetition_path %></li>
+			<%end%>
+		<% end %>
+		<% if !signed_in? %>
+			<div id=bar></div>
+			<li id="sides"><%= link_to "Create New Campaign", newpetition_path %></li>
 		<% end %>
 </ul>

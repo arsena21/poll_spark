@@ -31,4 +31,6 @@ module SessionsHelper
 	user.save
   end
   
+
+  
 end

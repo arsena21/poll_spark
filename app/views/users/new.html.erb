@@ -1,5 +1,23 @@
-<% provide(:title, 'Sign up') %>
-<h1>Sign up</h1>
+<% if !current_page? root_path %>
+<% provide :title do  %>
+	<% "Sign up" %>
+<%end%>
+<% provide :toppage do  %>
+	<% "Sign up" %>
+<%end%>			
+Thanks for your interest in signing up!....explanation.
+<%end%>
+
+
+<h1>1</h1>
+	<h2>Vote on the 5 campaigns which are most important to you</h2>
+<h1>2</h1>
+	<h2>Participate in the current campaign</h2>
+<h1>3</h1>
+	<h2>Share with 5 friends</h2>
+
+
+
 
 <div class="row">
   <div class="span6 offset3">
@@ -21,9 +39,11 @@
       <%= f.password_field :password %>
 
       <%= f.label :password_confirmation, "Confirmation" %>
-      <%= f.password_field :password_confirmation %>
+      <%= f.password_field :password_confirmation %><br />
 
-      <%= f.submit "Create my account", class: "btn btn-large btn-primary" %>
+      <%= f.submit "123Revolution", class: "btn btn-large btn-primary" %>
     <% end %>
   </div>
 </div>
+
+<%= link_to "Skip", petitions_path %>

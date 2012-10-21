@@ -17,14 +17,14 @@ Help eliminate toxins from our houses!
 	<% end %>
 	<% if @b == "already signed" %> 
 		<p>
-		Sorry, you have already signed... :(  
+		Thanks for participating in this campaign!  
 		</p>
 	<% end %>
 	<% if @b == "ok to sign" %>
 	<p>
 	  Sign the petition below!
 	</p>
-    <%= form_for(@signature) do |f| %>
+    <%= form_for(@signature, :html => { :class => "sigPad"} ) do |f| %>
       <%= render 'shared/error_messages2' %>
 
 
@@ -41,30 +41,35 @@ Help eliminate toxins from our houses!
       <%= f.text_field :total, :value => @totals + 1 %>
 	  <%= f.hidden_field :remember_token, :value => current_user.remember_token %>
 	  
-	  
-      <%= f.submit "Sign the petition!", class: "btn btn-large btn-primary" %>
-    <% end %>
-<% end %>
-		
-		
-		<form method="post" action="" class="sigPad">
+	  <%= f.hidden_field :signaturepic, :id=>"canvascontent" %>
+
 		  <ul class="sigNav">
 			<li class="drawIt"><a href="#draw-it">Draw your Signature</a></li>
 			<li class="clearButton"><a href="#clear">Clear</a></li>
 		  </ul>
 		  <div class="sig sigWrapper">
 			<div class="typed"></div>
-			<canvas class="pad" width="400" height="100"></canvas>
-			<input type="hidden" name="output" class="output">
+			<canvas class="pad" id="canvascontent" width="400" height="100"></canvas>
 		  </div>
-		</form>
+ 
+      <%= f.submit "Sign the petition!", class: "btn btn-large btn-primary" %>
+    <% end %>
+<% end %>
+
+		
+
 
 
 
 <script type="text/javascript">
 	$(document).ready(function () {
 	  $('.sigPad').signaturePad({drawOnly:true});
-	});
+
+	  var img = document.getElementById("canvascontent")	
+	  var canvasURL = img.toDataURL("public/uploads");	  
+
+
+	  });
 </script>
 		
 		

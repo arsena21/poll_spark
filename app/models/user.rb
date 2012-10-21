@@ -1,6 +1,8 @@
 class User < ActiveRecord::Base
-  belongs_to :signatures 
- 
+  belongs_to :signature
+  belongs_to :petition
+  has_one :petition
+  
   attr_accessible :name, :email, :vote, :country, :password, :password_confirmation, :remember_token
   has_secure_password
   after_initialize :bobo
@@ -21,6 +23,7 @@ class User < ActiveRecord::Base
 def bobo
   if new_record?
     self.vote ||= 5
+	self.petitioner ||= "no"
   end
 end
   

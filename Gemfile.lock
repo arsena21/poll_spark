@@ -33,6 +33,8 @@ GEM
     bcrypt-ruby (3.0.1)
     bcrypt-ruby (3.0.1-x86-mingw32)
     bootstrap-sass (2.0.4.0)
+    bootstrap-wysihtml5-rails (0.3.1.7)
+      railties (>= 3.0)
     builder (3.0.3)
     capybara (1.1.2)
       mime-types (>= 1.16)
@@ -162,6 +164,7 @@ PLATFORMS
 DEPENDENCIES
   bcrypt-ruby (= 3.0.1)
   bootstrap-sass (= 2.0.4)
+  bootstrap-wysihtml5-rails
   capybara (= 1.1.2)
   carrierwave
   coffee-rails (= 3.2.2)

@@ -2,12 +2,27 @@
 <html>
   <head>
     <title><%= full_title(yield(:title)) %></title>
-    <script src="jquery.signaturepad.js"></script>
+    <%= javascript_include_tag "jquery", "application" %>    
+	<script src="jquery.signaturepad.js"></script>
 	<script src="http://ajax.cdnjs.com/ajax/libs/json2/20110223/json2.js"></script>
 	<script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.8.23/jquery-ui.min.js"></script>
+	<script src="jquery-1.7.2.min.js"></script>
+	<script src="advanced.js"></script>
+	<script src="wysihtml5-0.3.0.js"></script>
+	<script src="bootstrap-wysihtml5.js"></script>
+
+	<link rel="stylesheet" type="text/css" href="bootstrap.min.css"></link>
+	<link rel="stylesheet" type="text/css" href="bootstrap-wysihtml5.css"></link>
+	
+	
 	<%= stylesheet_link_tag    "application", media: "all" %>
-    <%= javascript_include_tag "jquery", "application" %>
-    <%= csrf_meta_tags %>
+
+	<script src="bootstrap.min.js"></script>    
+	
+	
+	
+	
+	<%= csrf_meta_tags %>
     <%= render 'layouts/shim' %>    
   </head>
   <body>
@@ -16,15 +31,15 @@
 	<div class="container-fluid">
 	  <div class="row-fluid">
 		<div class="span2">
-			<%= render 'layouts/sidebar' %>
+			<% if !current_page? root_path %>
+				<%= render 'layouts/sidebar' %>			
+			<%end%>
 		</div>
-		<div class="span6 offset3">
-			<div class="container">
+		<div class="container">	
 			  <% flash.each do |key, value| %>
 				<div class="alert alert-<%= key %>"><%= value %></div>
 			  <% end %>
-			  <%= yield %>
-			</div>		  
+			  <%= yield %>	  
 		</div>
 	  </div>
 	  <%= render 'layouts/footer' %>
