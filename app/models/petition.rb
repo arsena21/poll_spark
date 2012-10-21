@@ -1,6 +1,7 @@
 class Petition < ActiveRecord::Base
   has_one :user
   belongs_to :user
+  has_many :microposts
   
   after_initialize :pipi
   mount_uploader :pics, AvatarUploader

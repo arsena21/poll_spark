@@ -46,7 +46,9 @@ class PetitionsController < ApplicationController
   def edit
   	@user = current_user
   	@petition = Petition.find(params[:id])
-  end
+	@micropost = Micropost.new(:user_id => current_user.id, :petition_id => @petition.id)
+	@microposts = @petition.microposts.paginate(page: params[:page])	
+end
   
   def update
 	@petition = Petition.find(params[:id])

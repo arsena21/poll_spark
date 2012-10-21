@@ -5,9 +5,12 @@ PollSpark::Application.routes.draw do
 	resources :signatures
     resources :sessions, only: [:new, :create, :destroy]
 	resources :petitions, only: [:new, :create, :show, :index, :edit, :update, :destroy]
-
+	resources :microposts, only: [:create, :destroy]
+	  
+	  
 match '/allpetitions',  to: 'petitions#index' 
 match '/tips',  to: 'static_pages#tips'
+match '/newpetition',  to: 'petitions#new'
 match '/signin',  to: 'sessions#new'
 match '/signout', to: 'sessions#destroy', via: :delete
 match '/signup', to: 'users#new'
