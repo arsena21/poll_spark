@@ -13,6 +13,10 @@ module PetitionsHelper
 	  def user_petition_save(user)
 		user.petition_id = @petition.id
 		user.save
-	  end	  
-	  
+	  end
+	
+	def notpetitioner(user)
+		user.petitioner = "no"	
+		user.save!
+	end 	
 end

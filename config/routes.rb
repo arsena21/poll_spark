@@ -3,6 +3,7 @@ PollSpark::Application.routes.draw do
     root :to => 'users#new'	
 	resources :users
 	resources :signatures
+	resources :friends, only: [:create]
     resources :sessions, only: [:new, :create, :destroy]
 	resources :petitions, only: [:new, :create, :show, :index, :edit, :update, :destroy]
 	resources :microposts, only: [:create, :destroy]

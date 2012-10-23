@@ -2,10 +2,11 @@ class Petition < ActiveRecord::Base
   has_one :user
   belongs_to :user
   has_many :microposts
+  has_one :signature
   
   after_initialize :pipi
   mount_uploader :pics, AvatarUploader
-  attr_accessible :name, :rating, :description, :pics, :pass, :user_id, :links
+  attr_accessible :name, :rating, :description, :pics, :pass, :user_id, :links, :launched
   validates :user_id, presence: true
   validates :name, presence: true
   validates :rating, presence: true, :numericality => 
@@ -16,6 +17,7 @@ def pipi
   if new_record?
     self.rating ||= 0
 	self.pass = "no"
+	self.launched = "no"
   end
 end
 

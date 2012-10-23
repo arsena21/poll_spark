@@ -1,11 +1,15 @@
-<% provide :toppage do  %>
-	What do YOU want to change?
+<h1> <span class="yellow">1</span> Vote on future campaigns</h1>	
+
+<%if signed_in?%>
+	<h5>You have <%= pluralize(@user.vote, "vote") %> left! Educate yourself and vote on the campaigns which are the most important to you: </h5>
+<%else%>
+	<h5>You have 5 votes left! Educate yourself and vote on the campaigns which are the most important to you: </h5>
 <%end%>
 
-<section id="wrapper1">
-	<div id="container">
+	<div id="container", class="contained">
 		<% @petitions.each do |petition| %>
 					<% if petition.pass == "pass" %>
+					<% if petition.launched == "no" %>
 						<div class="block">
 							<div class="imgholder">
 								<%= link_to image_tag(petition.pics_url), edit_petition_path(petition)  %>
@@ -13,34 +17,98 @@
 							<strong><%= link_to petition.name, edit_petition_path(petition)	, {:style=>'color:#000000;'} %></strong>
 							<div class="meta"><%= petition.rating %> Votes</div>
 						</div>
-					<% end %>					
+					<% end %>	
+					<% end %>
 		<% end %>
 	</div>
-</section>	
-
-<%if signed_in? %>
-<% if current_user.admin? %>
-	<section id="wrapper1">
-		<div id="container">
-			NOT YET PASSED
-			<% @petitions.each do |petition| %>
-						<% if petition.pass == "no" %>
-							<div class="block">
-								<div class="imgholder">
-									<%= link_to image_tag(petition.pics_url), edit_petition_path(petition)  %>
-								</div>
-								<strong><%= link_to petition.name, edit_petition_path(petition)	, {:style=>'color:#000000;'} %></strong>
-								<div class="meta"><%= petition.rating %> Votes</div>
-							</div>
-						<% end %>	
+	
+	<div id="container", class="contained">
+		<br /><br /><br />
+		<%if signed_in? %>
+			<% if current_user.admin? %>
+						NOT YET PASSED
+						<% @petitions.each do |petition| %>
+									<% if petition.pass == "no" %>
+										<div class="block">
+											<div class="imgholder">
+												<%= link_to image_tag(petition.pics_url), edit_petition_path(petition)  %>
+											</div>
+											<strong><%= link_to petition.name, edit_petition_path(petition)	, {:style=>'color:#000000;'} %></strong>
+											<div class="meta"><%= petition.rating %> Votes</div>
+										</div>
+									<% end %>	
+						<% end %>
 			<% end %>
-		</div>
-	</section>
-<% end %>
-<% end %>	
-				
+		<% end %>	
+	</div>
+
+	<div id="countDownTimer"></div> <h3>Remaining until next campaign is launched</h3><br /><br />
+			
+	<div id="bar2">		</div>	<br /><br />
+	
+		<h1><span class="orange">2</span> Participate in the current campaign </h1>							
+		<% @petitions.each do |petition| %>
+					<% if petition.pass == "pass" %>
+					<% if petition.launched == "yes" %>
+						<section class="block">
+							<h4><%= link_to petition.name, new_signature_path	, {:style=>'color:#000000;'} %></h4>
+							<div class="imgholder2">
+								<%= link_to image_tag(petition.pics_url), new_signature_path, id:"img2" %>
+							</div>							
+							<p class="textwrap"><%= truncate(petition.description, :length=>400 )  %></p>							
+							
+	
+							<h4><div class="meta"><%= @totals %> Paticipants</div></h4>
+							<%= link_to "Paticipate Now!", new_signature_path	, class: "btn btn-large btn-primary" %>
+						</section>
+					<% end %>	
+					<% end %>
+		<% end %>						
+
+
+
+
+
+
+
+
+
+
+<br /><br /><br /><br />
+<div id="bar2">		</div>	<br /><br />
+<h1><span class="red">3</span> Share </h1>
+
+
+<h5>Thanks for participating! Please help us reach our goals by sharing with your friends and family. The more people who suppory the cause, the more chances we have 
+to making a difference. Send yourself a reminder e-mail below: </h5>
  
-  
+
+
+
+
+
+<br /><br />
+
+
+
+
+
+<script> 
+ $(document).ready(function(){  
+ 
+var element = '#countDownTimer';
+setCountdownTimer(element, 2013, 02, 02);
+
+function setCountdownTimer(element, year, month, day) {
+  var date = new Date(year, month, day);
+  $(element).countdown({until: date, format: 'odhms'});
+}
+
+});
+   
+</script>
+
+
 
 
 

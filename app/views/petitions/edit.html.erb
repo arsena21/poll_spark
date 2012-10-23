@@ -1,79 +1,88 @@
 <% provide :title do  %>
-	<%= @petition.name %>
+	<%= @petition.name.html_safe %>
 <%end%>
 <% provide :toppage do  %>
-	<% @petition.name %>
+	<%= @petition.name.html_safe  %>   
 <%end%>
+
 
 
 <% if @petition.pass == "pass"%>
-	<div class="row-fluid" id="wrapper1">
-		<%= @petition.description  %> <br />
-		<%= @petition.rating%> Votes!<br />
-		<%= image_tag(@petition.pics_url) if @petition.pics? %> <br />
-<% if signed_in? %>
-  <div class="row">
-    <aside class="span4">
-      <section>
-        <%= render 'shared/micropost_form' %>
-      </section>
-    </aside>
-  </div>  
-<% end %>
-		<div class="span8">
+		<div class="row">
+			<div class="row">
+			<%= @petition.rating%> Votes <br /><br />
+			<%= image_tag(@petition.pics_url) %>
+			<%= @petition.description.html_safe  %> <br />
+			</div>
+			<% if @petition.links.present?  %><br /><br />
+				<h4 id="left">LINKS</h4> <br />
+				<%= @petition.links.html_safe  %> <br />
+			<%end%><br /><br />
+			
+				<% if signed_in? %>
+					<% if !current_user.admin? %>
+						<% if current_user.vote != 0 %>
+							<%= form_for(@petition) do |f| %>
+							<div class="centers">
+							<%= f.submit "Vote for this campaign", class: "btn btn-large btn-primary" %>
+							</div>	
+							<% end %>
+						<% end %>	
+						<% if current_user.vote == 0 %>
+							<div class="centers"><div class="btn btn-large btn-info">You have used your 5 votes...</div></div>
+						<% end %>
+				   <% end %><br />	
+				<% end %>		
+			<div class="row">
+			<% if !signed_in? %>
+					<div class="centers"><%= link_to "Vote for this campaign", signin_path, class: "btn btn-large btn-primary" %></div><br />
+			<% end %>	
+			</div>
+		</div><br />
+		<div id="bar2"></div> 
+		<div class="span8 offset2">
 			<% if @petition.microposts.any? %>
-			  <h3>Microposts (<%= @petition.microposts.count %>)</h3>
+			  <h3 id="padd">Comments (<%= @petition.microposts.count %>)</h3>
 			  <ol class="microposts">
-				<%= render @microposts %>
-			  </ol>
+			  <%= render 'shared/micropost_form' %>
+			  <%= render @microposts %>
 			  <%= will_paginate @microposts %>
+			  </ol>
+			<% else %>
+			  <h3>Post the first comment! </h3>
+			  <ol class="microposts">
+					<%= render 'shared/micropost_form' %>		
+			  </ol>
 			<% end %>
 		</div>
-		<%= link_to "Back", petitions_path %>
-		<br /><br /><br />
-			<% if signed_in? %>
-				<% if !current_user.admin? %>
-					<% if current_user.vote != 0 %>
-						<%= form_for(@petition) do |f| %>	
-						<%= f.submit "Change vote!", class: "btn btn-large btn-primary" %>
-						<% end %>
-					<% end %>	
-					<% if current_user.vote = 0 %>
-						<a href="#" class="btn btn-info">Sorry, you have run out of votes...</a>
-					<% end %>
-			   <% end %>		
-			<% end %>		
-			<% if !signed_in? %>
-				<%= link_to "Sign in to vote!", signin_path, class: "btn btn-large btn-primary" %>
-			<% end %>
-	</div>
 <%end%>
 
 
 <% if signed_in? %>
-<% if @petition.user_id == current_user.id %>
+<% if (@petition.user_id == current_user.id) || (current_user.admin?) %>
 	<% if @petition.pass == "no"%>
 			
 				<h2><div class="totheleft">PREVIEW</div></h2>
-				<section class="section">
+
 				<%= @petition.description.html_safe  %> <br />
-				</section>
+
 				<% if @petition.links.present?  %><br /><br />
-				<h4>LINKS</h4> <br />
+				<h4 id="left">LINKS</h4> <br />
 					<%= @petition.links.html_safe  %> <br />
 				<%end%>
-				<%= image_tag(@petition.pics_url) if @petition.pics? %>
 				<br /><br /><br />
-<div id=bar2></div>
+				<div id=bar2></div>
 					<br /><br /><br />			
-				<h2><div class="totheleft">UPDATE CAMPAIGN</div></h2><br />
+				<h2><div class="totheleft">UPDATE CAMPAIGN</div></h2>
 
+				<%= link_to "Campaign Tips", tips_path %>		<br />	<br />		
 
 						
-				 <%= form_for(@petition) do |f| %>
-				  <h4>Campaign Name<h4> <br>
+				<%= form_for(@petition) do |f| %>
+				  <%= render 'shared/error_messages', object: f.object %>
+				  <h4 id="left">Campaign Name<h4 id="left"> <br>
 				  <%= f.text_field :name %><br /><br /><br />
-				  <h4>Campaign Description<h4> <br>				
+				  <h4 id="left">Campaign Description<h4 id="left"> <br>				
 				  	
 					<div id="wysihtml5-toolbar" style="display: none;">
 						 <div class="btn-toolbar">
@@ -98,14 +107,20 @@
 							</div>  
 					</div>				
 	
-				<%= f.text_area :description, class: "petitionform", id: "wysihtml5-textarea"  %>	<br><br /><br />
-				<h4>Useful Links<h4> <br>
-				<%= f.text_area :links, class: "linkform", id: "wysihtml5-textarea2"  %>
-				  <br>
+					<%= f.text_area :description, class: "span12", id: "wysihtml5-textarea"  %>	<br><br /><br />
+					<h4 id="left">Useful Links<h4 id="left"> <br>
+					<%= f.text_area :links, class: "span12", id: "wysihtml5-textarea2"  %>
+					<br>
 					<%= submit_tag "Complete!", :name => 'done', class: "btn btn-large btn-primary" %>
 					
 					<%= submit_tag "Save", :name => 'almostdone', class: "btn btn-large btn-primary" %>
-				<% end %>	
+					<% if current_user.admin? %>
+						<%= link_to "delete", @petition, method: :delete,
+												  data: { confirm: "You sure?" }, class: "btn btn-large btn-primary" %>
+											  <%= f.label :pass %>
+						<%= f.text_field :pass %>							  
+					<% end %>
+			    <% end %>	
 
 
 
@@ -127,25 +142,4 @@
 
 	<%end%>
 <%end%>
-<%end%>
-
-<% if signed_in? %>
-<% if current_user.admin? %>
-	<div class="row-fluid" id="wrapper1">
-		<section>
-					<%= form_for(@petition) do |f| %>
-					  <%= f.label :name %>
-					  <%= f.text_field :name %>
-					  <%= f.label :pass %>
-					  <%= f.text_field :pass %>	  
-					  <%= f.label :description %>
-					  <%= f.text_area :description, :size => "40x8" %>
-					  <%= f.submit "Save", class: "btn btn-large btn-primary" %>
-					<% end %>
-				<%= link_to "delete", @petition, method: :delete,
-											  data: { confirm: "You sure?" }, class: "btn btn-large btn-primary" %>
-					
-		</section>
-	</div>
-<% end %>
 <%end%>

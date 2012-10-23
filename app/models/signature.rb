@@ -3,7 +3,8 @@ class Signature < ActiveRecord::Base
   validates :email, presence: true
   validates :country, presence: true
   validates :name, presence: true
- has_many :users 
-mount_uploader :signaturepic, AvatarUploader
+  has_many :users 
+  belongs_to :petition 
+  mount_uploader :signaturepic, AvatarUploader
 
 end

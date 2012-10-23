@@ -3,40 +3,47 @@ class PetitionsController < ApplicationController
   def create
     @petition = Petition.new(params[:petition])
     @user = current_user
-	if params[:done]
-		if @petition.save
-		  UserMailer.registration_confirmation(@petition).deliver
-		  flash[:success] = "Petition has been submitted for review!"
-		  redirect_to petitions_path
-		else
-		  flash[:success] = "Petition not saved"
-		  render petitions_path
-		end
-	end	
-	if params[:almostdone]
-		if @petition.save
-		  flash[:success] = "Campaign has been saved. It will be stored for two weeks unless it is submitted!"
-		  change_user_status @user
-		  user_petition_save @user
-		  redirect_to edit_petition_path(@petition)
-		else
-		  flash[:success] = "Petition not saved"
-		  redirect_to petitions_path
-		end
-	end		
-  end
+	if params[:done] || params[:almostdone]
+			if params[:done]
+				if @petition.save
+				  UserMailer.registration_confirmation(@petition).deliver
+				  flash[:success] = "Campaign has been submitted for review!"
+				  redirect_to petitions_path
+				  user_petition_save @user
+				  change_user_status @user
+				  return
+				else
+				  render 'new'
+				  return
+				end
+			end	
+		if params[:almostdone]
+			if @petition.save
+			  flash[:success] = "Campaign saved"
+			  user_petition_save @user
+			  redirect_to edit_petition_path(@petition)
+			  change_user_status @user
+			  user_petition_save @user
+			  return
+			else
+			  flash[:success] = "Petition not saved"
+			  render 'new'
+			  return
+			end
+		end		
+	end
+	end
   
   def new
-	if signed_in?
-		redirect_to users_path
-	end
 	@petition = Petition.new
 	@user = current_user
   end
   
 
   def index
-  	@petitions = Petition.find(:all, :limit =>16)
+  	@petitions = Petition.find(:all)
+	@totals = last
+	@user = current_user
   end
  
   def show
@@ -46,7 +53,9 @@ class PetitionsController < ApplicationController
   def edit
   	@user = current_user
   	@petition = Petition.find(params[:id])
+	if signed_in?
 	@micropost = Micropost.new(:user_id => current_user.id, :petition_id => @petition.id)
+	end
 	@microposts = @petition.microposts.paginate(page: params[:page])	
 end
   
@@ -57,7 +66,7 @@ end
 			if params[:done]
 				if @petition.update_attributes(params[:petition])
 				  UserMailer.registration_confirmation(@petition).deliver
-				  flash[:success] = "Campaign has been submitted for review!"
+				  flash[:success] = "Campaign has been submitted for review! You will be contacted shortly."
 				  redirect_to petitions_path
 				  return
 				else
@@ -89,11 +98,14 @@ end
 				votes_down current_user
 				flash[:success] = "Thanks for your vote!"
 				redirect_to petitions_path
-		end
+				return
+		end		
 		if (current_user.vote == 0)
 					flash[:failure] = "No more votes!"
 					redirect_to petitions_path
-		end
+		end		
+
+
 	end
 
 

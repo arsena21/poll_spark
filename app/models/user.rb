@@ -1,9 +1,9 @@
 class User < ActiveRecord::Base
   belongs_to :signature
-  belongs_to :petition
   has_one :petition
+  belongs_to :petition
   has_many :microposts
-  
+  has_many :friends
   
   attr_accessible :name, :email, :vote, :country, :password, :password_confirmation, :remember_token
   has_secure_password
@@ -22,6 +22,8 @@ class User < ActiveRecord::Base
   validates :vote, presence: true, :numericality => 
 				{ :greater_than_or_equal_to => 0, :less_than_or_equal_to => 5 }
   
+
+ 
 def bobo
   if new_record?
     self.vote ||= 5

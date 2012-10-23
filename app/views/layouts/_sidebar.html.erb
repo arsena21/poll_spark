@@ -1,35 +1,16 @@
-<ul class="unstyled">
-	<% if signed_in? %>
-			<li>
-				<%= link_to '#' do %>
-					<div id=bar></div>
+			
+				<%= link_to petitionnow_path do %>
+					<br /><div id="bar"></div><br />
 					<div id="sides">
-					<span class="yellow"><strong><%= (votes_left current_user) %></strong> <span>Votes left!</span></span>
+					2 - Participate
 					</div>
-				<% end %>
-			</li>
-	<% end %>
-		<div id=bar></div>
-		<li id="sides"><%= link_to "Current Campaign", petitionnow_path %></li>
-         <% if signed_in? %>
-			<% if current_user.petitioner == "yes" %>
-			<div id=bar></div>
-			<li id="sides"><%= link_to "My Campaign", edit_petition_path(current_user.petition_id) %></li>
-				<% if current_page? edit_petition_path(current_user.petition_id) %>
-				<div id=bar></div>
-				<li id="sides"><%= link_to "Campaign Tips", tips_path %></li>
-				<%end%>
-				<% if current_page? tips_path %>
-				<div id=bar></div>
-				<li id="sides"><%= link_to "Campaign Tips", tips_path %></li>					
-				<%end%>
-			<%else%>
-			<div id=bar></div>
-			<li id="sides"><%= link_to "Create New Campaign", newpetition_path %></li>
-			<%end%>
-		<% end %>
-		<% if !signed_in? %>
-			<div id=bar></div>
-			<li id="sides"><%= link_to "Create New Campaign", newpetition_path %></li>
-		<% end %>
-</ul>
+				<% end %>	<br />
+
+
+
+				<%= link_to '#' do %>
+					<br /><div id="bar"></div><br />
+					<div id="sides">
+					3 - Share
+					</div>
+				<% end %>	<br />	

@@ -9,18 +9,18 @@ $grayMediumLight: #eaeaea;
 html {
   overflow-y: scroll;
 }
-   
 
- 
+
+
 #bar{
 	border-top: 1px solid $grayMediumLight;
-	width: 100px;
-		margin-left: 20px;
+	width: 60%;
+	float: right;
 }
 #bar2{
 	border-top: 1px solid $grayMediumLight;
-
 	position: center;
+	margin-bottom: 30px;
 }
 
 .section{
@@ -29,22 +29,21 @@ width: 500px;
 }
 
 #sides {
-  	position:relative;
 	font-size: 1.0em;
 	letter-spacing: 0.5px;
-	text-align: right;
 	font-weight: normal;
-	margin-bottom: 10px;
-	margin-top: 10px;
-	margin-left: 20px;
-	width: 100px;
+	float:right;
 }
 
-#container{
+#container2{
 	position:relative;
-	width:1100px;
+	width:400px;
 	margin:0 auto;
+	overflow: auto;
 }
+
+
+
 
 body {
   padding-top: 60px;
@@ -54,10 +53,18 @@ section {
   overflow: auto;
 }
 
-.petitionform{
-width: 700px;
+.micropostform{
+width: 610px;
+height: 100px;
 overflow: auto;
 }
+
+
+.petitionform{
+width: auto;
+overflow: auto;
+}
+
 .linkform{
 width: 700px;
 height: 100px;
@@ -80,22 +87,50 @@ color: #E8A317;
 h1, h2, h3, h4, h5, h6 {
   line-height: 1;
 }
+h4 {
+  font-size: 2em;
+  letter-spacing: -2px;
+  margin-bottom: 15px;
+    margin-top: 15px;
+  text-align: center;
+}
+
+#left{
+text-align: left;
+}
 
 h1 {
-  font-size: 3em;
+  font-size: 4em;
   letter-spacing: -2px;
   margin-bottom: 35px;
     margin-top: 20px;
   text-align: center;
 }
+h5 {
+  font-size: 1.7em;
+  letter-spacing: -1px;
+  margin-bottom: 30px;
+  font-weight: normal;
+  color: $grayLight;
+}
 
 h2 {
-  font-size: 1.7em;
+  font-size: 2.7em;
   letter-spacing: -1px;
   margin-bottom: 30px;
   text-align: center;
   font-weight: normal;
   color: $grayLight;
+}
+
+h3 {
+  font-size: 1.8em;
+  letter-spacing: -1px;
+  margin-bottom: 30px;
+  font-weight: normal;
+  color: black;
+  text-align:justify;
+  line-height:120%;
 }
 
 p {
@@ -108,9 +143,7 @@ p {
 
 #logo {
   float: left;
-  margin-right: 10px;
   font-size: 1.7em;
-  color: white;
   text-transform: uppercase;
   letter-spacing: -1px;
   padding-top: 9px;
@@ -121,6 +154,23 @@ p {
     text-decoration: none;
   }
 }
+
+
+
+.silver {
+  color: silver;
+}
+.orange {
+  color: orange;
+}
+.yellow {
+  color: yellow;
+}
+.red {
+  color: red;
+}
+
+
 
 /* footer */
 
@@ -168,15 +218,9 @@ footer {
   }
 }
 
-#wrapper1{
 
-	width:100%;
-}
-
-#container{
+.contained{
 	position:relative;
-	width:900px;
-	margin:0 auto;
 }
 
 
@@ -264,8 +308,29 @@ footer {
 	letter-spacing:1px;
 }
 
+.textwrap{
+  margin-right: 10px;
+  margin-left: 10px;
+  font-size: 1.7em;
+  letter-spacing: -1px;
+  margin-bottom: 30px;
+  font-weight: lighter;
+  text-align:justify;
+}
+
 img {
-    width:  175px;
+	float:left;
+	margin-right: 15px;
+#img2 {
+    width:  350px;
+}	
+}
+
+
+
+#wrap {
+width: 500px;
+text-align: center;
 }
 
 .imgholder{
@@ -277,16 +342,41 @@ img {
 	background:none;
 	border-color:#ccc;
 }
+.imgholder2{
+	width:auto;
+	height:auto;
+	background:none;
+	border-color:#ccc;
+}
+
+
+/* votes */
+
+.votes{
+text-align: center;
+
+}
 
 /* microposts */
 
+#padd{
+margin-bottom: 9px;
+}
+
+.centers{
+text-align:center; 
+margin: 0 auto;
+}
+ 
 .microposts {
-  list-style: none;
-  margin: 10px 0 0 0;
+width:100%;
+margin:auto;
+list-style:none;
 
   li {
     padding: 10px 0;
     border-top: 1px solid #e8e8e8;
+	margin-bottom: 20px;
   }
 }
 .content {
@@ -294,14 +384,25 @@ img {
 }
 .timestamp {
   color: $grayLight;
+    float: left;
 }
 .gravatar {
   float: left;
   margin-right: 10px;
+  
 }
 aside {
   textarea {
     height: 100px;
     margin-bottom: 5px;
   }
+}
+
+
+.content {
+  display: block;
+}
+
+#wysihtml5-textarea2{
+height: 100px;
 }

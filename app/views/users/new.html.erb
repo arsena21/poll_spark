@@ -1,12 +1,14 @@
-<% if !current_page? root_path %>
+
 <% provide :title do  %>
 	<% "Sign up" %>
 <%end%>
 <% provide :toppage do  %>
 	<% "Sign up" %>
-<%end%>			
-Thanks for your interest in signing up!....explanation.
-<%end%>
+<%end%>	
+<h3>		
+123 Revolution is the easiest way to voice your opinion in today's busy world. Every 6 months, we launch the most popular campaign based on popular vote. <br /><br />
+
+Take 5 minutes and have a lasting change by following these three steps: </h3>
 
 
 <h1>1</h1>
@@ -16,13 +18,15 @@ Thanks for your interest in signing up!....explanation.
 <h1>3</h1>
 	<h2>Share with 5 friends</h2>
 
+<h3>		
+Following signup, one verification e-mail will be delivered. Following this, 1 email will be sent every 6 months, notifying you of a newly launched campaign. You can opt out
+of our bi-annual e-mails at any point. The following information is required to put appropriate pressure on governemnets and organizations.</h3>
 
 
-
-<div class="row">
-  <div class="span6 offset3">
+<br /><br />
+<div class="centers">
     <%= form_for(@user) do |f| %>
-      <%= render 'shared/error_messages' %>
+      <%= render 'shared/error_messages', object: f.object %>
 
 
       <%= f.label :name %>
@@ -33,7 +37,6 @@ Thanks for your interest in signing up!....explanation.
 
       <%= f.label :country %>
 	  <%= f.select :country, [['Canada','Canada'],['United States','United States'],['Mexico','Mexico'],['France','France'],['UK','UK']] %>
-
 	  
       <%= f.label :password %>
       <%= f.password_field :password %>
@@ -41,9 +44,13 @@ Thanks for your interest in signing up!....explanation.
       <%= f.label :password_confirmation, "Confirmation" %>
       <%= f.password_field :password_confirmation %><br />
 
-      <%= f.submit "123Revolution", class: "btn btn-large btn-primary" %>
+      <%= f.submit "Signup!", class: "btn btn-large btn-primary" %>
     <% end %>
-  </div>
-</div>
+</div><br /><br />
 
+<div class="votes">
+<% if current_page? root_path %>
 <%= link_to "Skip", petitions_path %>
+<% end %>
+<p>Already a user? <%= link_to "Sign in!", signin_path %></p>
+</div>

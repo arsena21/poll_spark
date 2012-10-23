@@ -2,9 +2,9 @@
 
 	//BlocksIt default options
 	var blocksOptions = {
-		numOfCol: 5,
-		offsetX: 5,
-		offsetY: 5,
+		numOfCol: 4,
+		offsetX: 4,
+		offsetY: 4,
 		blockElement: 'div'
 	};
 	

@@ -10,7 +10,7 @@
 	<script src="advanced.js"></script>
 	<script src="wysihtml5-0.3.0.js"></script>
 	<script src="bootstrap-wysihtml5.js"></script>
-
+	 
 	<link rel="stylesheet" type="text/css" href="bootstrap.min.css"></link>
 	<link rel="stylesheet" type="text/css" href="bootstrap-wysihtml5.css"></link>
 	
@@ -31,17 +31,16 @@
 	<div class="container-fluid">
 	  <div class="row-fluid">
 		<div class="span2">
-			<% if !current_page? root_path %>
-				<%= render 'layouts/sidebar' %>			
-			<%end%>
 		</div>
-		<div class="container">	
+		<div class="span8">	
 			  <% flash.each do |key, value| %>
 				<div class="alert alert-<%= key %>"><%= value %></div>
 			  <% end %>
-			  <%= yield %>	  
+			  <%= yield %>
 		</div>
 	  </div>
 	  <%= render 'layouts/footer' %>
+	  <%= debug(params) if Rails.env.development? %>
+	  </div>
   </body>
 </html>

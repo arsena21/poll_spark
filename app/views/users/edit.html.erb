@@ -7,11 +7,8 @@
 <div class="row">
   <aside class="span4">
     <section>
-      
-        <%= gravatar_for current_user %>
-		
 			<%= form_for(current_user) do |f| %>
-			      <%= render 'shared/error_messages' %>  
+			      <%= render 'shared/error_messages', object: f.object %>  
 							<%= f.label :name %>
 							<%= f.text_field :name %>
 							<%= f.label :email %>
@@ -24,7 +21,6 @@
 							<%= f.password_field :password_confirmation %>	
 				 <%= f.submit "Change Settings", class: "btn btn-large btn-primary" %>
 		    <% end %>
-	 
     </section>
   </aside>
 </div>

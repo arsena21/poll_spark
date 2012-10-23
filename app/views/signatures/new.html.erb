@@ -1,63 +1,120 @@
 <% provide :title do  %>
-Help eliminate toxins from our houses!
+	<%= @petition.name %>
 <%end%>
 <% provide :toppage do  %>
-Help eliminate toxins from our houses!
-
+	<%= @petition.name %>
 <%end%>
 
+<%= @totals %> signatures 
+<br /><br />
 
-<%= @totals %> signatures
+<div class="row"><h4>
+<iframe title="YouTube video player" width="480" height="390"  
+src="http://www.youtube.com/embed/ctJJrBw7e-c" frameborder="0" allowfullscreen>  
+</iframe></h4>
+</div><br /><br />
+
+<%= @petition.description.html_safe %>
+<br /><br />
+
+
+
 <div class="row">
   <div class="span6 offset3">
-	<% if @b == "no user" %>
-		<p>
-		Sorry, you are not signed in!		
-		</p>	
+    <% if signed_in? %>
+		<%= form_for(@signature, :html => { :class => "sigPad"} ) do |f| %>
+		  <%= render 'shared/error_messages2' %>
+			  
+		  
+			  <%= f.label :name %>
+			  <%= f.text_field :name, :value => current_user.name %><br /><br />
+
+			  <%= f.label :email %>
+			  <%= f.text_field :email, :value => current_user.email %><br /><br />
+
+			  <%= f.label :country %>
+			  <%= f.text_field :country, :value => current_user.country %><br /><br /><br />
+			  
+
+			  <%= f.hidden_field :total, :value => @totals + 1 %>
+			  <%= f.hidden_field :remember_token, :value => current_user.remember_token %>
+			  
+			  <%= f.hidden_field :signaturepic, :id=>"canvascontent" %>
+
+				  <ul class="sigNav">
+					<li class="drawIt"><a href="#draw-it">Draw your Signature</a></li>
+					<li class="clearButton"><a href="#clear">Clear</a></li>
+				  </ul>
+				  <div class="sig sigWrapper">
+					<div class="typed"></div>
+					<canvas class="pad" id="canvascontent" width="400" height="100"></canvas>
+				  </div>
+				  <br /><br />
+				
+			  <% if @b == "ok to sign" %> 
+			    <%= submit_tag "Sign thsdfe petition!", class: "btn btn-large btn-primary" %>
+			  <% end %>
+			  <% if @b == "already signed" %> 
+				<p>
+				You have already participated in this campaign! Thank you for your participation! 
+				</p>
+			  <% end %>
+		<% end %>
 	<% end %>
-	<% if @b == "already signed" %> 
-		<p>
-		Thanks for participating in this campaign!  
-		</p>
-	<% end %>
-	<% if @b == "ok to sign" %>
-	<p>
-	  Sign the petition below!
-	</p>
-    <%= form_for(@signature, :html => { :class => "sigPad"} ) do |f| %>
-      <%= render 'shared/error_messages2' %>
-
-
-      <%= f.label :name %>
-      <%= f.text_field :name, :value => current_user.name %>
-
-      <%= f.label :email %>
-      <%= f.text_field :email, :value => current_user.email %>
-
-      <%= f.label :country %>
-      <%= f.text_field :country, :value => current_user.country %>
 	  
+	 
+	  <% if @b == "no user" %>
+		  <%= form_for(@signature, :html => { :class => "sigPad"} ) do |f| %>
+		  <%= f.label :name %>
+		  <%= f.text_field :name %><br />
 
-      <%= f.text_field :total, :value => @totals + 1 %>
-	  <%= f.hidden_field :remember_token, :value => current_user.remember_token %>
-	  
-	  <%= f.hidden_field :signaturepic, :id=>"canvascontent" %>
+		  <%= f.label :email %>
+		  <%= f.text_field :email %><br />
 
-		  <ul class="sigNav">
-			<li class="drawIt"><a href="#draw-it">Draw your Signature</a></li>
-			<li class="clearButton"><a href="#clear">Clear</a></li>
-		  </ul>
-		  <div class="sig sigWrapper">
-			<div class="typed"></div>
-			<canvas class="pad" id="canvascontent" width="400" height="100"></canvas>
+		  <%= f.label :country %>
+		  <%= f.text_field :country %><br /><br />
+		  
+		  <%= f.hidden_field :signaturepic, :id=>"canvascontent" %>
+
+			  <ul class="sigNav">
+				<li class="drawIt"><a href="#draw-it">Draw your Signature</a></li>
+				<li class="clearButton"><a href="#clear">Clear</a></li>
+			  </ul>
+			  <div class="sig sigWrapper">
+				<div class="typed"></div>
+				<canvas class="pad" id="canvascontent" width="400" height="100"></canvas>
+			  </div><br /><br />
+		  <%= link_to "Please sign in to participate", signin_path, class: "btn btn-large btn-primary" %>
+		  <% end %>
+	  <% end %>
+  </div>
+</div>
+
+
+	
+<% if signed_in? %>
+<% if @friendsleft != 0 %>
+	<%= form_for(@friend) do |f| %>
+		<%= render 'shared/error_messages', object: f.object %>
+		  <div class="field">
+			<%= f.text_field :name %>
+			<%= f.text_field :email %>
 		  </div>
- 
-      <%= f.submit "Sign the petition!", class: "btn btn-large btn-primary" %>
-    <% end %>
+		<%= f.submit "Share!", class: "btn btn-large btn-primary" %>	
+	<% end %> 
+<% else %>
+Thanks for sharing with your 5 friends!
 <% end %>
-
+<% end %>
 		
-
+		
+<%= link_to "3 - Share", '#', class: "btn btn-large btn-primary" %>		
+		
+		
+		
+		
+		
+		
 
 
 
@@ -73,8 +130,7 @@ Help eliminate toxins from our houses!
 </script>
 		
 		
-  </div>
-</div>
+
 
 
 

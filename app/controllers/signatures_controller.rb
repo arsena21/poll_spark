@@ -2,9 +2,16 @@ class SignaturesController < ApplicationController
 
 
   def new
-	@signature = Signature.new
 	@totals = last
+	@signature = Signature.new
+	@petition = find
 	if current_user
+		@user = current_user
+		@id = current_user.id				
+		@friendsshared = Friend.where( :user_id => @id ).count
+		@friendsleft = (5- Friend.where( :user_id => @id ).count)
+		@friend = Friend.new
+
 		if test
 			@b = "already signed"
 		else

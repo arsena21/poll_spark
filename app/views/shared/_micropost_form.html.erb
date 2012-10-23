@@ -1,7 +1,10 @@
-<%= form_for(@micropost) do |f| %>
-  <div class="field">
-  <%= f.hidden_field :petition_id, :value => @petition.id %>
-    <%= f.text_area :content, placeholder: "Compose new micropost..." %>
-  </div>
-  <%= f.submit "Post", class: "btn btn-large btn-primary" %>
-<% end %>
+<% if signed_in? %>
+	<%= form_for(@micropost) do |f| %>
+	  <%= f.hidden_field :petition_id, :value => @petition.id %>
+		<%= f.text_area :content, placeholder: "Comment here...", class: "span12", rows:"5" %>
+	  <%= f.submit "Post", class: "btn btn-large btn-primary" %>
+	<% end %>
+<% else %>
+		<textarea placeholder="Comment here...", class="span12", rows="5"></textarea> 
+		<%= link_to "Please sign in to comment", signin_path, class: "btn btn-large btn-primary", id: "padd" %>
+<% end %>	

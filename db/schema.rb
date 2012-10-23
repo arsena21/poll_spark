@@ -11,7 +11,16 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121021030805) do
+ActiveRecord::Schema.define(:version => 20121023171048) do
+
+  create_table "friends", :force => true do |t|
+    t.string   "name"
+    t.string   "email"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+    t.integer  "user_id"
+    t.string   "name2"
+  end
 
   create_table "microposts", :force => true do |t|
     t.string   "content"
@@ -41,6 +50,8 @@ ActiveRecord::Schema.define(:version => 20121021030805) do
     t.string   "pass"
     t.integer  "user_id"
     t.string   "links"
+    t.string   "launched"
+    t.string   "url"
   end
 
   create_table "signatures", :force => true do |t|
