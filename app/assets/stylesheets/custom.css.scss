@@ -42,11 +42,18 @@ width: 500px;
 	overflow: auto;
 }
 
-
+#shadow {
+	box-shadow: 0 1px 3px rgba(34,25,25,0.4);
+}
 
 
 body {
-  padding-top: 60px;
+    background-color: #C9C9C9;
+}
+
+.buffer{
+padding-right:50px;
+padding-left:50px;
 }
 
 section {
@@ -99,6 +106,11 @@ h4 {
 text-align: left;
 }
 
+#right{
+float: right;
+}
+
+
 h1 {
   font-size: 4em;
   letter-spacing: -2px;
@@ -141,6 +153,13 @@ p {
 
 /* header */
 
+#logoleft{
+  margin-left: 30px;
+}
+#logoright{
+  margin-right: 30px;
+}
+
 #logo {
   float: left;
   font-size: 1.7em;
@@ -149,13 +168,16 @@ p {
   padding-top: 9px;
   font-weight: bold;
   line-height: 1;
+
   &:hover {
     color: white;
     text-decoration: none;
   }
 }
 
-
+#white {
+  background-color: white;
+}
 
 .silver {
   color: silver;
@@ -175,10 +197,17 @@ p {
 /* footer */
 
 footer {
-  margin-top: 45px;
-  padding-top: 5px;
-  border-top: 1px solid $grayMediumLight;
-  color: $grayLight;
+    bottom: 0;
+    height: 25px; 
+    left: 0;
+    position: absolute;
+    right: 0;
+	border-top: 1px solid Gray;
+	color: $grayDarker;
+	background-color: #9C9C9C;
+	margin-left: 50px;
+	margin-right: 50px;
+
   a {
     color: $gray;
     &:hover { 
@@ -187,15 +216,40 @@ footer {
   }  
   small { 
     float: left; 
+	margin-left:30px;
   }
   ul {
     float: right;
     list-style: none;
+	margin-right: 30px;
     li {
       float: left;
       margin-left: 10px;
     }
   }
+}
+
+
+#holder {
+    min-height: 100%;
+    position:relative;
+}
+
+html,body{
+    height: 100%
+}
+
+
+#body {
+    padding-bottom: 25px;    /* height of footer */
+}
+
+#push {
+
+}
+
+#headerspace {
+height:40px;
 }
 
 /* petitions index */
@@ -326,12 +380,29 @@ img {
 }	
 }
 
+/* email submission form... */
 
+.field_with_errors{
+display: inline-block;}
+
+#formsy{
+margin-top:20px;
+margin-left:20px;
+margin-right:20px;
+margin-bottom:20px;
+}
 
 #wrap {
 width: 500px;
 text-align: center;
 }
+
+form {
+margin:0;
+}
+
+
+
 
 .imgholder{
 	width:auto;

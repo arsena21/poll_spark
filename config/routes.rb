@@ -3,12 +3,13 @@ PollSpark::Application.routes.draw do
     root :to => 'users#new'	
 	resources :users
 	resources :signatures
-	resources :friends, only: [:create]
+	resources :friends, only: [:create, :new, :email_share]
     resources :sessions, only: [:new, :create, :destroy]
 	resources :petitions, only: [:new, :create, :show, :index, :edit, :update, :destroy]
 	resources :microposts, only: [:create, :destroy]
-	  
-	  
+
+
+match '/share',  to: 'friends#email_share' 	
 match '/allpetitions',  to: 'petitions#index' 
 match '/tips',  to: 'static_pages#tips'
 match '/newpetition',  to: 'petitions#new'

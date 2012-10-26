@@ -1,136 +1,195 @@
 <% provide :title do  %>
 	<%= @petition.name %>
 <%end%>
-<% provide :toppage do  %>
-	<%= @petition.name %>
-<%end%>
 
-<%= @totals %> signatures 
+
+<h1><%= @petition.name %>  </h1>
+
 <br /><br />
 
-<div class="row"><h4>
-<iframe title="YouTube video player" width="480" height="390"  
-src="http://www.youtube.com/embed/ctJJrBw7e-c" frameborder="0" allowfullscreen>  
-</iframe></h4>
-</div><br /><br />
-
-<%= @petition.description.html_safe %>
-<br /><br />
-
-
+<!-- VIDEO --!>
 
 <div class="row">
-  <div class="span6 offset3">
-    <% if signed_in? %>
-		<%= form_for(@signature, :html => { :class => "sigPad"} ) do |f| %>
-		  <%= render 'shared/error_messages2' %>
-			  
-		  
-			  <%= f.label :name %>
-			  <%= f.text_field :name, :value => current_user.name %><br /><br />
+	<h4>
+<iframe width="420" height="315" src="http://www.youtube.com/embed/2S-emnxQR7k" frameborder="0" allowfullscreen></iframe>
+	</h4>
+</div><br /><br />
 
-			  <%= f.label :email %>
-			  <%= f.text_field :email, :value => current_user.email %><br /><br />
+<!-- DESCRIPTION --!>
 
-			  <%= f.label :country %>
-			  <%= f.text_field :country, :value => current_user.country %><br /><br /><br />
-			  
+<h4 id="left">Description</h4> <br>
+<%= @petition.description.html_safe %> <br /><br /><br /><br />
 
-			  <%= f.hidden_field :total, :value => @totals + 1 %>
-			  <%= f.hidden_field :remember_token, :value => current_user.remember_token %>
-			  
-			  <%= f.hidden_field :signaturepic, :id=>"canvascontent" %>
+<!-- PETITION SIGNATURE BOX --!>
 
-				  <ul class="sigNav">
-					<li class="drawIt"><a href="#draw-it">Draw your Signature</a></li>
-					<li class="clearButton"><a href="#clear">Clear</a></li>
-				  </ul>
-				  <div class="sig sigWrapper">
-					<div class="typed"></div>
-					<canvas class="pad" id="canvascontent" width="400" height="100"></canvas>
-				  </div>
-				  <br /><br />
-				
-			  <% if @b == "ok to sign" %> 
-			    <%= submit_tag "Sign thsdfe petition!", class: "btn btn-large btn-primary" %>
-			  <% end %>
-			  <% if @b == "already signed" %> 
-				<p>
-				You have already participated in this campaign! Thank you for your participation! 
-				</p>
-			  <% end %>
-		<% end %>
+<h4 id="left">Petition</h4> <br>
+<% if signed_in? %>
+	<% if @b == "already signed" %>
+		<h2>Thanks for helping us reach <span id="numchange"></span>! </h2>
+	<% else %>
+		<h2><%= @totals %> signatures have been collected so far! Help us reach <span id="numchange"></span>! </h2><br /><br />
+		This information will be used exclusively to pressure governments and organisations. THANK YOU<br /><br /><br /><br />
 	<% end %>
+<% end %>	
+
+<div class="row">
+	<div class="span6 offset3">
+		<% if signed_in? %>
+			<% if !(@b == "already signed") %>
+				<%= form_for(@signature, :html => { :class => "sigPad"} ) do |f| %>
+					<%= render 'shared/error_messages', object: f.object %>
+					
+					<%= f.hidden_field :user_id, :value => current_user.id %>
+					<%= f.hidden_field :petition_id, :value => @petition.id %>
+					
+					<%= f.label :name %>
+					<%= f.text_field :name, :value => current_user.name %><br /><br />
+
+					<%= f.label :email %>
+					<%= f.text_field :email, :value => current_user.email %><br /><br />
+
+					<%= f.label :country %>
+					<%= f.text_field :country, :value => current_user.country %><br /><br /><br />
+
+					<%= f.hidden_field :total, :value => @totals + 1 %>
+					<%= f.hidden_field :remember_token, :value => current_user.remember_token %>
+
+					<%= f.hidden_field :signaturepic, :id=>"canvascontent" %>
+							<ul class="sigNav">
+							<li class="drawIt"><a href="#draw-it">Draw your Signature</a></li>
+							<li class="clearButton"><a href="#clear">Clear</a></li>
+						  </ul>
+						  <div class="sig sigWrapper">
+							<div class="typed"></div>
+							<canvas class="pad" id="canvas" width="400" height="100"></canvas>
+						  </div>
+						  <br /><br />
+						<br /><br />
+
+					<% if @b == "ok to sign" %> 
+					<form action="javascript:checkValues();">
+						<%= submit_tag "Sign thsdfe petition!", class: "btn btn-large btn-primary" %>
+					</form>	
+					<% end %>
+					<% if @b == "already signed" %> 
+						<p>
+						You have already participated in this campaign! Thank you for your participation! 
+						</p>
+					<% end %>
+				<% end %>
+			<% end %>
+		<% end %>
 	  
 	 
-	  <% if @b == "no user" %>
-		  <%= form_for(@signature, :html => { :class => "sigPad"} ) do |f| %>
-		  <%= f.label :name %>
-		  <%= f.text_field :name %><br />
+		<% if @b == "no user" %>
+			<%= form_for(@signature, :html => { :class => "sigPad"} ) do |f| %>
+				<%= f.label :name %>
+				<%= f.text_field :name %><br />
 
-		  <%= f.label :email %>
-		  <%= f.text_field :email %><br />
+				<%= f.label :email %>
+				<%= f.text_field :email %><br />
 
-		  <%= f.label :country %>
-		  <%= f.text_field :country %><br /><br />
-		  
-		  <%= f.hidden_field :signaturepic, :id=>"canvascontent" %>
+				<%= f.label :country %>
+				<%= f.text_field :country %><br /><br />
 
-			  <ul class="sigNav">
-				<li class="drawIt"><a href="#draw-it">Draw your Signature</a></li>
-				<li class="clearButton"><a href="#clear">Clear</a></li>
-			  </ul>
-			  <div class="sig sigWrapper">
-				<div class="typed"></div>
-				<canvas class="pad" id="canvascontent" width="400" height="100"></canvas>
-			  </div><br /><br />
-		  <%= link_to "Please sign in to participate", signin_path, class: "btn btn-large btn-primary" %>
-		  <% end %>
-	  <% end %>
-  </div>
+				<%= f.hidden_field :signaturepic, :id=>"canvascontent" %>
+					<ul class="sigNav">
+						<li class="drawIt"><a href="#draw-it">Draw your Signature</a></li>
+						<li class="clearButton"><a href="#clear">Clear</a></li>
+					</ul>
+					<div class="sig sigWrapper">
+					<div class="typed"></div>
+						<canvas class="pad" id="canvascontent" width="400" height="100"></canvas>
+					</div><br /><br />
+				<%= link_to "Please sign in to participate", signin_path, class: "btn btn-large btn-primary" %>
+			<% end %>
+		<% end %>
+	</div>
 </div>
 
-
 	
-<% if signed_in? %>
-<% if @friendsleft != 0 %>
-	<%= form_for(@friend) do |f| %>
-		<%= render 'shared/error_messages', object: f.object %>
-		  <div class="field">
-			<%= f.text_field :name %>
-			<%= f.text_field :email %>
-		  </div>
-		<%= f.submit "Share!", class: "btn btn-large btn-primary" %>	
-	<% end %> 
-<% else %>
-Thanks for sharing with your 5 friends!
-<% end %>
-<% end %>
-		
-		
-<%= link_to "3 - Share", '#', class: "btn btn-large btn-primary" %>		
-		
-		
-		
-		
-		
-		
-
-
+	
+	
+<!-- SCRIPT FOR SIGNATURE PAD --!>
 
 <script type="text/javascript">
 	$(document).ready(function () {
 	  $('.sigPad').signaturePad({drawOnly:true});
-
-	  var img = document.getElementById("canvascontent")	
-	  var canvasURL = img.toDataURL("public/uploads");	  
-
-
 	  });
 </script>
-		
-		
 
+
+<script type="text/javascript">
+function checkValues(){
+	var img = document.getElementById("canvas")	
+	var crazyDataUrl = img.toDataURL();
+	document.getElementById("canvascontent").src = crazyDataUrl;
+}
+</script>
+
+	
+<!-- SCRIPT FOR NUMBER ONLY --!>	
+
+
+
+<script type="text/javascript">
+
+function GetNumber(currentnumber, targetnumber){
+	document.getElementById(targetnumber).innerHTML="100000";
+	
+	if(currentnumber < 5000){
+		document.getElementById(targetnumber).innerHTML="20,000";
+	} 
+	else if (currentnumber >= 5000 && currentnumber < 10000){
+		document.getElementById(targetnumber).innerHTML="35,000";
+	} 
+	else if (currentnumber >= 10000 && currentnumber < 50000){
+		document.getElementById(targetnumber).innerHTML="100,000";
+	} 	
+	else if (currentnumber >= 100000 && currentnumber < 200000){
+		document.getElementById(targetnumber).innerHTML="300,000";
+	} 	
+	else if (currentnumber >= 200000 && currentnumber < 400000){
+		document.getElementById(targetnumber).innerHTML="500,000";
+	}
+	else if (currentnumber >= 400000 && currentnumber < 800000){
+		document.getElementById(targetnumber).innerHTML="1,000,000";
+	}
+	else if (currentnumber >= 800000 && currentnumber < 1500000){
+		document.getElementById(targetnumber).innerHTML="2,000,000";
+	}  	
+	else if (currentnumber >= 1500000 && currentnumber < 400000){
+		document.getElementById(targetnumber).innerHTML="5,000,000";
+	} 
+	else if (currentnumber >= 4000000 && currentnumber < 8000000){
+		document.getElementById(targetnumber).innerHTML="10,000,000";
+	}
+	else if (currentnumber >= 8000000 && currentnumber < 20000000){
+		document.getElementById(targetnumber).innerHTML="30,000,000";
+	} 
+	else if (currentnumber >= 30000000 && currentnumber < 40000000){
+		document.getElementById(targetnumber).innerHTML="50,000,000";
+	}  
+	else if (currentnumber >= 40000000 && currentnumber < 80000000){
+		document.getElementById(targetnumber).innerHTML="100,000,000";
+	} 
+	else if (currentnumber >= 80000000 && currentnumber < 150000000){
+		document.getElementById(targetnumber).innerHTML="200,000,000";
+	}   
+	else if (currentnumber >= 150000000 && currentnumber < 400000000){
+		document.getElementById(targetnumber).innerHTML="400,000,000";
+	} 	
+}
+
+window.onload=function(){
+	var i = "<%= @totals %>"	
+	GetNumber(i,'numchange');	
+
+};
+
+
+
+</script>
 
 
 

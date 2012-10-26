@@ -28,6 +28,7 @@ def bobo
   if new_record?
     self.vote ||= 5
 	self.petitioner ||= "no"
+	self.confirmed ||= "false"
   end
 end
   

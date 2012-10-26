@@ -1,10 +1,9 @@
 <% provide :title do  %>
 	<%= @petition.name.html_safe %>
 <%end%>
-<% provide :toppage do  %>
-	<%= @petition.name.html_safe  %>   
-<%end%>
 
+
+<h1><%= @petition.name.html_safe  %>  </h1>
 
 
 <% if @petition.pass == "pass"%>

@@ -1,14 +1,20 @@
 
-<% provide :title do  %>
-	<% "Sign up" %>
-<%end%>
-<% provide :toppage do  %>
-	<% "Sign up" %>
-<%end%>	
-<h3>		
-123 Revolution is the easiest way to voice your opinion in today's busy world. Every 6 months, we launch the most popular campaign based on popular vote. <br /><br />
+<% if !current_page? root_path %>
+	<% provide :title do  %>
+		<% "Sign up" %>
+	<%end%>
+	<h1>Sign up</h1>
+<% else %>
+	<br /><br /><br /><br /><br /><br />
+<% end %>
 
-Take 5 minutes and have a lasting change by following these three steps: </h3>
+
+
+<h3>123 Revolution is the easiest way to voice your opinion in today's busy world. Every 6 months, 
+we launch the most popular campaign based on popular vote. <br /><br />
+Take 5 minutes and have a lasting change by following these three steps: 
+</h3>
+
 
 
 <h1>1</h1>
@@ -18,16 +24,21 @@ Take 5 minutes and have a lasting change by following these three steps: </h3>
 <h1>3</h1>
 	<h2>Share with 5 friends</h2>
 
-<h3>		
-Following signup, one verification e-mail will be delivered. Following this, 1 email will be sent every 6 months, notifying you of a newly launched campaign. You can opt out
-of our bi-annual e-mails at any point. The following information is required to put appropriate pressure on governemnets and organizations.</h3>
+	
+	
+<h3>Following signup, one verification e-mail will be delivered. Following this, 
+1 email will be sent every 6 months, notifying you of a newly launched campaign. You can opt out
+of our bi-annual e-mails at any point. The following information is required to put appropriate pressure on 
+governemnets and organizations.
+</h3><br /><br />
 
 
-<br /><br />
+<!-- Sign-up form --!>
+
+
 <div class="centers">
     <%= form_for(@user) do |f| %>
       <%= render 'shared/error_messages', object: f.object %>
-
 
       <%= f.label :name %>
       <%= f.text_field :name %>
@@ -48,9 +59,14 @@ of our bi-annual e-mails at any point. The following information is required to 
     <% end %>
 </div><br /><br />
 
+
+<!-- Skip signup form from root_path, or just Signin --!>
+
 <div class="votes">
-<% if current_page? root_path %>
-<%= link_to "Skip", petitions_path %>
-<% end %>
-<p>Already a user? <%= link_to "Sign in!", signin_path %></p>
+	<% if current_page? root_path %>
+		<%= link_to "Skip", petitions_path %>
+	<% end %>
+	<p>
+		Already a user? <%= link_to "Sign in!", signin_path %>
+	</p>
 </div>

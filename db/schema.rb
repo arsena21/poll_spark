@@ -11,16 +11,10 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121023171048) do
+ActiveRecord::Schema.define(:version => 20121025170552) do
 
-  create_table "friends", :force => true do |t|
-    t.string   "name"
-    t.string   "email"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
-    t.integer  "user_id"
-    t.string   "name2"
-  end
+# Could not dump table "friends" because of following StandardError
+#   Unknown type 'array' for column 'myfriends'
 
   create_table "microposts", :force => true do |t|
     t.string   "content"
@@ -63,6 +57,8 @@ ActiveRecord::Schema.define(:version => 20121023171048) do
     t.integer  "total"
     t.string   "remember_token"
     t.string   "signaturepic"
+    t.string   "user_id"
+    t.string   "petition_id"
   end
 
   create_table "users", :force => true do |t|
@@ -79,6 +75,7 @@ ActiveRecord::Schema.define(:version => 20121023171048) do
     t.boolean  "admin",           :default => false
     t.string   "petitioner"
     t.integer  "petition_id"
+    t.string   "confirmed"
   end
 
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true

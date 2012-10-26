@@ -1,11 +1,9 @@
 <% provide :title do  %>
 	<% "Sign in" %>
 <%end%>
-<% provide :toppage do  %>
-	<% "Sign in" %>
-<%end%>
 
 
+<h1>Sign in</h1>
 
     <%= form_for(:session, url: sessions_path) do |f| %>
 
@@ -19,3 +17,8 @@
     <% end %>
 
     <p>New user? <%= link_to "Sign up now!", signup_path %></p>
+
+
+
+
+

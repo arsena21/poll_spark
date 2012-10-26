@@ -2,19 +2,22 @@ class UsersController < ApplicationController
 
   def new
 	@user = User.new
+	if current_user.present?
+		redirect_to petitions_path
+	end	
   end
   
   def destroy
     sign_out
-    redirect_to root_url
+    redirect_to petitions_path
   end
   
   def create
     @user = User.new(params[:user])
     if @user.save
-	  sign_in @user
-      flash[:success] = "Welcome to PollSpark!"
+      flash[:success] = "Thanks for Registering! An e-mail has been sent to you to confirm your account"
       redirect_to petitions_path
+	  UserMailer.registration_confirmation(@user).deliver
     else
       render 'new'
     end
@@ -22,6 +25,13 @@ class UsersController < ApplicationController
   
   def edit
   	@user = User.find(params[:id])
+	@status = @user.confirmed
+		if @status == "false"
+			confirm @user
+			sign_in @user
+			flash[:success] = "Account created!"
+			redirect_to petitions_path	
+		end		
   end
   
   
@@ -35,5 +45,9 @@ class UsersController < ApplicationController
 	end
   end
   
+  def registered
+	@user = current_user
+
+  end
   
 end

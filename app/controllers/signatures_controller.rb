@@ -27,8 +27,8 @@ class SignaturesController < ApplicationController
   def create
     @signature = Signature.new(params[:signature])
     if @signature.save
-     	flash[:success] = "Thanks for signing the petition!"
-      redirect_to root_path
+      flash[:success] = "Thanks for participating in the Campaign!"
+      redirect_to petitions_path
     else
       render 'new'
     end

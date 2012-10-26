@@ -6,7 +6,7 @@ class PetitionsController < ApplicationController
 	if params[:done] || params[:almostdone]
 			if params[:done]
 				if @petition.save
-				  UserMailer.registration_confirmation(@petition).deliver
+				  UserMailer.petition_confirmation(@petition).deliver
 				  flash[:success] = "Campaign has been submitted for review!"
 				  redirect_to petitions_path
 				  user_petition_save @user
@@ -65,7 +65,7 @@ end
 	if params[:done] || params[:almostdone]
 			if params[:done]
 				if @petition.update_attributes(params[:petition])
-				  UserMailer.registration_confirmation(@petition).deliver
+				  UserMailer.petition_confirmation(@petition).deliver
 				  flash[:success] = "Campaign has been submitted for review! You will be contacted shortly."
 				  redirect_to petitions_path
 				  return

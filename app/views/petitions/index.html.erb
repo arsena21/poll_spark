@@ -1,112 +1,190 @@
-<h1> <span class="yellow">1</span> Vote on future campaigns</h1>	
+<!-- HOME PAGE --!>
+
+
+
+<!-- VOTE ON FUTURE CAMPAIGNS --!>	
+
+
+<h1> 
+	<span class="yellow">1</span> Vote on future campaigns
+</h1>	
+
 
 <%if signed_in?%>
-	<h5>You have <%= pluralize(@user.vote, "vote") %> left! Educate yourself and vote on the campaigns which are the most important to you: </h5>
+	<h5>
+		You have <%= pluralize(@user.vote, "vote") %> left! Educate yourself and vote on the campaigns which are the most important to you: 
+	</h5>
 <%else%>
-	<h5>You have 5 votes left! Educate yourself and vote on the campaigns which are the most important to you: </h5>
+	<h5>
+		You have 5 votes left! Educate yourself and vote on the campaigns which are the most important to you: 
+	</h5>
 <%end%>
-
-	<div id="container", class="contained">
-		<% @petitions.each do |petition| %>
-					<% if petition.pass == "pass" %>
-					<% if petition.launched == "no" %>
-						<div class="block">
-							<div class="imgholder">
-								<%= link_to image_tag(petition.pics_url), edit_petition_path(petition)  %>
-							</div>
-							<strong><%= link_to petition.name, edit_petition_path(petition)	, {:style=>'color:#000000;'} %></strong>
-							<div class="meta"><%= petition.rating %> Votes</div>
+	
+<!-- This section refers to a class imageholder and block which are used by JS: blocksit and blocksithelp...to make into pinterest array. see blocksithelp first --!>	
+	
+<div id="container", class="contained">
+	<% @petitions.each do |petition| %>
+			<% if petition.pass == "pass" %>
+				<% if petition.launched == "no" %>
+					<div class="block">
+						<div class="imgholder">
+							<%= link_to image_tag(petition.pics_url), edit_petition_path(petition)  %>
 						</div>
-					<% end %>	
-					<% end %>
-		<% end %>
-	</div>
-	
-	<div id="container", class="contained">
-		<br /><br /><br />
-		<%if signed_in? %>
-			<% if current_user.admin? %>
-						NOT YET PASSED
-						<% @petitions.each do |petition| %>
-									<% if petition.pass == "no" %>
-										<div class="block">
-											<div class="imgholder">
-												<%= link_to image_tag(petition.pics_url), edit_petition_path(petition)  %>
-											</div>
-											<strong><%= link_to petition.name, edit_petition_path(petition)	, {:style=>'color:#000000;'} %></strong>
-											<div class="meta"><%= petition.rating %> Votes</div>
-										</div>
-									<% end %>	
-						<% end %>
+						<strong>
+							<%= link_to petition.name, edit_petition_path(petition)	, {:style=>'color:#000000;'} %>
+						</strong>
+						<div class="meta">
+							<%= petition.rating %> Votes
+						</div>
+					</div>
+				<% end %>	
 			<% end %>
+	<% end %>
+</div>
+
+<!-- This section is not ADMIN...which has access to ALL petitions, not just the ones with a "pass" --!>	
+	
+<div id="container", class="contained"> <br /><br /><br />
+	<%if signed_in? %>
+		<% if current_user.admin? %>
+				NOT YET PASSED
+				<% @petitions.each do |petition| %>
+						<% if petition.pass == "no" %>
+							<div class="block">
+								<div class="imgholder">
+									<%= link_to image_tag(petition.pics_url), edit_petition_path(petition)  %>
+								</div>
+								<strong>
+									<%= link_to petition.name, edit_petition_path(petition)	, {:style=>'color:#000000;'} %>
+								</strong>
+							</div>
+						<% end %>	
+				<% end %>
+		<% end %>
+	<% end %>	
+</div>
+
+
+<!-- CURRENT CAMPAIGN --!>
+
+<h4><span id="countbox1"></span><br /> Until next campaign!</h4><br /><br />
+<div id="bar2"></div><br /><br />
+
+
+<h1>
+	<span class="orange">2</span> Participate in the current campaign 
+</h1>							
+
+<% @petitions.each do |petition| %>
+	<% if petition.pass == "pass" %>
+		<% if petition.launched == "yes" %>
+			<section class="block">
+				<h4><%= link_to petition.name, new_signature_path	, {:style=>'color:#000000;'} %></h4>
+				<div class="imgholder2">
+					<%= link_to image_tag(petition.pics_url), new_signature_path, id:"img2" %>
+				</div>							
+				<p class="textwrap"><%= truncate(petition.description, :length=>400 )  %></p>							
+				<h4><div class="meta"><%= @totals %> Paticipants</div></h4>
+				<%= link_to "Paticipate Now!", new_signature_path	, class: "btn btn-large btn-primary" %>
+			</section>
 		<% end %>	
-	</div>
-
-	<div id="countDownTimer"></div> <h3>Remaining until next campaign is launched</h3><br /><br />
-			
-	<div id="bar2">		</div>	<br /><br />
-	
-		<h1><span class="orange">2</span> Participate in the current campaign </h1>							
-		<% @petitions.each do |petition| %>
-					<% if petition.pass == "pass" %>
-					<% if petition.launched == "yes" %>
-						<section class="block">
-							<h4><%= link_to petition.name, new_signature_path	, {:style=>'color:#000000;'} %></h4>
-							<div class="imgholder2">
-								<%= link_to image_tag(petition.pics_url), new_signature_path, id:"img2" %>
-							</div>							
-							<p class="textwrap"><%= truncate(petition.description, :length=>400 )  %></p>							
-							
-	
-							<h4><div class="meta"><%= @totals %> Paticipants</div></h4>
-							<%= link_to "Paticipate Now!", new_signature_path	, class: "btn btn-large btn-primary" %>
-						</section>
-					<% end %>	
-					<% end %>
-		<% end %>						
+	<% end %>
+<% end %><br /><br /><br /><br />					
 
 
 
 
 
+<!-- LAST SECTION TO SHARE --!>	
 
 
-
-
-
-<br /><br /><br /><br />
-<div id="bar2">		</div>	<br /><br />
+<div id="bar2"></div><br /><br />
 <h1><span class="red">3</span> Share </h1>
 
-
-<h5>Thanks for participating! Please help us reach our goals by sharing with your friends and family. The more people who suppory the cause, the more chances we have 
-to making a difference. Send yourself a reminder e-mail below: </h5>
- 
+<h5>Share with 5 friends to skyrocket this campaign into the stratosphere!</h5>
+<%= link_to "Share!", share_path	, class: "btn btn-large btn-primary" %><br /><br />
 
 
 
 
-
-<br /><br />
-
+<!-- SCRIPT FOR COUNTOWN TIMER ONLY --!>	
 
 
 
+<script type="text/javascript">
+//######################################################################################
+// Author: ricocheting.com
+// Version: v2.0
+// Date: 2011-03-31
+// Description: displays the amount of time until the "dateFuture" entered below.
 
-<script> 
- $(document).ready(function(){  
- 
-var element = '#countDownTimer';
-setCountdownTimer(element, 2013, 02, 02);
+// NOTE: the month entered must be one less than current month. ie; 0=January, 11=December
+// NOTE: the hour is in 24 hour format. 0=12am, 15=3pm etc
+// format: dateFuture1 = new Date(year,month-1,day,hour,min,sec)
+// example: dateFuture1 = new Date(2003,03,26,14,15,00) = April 26, 2003 - 2:15:00 pm
 
-function setCountdownTimer(element, year, month, day) {
-  var date = new Date(year, month, day);
-  $(element).countdown({until: date, format: 'odhms'});
+dateFuture1 = new Date(2012,11,26,16,10,12);
+
+// TESTING: comment out the line below to print out the "dateFuture" for testing purposes
+//document.write(dateFuture +"<br />");
+
+
+//###################################
+//nothing beyond this point
+function GetCount(ddate,iid){
+
+	dateNow = new Date();	//grab current date
+	amount = ddate.getTime() - dateNow.getTime();	//calc milliseconds between dates
+	delete dateNow;
+
+	// if time is already past
+	if(amount < 0){
+		document.getElementById(iid).innerHTML="Now!";
+	}
+	// else date is still good
+	else{
+		weeks=0;days=0;hours=0;mins=0;secs=0;out="";
+
+		amount = Math.floor(amount/1000);//kill the "milliseconds" so just secs
+
+		weeks=Math.floor(amount/604800);//weeks
+		amount=amount%604800;
+
+		days=Math.floor(amount/86400);//days
+		amount=amount%86400;
+
+		hours=Math.floor(amount/3600);//hours
+		amount=amount%3600;
+
+		mins=Math.floor(amount/60);//minutes
+		amount=amount%60;
+
+		secs=Math.floor(amount);//seconds
+
+		if(weeks != 0){out += weeks +" "+((weeks==1)?"week":"weeks")+", ";}
+		if(days != 0){out += days +" "+((days==1)?"day":"days")+", ";}
+		if(hours != 0){out += hours +" "+((hours==1)?"hour":"hours")+", ";}
+		out += mins +" "+((mins==1)?"min":"mins")+", ";
+		out += secs +" "+((secs==1)?"sec":"secs")+", ";
+		out = out.substr(0,out.length-2);
+		document.getElementById(iid).innerHTML=out;
+
+		setTimeout(function(){GetCount(ddate,iid)}, 1000);
+	}
 }
 
-});
-   
+window.onload=function(){
+	GetCount(dateFuture1, 'countbox1');
+	//you can add additional countdowns here (just make sure you create dateFuture2 and countbox2 etc for each)
+};
 </script>
+
+
+
+
+
+
+
 
 
 

@@ -12,10 +12,7 @@ module ApplicationHelper
   
     # Returns the title on a per-page basis on the page
   def infull_title(inpage_title)
-    base_title = ""
-    if inpage_title.empty?
-      base_title
-    else
+    if !inpage_title.empty?
       "#{inpage_title}"
     end
   end

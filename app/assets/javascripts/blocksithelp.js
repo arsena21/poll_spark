@@ -7,20 +7,86 @@ $(document).ready(function() {
 	var currentWidth = $(window).width();
 	
 		if(currentWidth <577) {
-				col = 1;
-				conWidth = 290		
-		} else if(currentWidth <760) {
-				col = 2;
-				conWidth = 470
-		} else if(currentWidth < 820) {
+			col = 1;
+			conWidth = 290 
+		} else if(currentWidth < 668) {
+			conWidth = 320;
+			col = 1
+		} else if(currentWidth < 698) {
+			conWidth = 340;
+			col = 1
+		} else if(currentWidth < 728) {
+			conWidth = 360;
+			col = 2
+		} else if(currentWidth < 758) {
+			conWidth = 380;
+			col = 2
+		} else if(currentWidth < 788) {
+			conWidth = 400;
+			col = 2
+		} else if(currentWidth < 808) {
+			conWidth = 420;
+			col = 2
+		} else if(currentWidth < 838) {
+			conWidth = 440;
+			col = 2
+		} else if(currentWidth < 868) {
+			conWidth = 460;
+			col = 2
+		} else if(currentWidth < 898) {
+			conWidth = 480;
+			col = 2
+		} else if(currentWidth < 928) {
+			conWidth = 500;
+			col = 2
+		} else if(currentWidth < 958) {
+			conWidth = 520;
+			col = 2
+		} else if(currentWidth < 1018) {
+			conWidth = 540;
 			col = 3
-			conWidth = 620
-		} else if(currentWidth < 1098) {
+		} else if(currentWidth < 1048) {
+			conWidth = 560;
+			col = 3
+		} else if(currentWidth < 1078) {
+			conWidth = 580;
+			col = 3
+		} else if(currentWidth < 1108) {
+			conWidth = 600;
+			col = 3
+		} else if(currentWidth < 1138) {
+			conWidth = 620;
+			col = 3
+		} else if(currentWidth < 1168) {
+			conWidth = 640;
+			col = 3
+		} else if(currentWidth < 1198) {
+			conWidth = 660;
 			col = 4;
-			conWidth = 681
+		} else if(currentWidth < 1218) {
+			conWidth = 680;
+			col = 4;
+		} else if(currentWidth < 1248) {
+			conWidth = 700;
+			col = 4;
+		} else if(currentWidth < 1278) {
+			conWidth = 720;
+			col = 4;
+		} else if(currentWidth < 1308) {
+			conWidth = 740;
+			col = 4;
+		} else if(currentWidth < 1338) {
+			conWidth = 760;
+			col = 4;
+		} else if(currentWidth < 1368) {
+			conWidth = 780;
+			col = 4;
+		} else if(currentWidth < 1398) {
+			conWidth = 800;
+			col = 4;
 		} else {
-			col = 5;
-			conWidth = 898
+			conWidth = 823;
+			col = 4;
 		}
 	
 
@@ -44,18 +110,84 @@ $(document).ready(function() {
 		if(winWidth <577) {
 			col = 1;
 			conWidth = 290 
-		} else if(winWidth < 760) {
-			conWidth = 470;
+		} else if(winWidth < 668) {
+			conWidth = 320;
+			col = 1
+		} else if(winWidth < 698) {
+			conWidth = 340;
+			col = 1
+		} else if(winWidth < 728) {
+			conWidth = 360;
 			col = 2
-		} else if(winWidth < 820) {
+		} else if(winWidth < 758) {
+			conWidth = 380;
+			col = 2
+		} else if(winWidth < 788) {
+			conWidth = 400;
+			col = 2
+		} else if(winWidth < 808) {
+			conWidth = 420;
+			col = 2
+		} else if(winWidth < 838) {
+			conWidth = 440;
+			col = 2
+		} else if(winWidth < 868) {
+			conWidth = 460;
+			col = 2
+		} else if(winWidth < 898) {
+			conWidth = 480;
+			col = 2
+		} else if(winWidth < 928) {
+			conWidth = 500;
+			col = 2
+		} else if(winWidth < 958) {
+			conWidth = 520;
+			col = 2
+		} else if(winWidth < 1018) {
+			conWidth = 540;
+			col = 3
+		} else if(winWidth < 1048) {
+			conWidth = 560;
+			col = 3
+		} else if(winWidth < 1078) {
+			conWidth = 580;
+			col = 3
+		} else if(winWidth < 1108) {
+			conWidth = 600;
+			col = 3
+		} else if(winWidth < 1138) {
 			conWidth = 620;
 			col = 3
-		} else if(winWidth < 1098) {
-			conWidth = 681;
+		} else if(winWidth < 1168) {
+			conWidth = 640;
+			col = 3
+		} else if(winWidth < 1198) {
+			conWidth = 660;
+			col = 4;
+		} else if(winWidth < 1218) {
+			conWidth = 680;
+			col = 4;
+		} else if(winWidth < 1248) {
+			conWidth = 700;
+			col = 4;
+		} else if(winWidth < 1278) {
+			conWidth = 720;
+			col = 4;
+		} else if(winWidth < 1308) {
+			conWidth = 740;
+			col = 4;
+		} else if(winWidth < 1338) {
+			conWidth = 760;
+			col = 4;
+		} else if(winWidth < 1368) {
+			conWidth = 780;
+			col = 4;
+		} else if(winWidth < 1398) {
+			conWidth = 800;
 			col = 4;
 		} else {
-			conWidth = 898;
-			col = 5;
+			conWidth = 823;
+			col = 4;
 		}
 		
 		

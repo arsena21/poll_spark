@@ -1,46 +1,41 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title><%= full_title(yield(:title)) %></title>
-    <%= javascript_include_tag "jquery", "application" %>    
-	<script src="jquery.signaturepad.js"></script>
+        <title><%= full_title(yield(:title)) %></title>
 	<script src="http://ajax.cdnjs.com/ajax/libs/json2/20110223/json2.js"></script>
-	<script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.8.23/jquery-ui.min.js"></script>
-	<script src="jquery-1.7.2.min.js"></script>
-	<script src="advanced.js"></script>
-	<script src="wysihtml5-0.3.0.js"></script>
-	<script src="bootstrap-wysihtml5.js"></script>
-	 
-	<link rel="stylesheet" type="text/css" href="bootstrap.min.css"></link>
-	<link rel="stylesheet" type="text/css" href="bootstrap-wysihtml5.css"></link>
-	
-	
+
+
+    <%= javascript_include_tag "application" %>     
 	<%= stylesheet_link_tag    "application", media: "all" %>
 
-	<script src="bootstrap.min.js"></script>    
-	
-	
-	
 	
 	<%= csrf_meta_tags %>
     <%= render 'layouts/shim' %>    
   </head>
-  <body>
-    <%= render 'layouts/header' %>
-	<h1><%= infull_title(yield(:toppage)) %></h1>
-	<div class="container-fluid">
+  <body class="toot">
+    <div id="holder">
+	<%= render 'layouts/header' %>
+	<% if (yield(:toppage)).present? %>
+		<h1><%= infull_title(yield(:toppage)) %></h1>
+	<%end%>
+	<div class="container-fluid" id="body">
 	  <div class="row-fluid">
-		<div class="span2">
-		</div>
-		<div class="span8">	
-			  <% flash.each do |key, value| %>
-				<div class="alert alert-<%= key %>"><%= value %></div>
-			  <% end %>
-			  <%= yield %>
-		</div>
+		<div class="span2"></div>
+			<div class="span8" id="white">
+				<div class="buffer">
+					<div class="span12">
+						<div id="headerspace"></div>
+						<% flash.each do |key, value| %>
+						<div class="alert alert-<%= key %>"><%= value %></div>
+						<% end %>
+						<%= yield %>
+						<div id="push"></div>
+					</div>
+				</div> 
+			</div>
+		  </div>
 	  </div>
 	  <%= render 'layouts/footer' %>
-	  <%= debug(params) if Rails.env.development? %>
-	  </div>
+	</div>
   </body>
 </html>

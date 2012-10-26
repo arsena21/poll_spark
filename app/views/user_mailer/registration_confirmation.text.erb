@@ -1,8 +1,6 @@
-This petition was submitted by: <%= @newpetition.name %>
-Here is the text, along with links:
-<%= @newpetition.description %>
+Hi <%= @user.name %>,
 
-See this link to aprove, modify, etc....
+Thanks for registering to 123Revolution! See the link below to confirm your account:
 
-<%= edit_petition_url(@newpetition, :host => "localhost:3000") %>
+<%= edit_user_url(@user, :host => "localhost:3000") %>
 

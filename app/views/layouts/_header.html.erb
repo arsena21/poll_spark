@@ -1,13 +1,13 @@
-<header class="navbar navbar-fixed-top">
+<header class="navbar navbar-fixed-top" id="shadow">
   <div class="navbar-inner">
-    <div class="container">
+	  <div id="logoleft">
       <%= link_to "1", petitions_path, id: "logo", class: "yellow" %>
 	  <%= link_to "2", petitions_path, id: "logo", class: "orange" %>
 	  <%= link_to "3", petitions_path, id: "logo", class: "red" %>
 	  <%= link_to "Revolution", petitions_path, id: "logo", class: "silver" %>
-	  
+	  </div>
 	  <nav>
-        <ul class="nav pull-right">
+        <ul class="nav pull-right" id ="logoright">
 			
 			<%if signed_in? %>
 				<%if current_user.petitioner == "yes" %>
@@ -43,5 +43,4 @@
         </ul>
       </nav>
     </div>
-  </div>
 </header>

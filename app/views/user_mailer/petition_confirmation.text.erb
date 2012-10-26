@@ -1,0 +1,8 @@
+This petition was submitted by: <%= @newpetition.name %>
+Here is the text, along with links:
+<%= @newpetition.description %>
+
+See this link to aprove, modify, etc....
+
+<%= edit_petition_url(@newpetition, :host => "localhost:3000") %>
+
