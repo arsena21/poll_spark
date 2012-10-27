@@ -18,12 +18,8 @@ $(window).resize(function() {
 	
 	var size = finalHeight - footer - first;
 	
-	
+	$('#push').height(size);
 		
-				$('#push').height(size);
-		
-	
-	
 	});	
 
 });
