@@ -1,8 +1,5 @@
 $(document).ready(function() {
 
-	
-
-	
 	$(window).load(function() {
 	var currentWidth = $(window).width();
 	
@@ -190,13 +187,7 @@ $(document).ready(function() {
 			col = 4;
 		}
 		
-		
-	
-		
-		
-		
-		
-		
+
 		if(conWidth != currentWidth) {
 			currentWidth = conWidth;
 			$('#container').width(conWidth);
