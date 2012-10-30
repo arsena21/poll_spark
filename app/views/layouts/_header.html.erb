@@ -1,13 +1,15 @@
+
 <header class="navbar navbar-fixed-top" id="shadow">
   <div class="navbar-inner">
 	  <div id="logoleft">
-      <%= link_to "1", petitions_path, id: "logo", class: "yellow" %>
-	  <%= link_to "2", petitions_path, id: "logo", class: "orange" %>
-	  <%= link_to "3", petitions_path, id: "logo", class: "red" %>
-	  <%= link_to "Revolution", petitions_path, id: "logo", class: "silver" %>
+	  <%= link_to "GENERATION", petitions_path, id: "logo", class: "silver" %>
+      <%= link_to "3", petitions_path, id: "logo", class: "yellow" %>
+	  <%= link_to "1", petitions_path, id: "logo", class: "orange" %>
+	  <%= link_to "5", petitions_path, id: "logo", class: "red" %>	  
 	  </div>
 	  <nav>
-        <ul class="nav pull-right" id ="logoright">
+        <% if !current_page? root_path %>
+		<ul class="nav pull-right" id ="logoright">
 			
 			<%if signed_in? %>
 				<%if current_user.petitioner == "yes" %>
@@ -41,6 +43,7 @@
 			    <li><%= link_to "Sign up", signup_path %></li>
 		   <%end%>	
         </ul>
+		<%end%>	
       </nav>
     </div>
 </header>

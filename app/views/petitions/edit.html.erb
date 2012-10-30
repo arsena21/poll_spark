@@ -7,16 +7,17 @@
 
 
 <% if @petition.pass == "pass"%>
-		<div class="row">
+			<%= @petition.rating%> Votes 
 			<div class="row">
-			<%= @petition.rating%> Votes <br /><br />
-			<%= image_tag(@petition.pics_url) %>
-			<%= @petition.description.html_safe  %> <br />
+				<h4 id="left">Description</h4>
+				<%= image_tag(@petition.pics_url) %>
+			<%= @petition.description.html_safe  %> 
 			</div>
-			<% if @petition.links.present?  %><br /><br />
-				<h4 id="left">LINKS</h4> <br />
-				<%= @petition.links.html_safe  %> <br />
-			<%end%><br /><br />
+			<h4 id="left">Demands</h4>
+			<%= @petition.demands.html_safe  %> 
+			<h4 id="left">Links</h4> 
+			<%= @petition.links.html_safe  %> 
+
 			
 				<% if signed_in? %>
 					<% if !current_user.admin? %>
@@ -30,16 +31,15 @@
 						<% if current_user.vote == 0 %>
 							<div class="centers"><div class="btn btn-large btn-info">You have used your 5 votes...</div></div>
 						<% end %>
-				   <% end %><br />	
+				   <% end %>	
 				<% end %>		
 			<div class="row">
 			<% if !signed_in? %>
-					<div class="centers"><%= link_to "Vote for this campaign", signin_path, class: "btn btn-large btn-primary" %></div><br />
+					<div class="centers"><%= link_to "Vote for this campaign", signin_path, class: "btn btn-large btn-primary" %></div>
 			<% end %>	
 			</div>
-		</div><br />
-		<div id="bar2"></div> 
-		<div class="span8 offset2">
+			<div id="bar2"></div>
+		<div class="span8 offset2" id="padd">
 			<% if @petition.microposts.any? %>
 			  <h3 id="padd">Comments (<%= @petition.microposts.count %>)</h3>
 			  <ol class="microposts">
@@ -53,7 +53,7 @@
 					<%= render 'shared/micropost_form' %>		
 			  </ol>
 			<% end %>
-		</div>
+		</div>	
 <%end%>
 
 
@@ -62,56 +62,35 @@
 	<% if @petition.pass == "no"%>
 			
 				<h2><div class="totheleft">PREVIEW</div></h2>
-
-				<%= @petition.description.html_safe  %> <br />
-
-				<% if @petition.links.present?  %><br /><br />
-				<h4 id="left">LINKS</h4> <br />
-					<%= @petition.links.html_safe  %> <br />
+				<h4 id="left">Description</h4> 
+				<%= @petition.description.html_safe  %>
+				<h4 id="left">Demands</h4> 
+				<%= @petition.demands.html_safe  %>
+				<% if @petition.links.present?  %>
+				<h4 id="left">Links</h4> 
+					<%= @petition.links.html_safe  %>
 				<%end%>
-				<br /><br /><br />
-				<div id=bar2></div>
-					<br /><br /><br />			
-				<h2><div class="totheleft">UPDATE CAMPAIGN</div></h2>
+				<div id=bar2></div>		
 
-				<%= link_to "Campaign Tips", tips_path %>		<br />	<br />		
+				<h2><span>UPDATE CAMPAIGN</span></h2>
+				<%= link_to "Campaign Tips", tips_path, id:"right" %>	
 
 						
 				<%= form_for(@petition) do |f| %>
-				  <%= render 'shared/error_messages', object: f.object %>
-				  <h4 id="left">Campaign Name<h4 id="left"> <br>
-				  <%= f.text_field :name %><br /><br /><br />
-				  <h4 id="left">Campaign Description<h4 id="left"> <br>				
-				  	
-					<div id="wysihtml5-toolbar" style="display: none;">
-						 <div class="btn-toolbar">
-							 <div class="btn-group"> 
-								  <a class = "btn" data-wysihtml5-command="bold" title="CTRL+B"><b>bold</b></a>
-								  <a class = "btn" data-wysihtml5-command="italic" title="CTRL+I"><i>italic</i></a>
-								  <a class = "btn" data-wysihtml5-command="underline" title="CTRL+U"><u>underline</u></a>
-							 </div>
-							  
-							 <div class="btn-group">
-								  <a class="btn" data-wysihtml5-command="insertUnorderedList" title="Unordered List" href="javascript:;" unselectable="on"><i class="icon-list"></i></a>
-								  <a class="btn" data-wysihtml5-command="insertOrderedList" title="Ordered List" href="javascript:;" unselectable="on"><i class="icon-th-list"></i></a>
-								  <a class="btn" data-wysihtml5-command="Indent" title="Indent" href="javascript:;" unselectable="on"><i class="icon-indent-left"></i></a>  
-								  <a class="btn" data-wysihtml5-command="Outdent" title="Outdent" href="javascript:;" unselectable="on"><i class="icon-indent-right"></i></a>
-							 </div>
-							 
-							 <div class="btn-group">
-									<a class="btn" data-wysihtml5-command="formatBlock" data-wysihtml5-command-value="div" href="javascript:;" unselectable="on">Normal text</a>
-									<a class="btn" data-wysihtml5-command="formatBlock" data-wysihtml5-command-value="h1" href="javascript:;" unselectable="on">Heading 1</a>  
-									<a class="btn" data-wysihtml5-command="formatBlock" data-wysihtml5-command-value="h2" href="javascript:;" unselectable="on">Heading 2</a>
-							 </div>
-							</div>  
-					</div>				
-	
-					<%= f.text_area :description, class: "span12", id: "wysihtml5-textarea"  %>	<br><br /><br />
-					<h4 id="left">Useful Links<h4 id="left"> <br>
+					<%= render 'shared/error_messages', object: f.object %>
+					<h4 id="left">Campaign Name<h4 id="left">
+					<%= f.text_field :name %>
+					<h4 id="left">Campaign Description<h4 id="left">				
+					<%= render 'shared/text_editor' %>
+					<%= f.text_area :description, class: "span12", id: "wysihtml5-textarea"  %>	
+					<h4 id="left">Demands<h4 id="left">	
+					<%= render 'shared/text_editor3' %>
+					<%= f.text_area :demands, class: "span12", id: "wysihtml5-textarea3"  %>	
+					<h4 id="left">Useful Links<h4 id="left">
 					<%= f.text_area :links, class: "span12", id: "wysihtml5-textarea2"  %>
-					<br>
-					<%= submit_tag "Complete!", :name => 'done', class: "btn btn-large btn-primary" %>
 					
+					<div class="centers">
+					<%= submit_tag "Complete!", :name => 'done', class: "btn btn-large btn-primary" %>
 					<%= submit_tag "Save", :name => 'almostdone', class: "btn btn-large btn-primary" %>
 					<% if current_user.admin? %>
 						<%= link_to "delete", @petition, method: :delete,
@@ -119,6 +98,7 @@
 											  <%= f.label :pass %>
 						<%= f.text_field :pass %>							  
 					<% end %>
+					</div>
 			    <% end %>	
 
 
@@ -130,12 +110,15 @@
 			  parserRules:  wysihtml5ParserRules // defined in parser rules set 
 			});
 			</script>
-
-			<script>
-			var editor = new wysihtml5.Editor("wysihtml5-textarea", { // id of textarea element
+			<script>var editor = new wysihtml5.Editor("wysihtml5-textarea", { // id of textarea element
 			  toolbar:      "wysihtml5-toolbar", // id of toolbar element
 			  parserRules:  wysihtml5ParserRules // defined in parser rules set 
 			});
+			</script>
+			<script>var editor = new wysihtml5.Editor("wysihtml5-textarea3", { // id of textarea element
+			  toolbar:      "wysihtml5-toolbar3", // id of toolbar element
+			  parserRules:  wysihtml5ParserRules // defined in parser rules set 
+			});			
 			</script>
 
 

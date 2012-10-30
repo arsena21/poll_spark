@@ -6,7 +6,7 @@ class Petition < ActiveRecord::Base
   
   after_initialize :pipi
   mount_uploader :pics, AvatarUploader
-  attr_accessible :name, :rating, :description, :pics, :pass, :user_id, :links, :launched
+  attr_accessible :name, :rating, :description, :pics, :pass, :user_id, :links, :launched, :demands
   validates :user_id, presence: true
   validates :name, presence: true
   validates :rating, presence: true, :numericality => 

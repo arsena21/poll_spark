@@ -13,19 +13,21 @@ html {
 
 
 #bar{
-	border-top: 1px solid $grayMediumLight;
+	border-top: 1px solid #79CDCD;
 	width: 60%;
 	float: right;
-}
+	}
+
+	
 #bar2{
-	border-top: 1px solid $grayMediumLight;
+	border-top: 1px solid #79CDCD;
 	position: center;
-	margin-bottom: 30px;
+	margin-bottom: 35px;
+	margin-top: 35px;
 }
 
 .section{
 width: 500px;
-
 }
 
 #sides {
@@ -47,9 +49,18 @@ width: 500px;
 }
 
 
-body {
-    background-color: #C9C9C9;
+#greyback {
+	margin:0;
+	padding:0;
+	background:url(bg.gif) 0 0 repeat #f7f5f5;
+	color:#333;
 }
+
+#whiteback{
+background-color: white;
+}
+
+
 
 .buffer{
 padding-right:50px;
@@ -91,14 +102,12 @@ color: #E8A317;
 
 /* typography */
 
-h1, h2, h3, h4, h5, h6 {
-  line-height: 1;
-}
+
 h4 {
   font-size: 2em;
   letter-spacing: -2px;
   margin-bottom: 15px;
-    margin-top: 15px;
+  margin-top: 30px;
   text-align: center;
 }
 
@@ -115,7 +124,7 @@ h1 {
   font-size: 4em;
   letter-spacing: -2px;
   margin-bottom: 35px;
-    margin-top: 20px;
+  margin-top: 25px;
   text-align: center;
 }
 h5 {
@@ -123,16 +132,15 @@ h5 {
   letter-spacing: -1px;
   margin-bottom: 30px;
   font-weight: normal;
-  color: $grayLight;
 }
 
 h2 {
   font-size: 2.7em;
   letter-spacing: -1px;
-  margin-bottom: 30px;
-  text-align: center;
   font-weight: normal;
   color: $grayLight;
+  display:inline;
+  margin-top:60px;
 }
 
 h3 {
@@ -176,7 +184,9 @@ p {
 }
 
 #white {
-  background-color: white;
+	background-color: white;
+	margin-top: 40px;
+	box-shadow: 0 1px 3px rgba(34,25,25,0.07);
 }
 
 .silver {
@@ -204,7 +214,7 @@ footer {
     right: 0;
 	border-top: 1px solid Gray;
 	color: $grayDarker;
-	background-color: #9C9C9C;
+	background-color: #C7C7C7;
 	margin-left: 50px;
 	margin-right: 50px;
 
@@ -242,6 +252,7 @@ html,body{
 
 #body {
     padding-bottom: 25px;    /* height of footer */
+	
 }
 
 #push {
@@ -277,6 +288,10 @@ height:40px;
 	position:relative;
 }
 
+#text{
+	margin-left:40px;
+	margin-right:40px;
+}
 
 .block{
 	padding: 15px;
@@ -424,20 +439,32 @@ margin:0;
 /* votes */
 
 .votes{
-text-align: center;
+text-align: right;
 
 }
 
 /* microposts */
 
 #padd{
-margin-bottom: 9px;
+margin-bottom: 30px;
+	margin-top: 30px;
 }
 
 .centers{
 text-align:center; 
 margin: 0 auto;
+
 }
+
+#right{
+text-align:right; 
+margin: 0 auto;
+vertical-align:middle;
+margin-bottom:10px;
+margin-top:10px;
+}
+
+
  
 .microposts {
 width:100%;
@@ -448,6 +475,7 @@ list-style:none;
     padding: 10px 0;
     border-top: 1px solid #e8e8e8;
 	margin-bottom: 20px;
+
   }
 }
 .content {
@@ -476,4 +504,7 @@ aside {
 
 #wysihtml5-textarea2{
 height: 100px;
+}
+#wysihtml5-textarea3{
+height: 200px;
 }

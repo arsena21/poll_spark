@@ -6,7 +6,7 @@ $(window).load(function() {
 	first = $('#white').height();
 	var footer = $('footer').height();
 	var initHeight = $(window).height();
-	var size = initHeight-footer-first;
+	var size = initHeight-footer-first-40;
 	
 	$('#push').height(size);
 	});
@@ -16,7 +16,7 @@ $(window).resize(function() {
 	var finalHeight = $(window).height();
 	var footer = $('footer').height();
 	
-	var size = finalHeight - footer - first;
+	var size = finalHeight - footer - first-40;
 	
 	$('#push').height(size);
 		

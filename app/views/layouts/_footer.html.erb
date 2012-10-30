@@ -1,4 +1,6 @@
 <footer class="footer" >
+  
+  <% if !current_page? root_path %>
   <small>
     Changing the World
   </small>
@@ -8,4 +10,5 @@
       <li><%= link_to "Contact", contact_path %></li>
     </ul>
   </nav>
+  <% end %>
 </footer>

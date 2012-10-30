@@ -3,9 +3,9 @@
 <%end%>
 
 
-<h1><%= @petition.name %>  </h1>
+<h1><%= @petition.name %>  </h1><br />
 
-<br /><br />
+
 
 <!-- VIDEO --!>
 
@@ -14,26 +14,44 @@
 <iframe width="420" height="315" src="http://www.youtube.com/embed/2S-emnxQR7k" frameborder="0" allowfullscreen></iframe>
 	</h4>
 </div><br /><br />
+<div id="bar2"></div><br />
+
 
 <!-- DESCRIPTION --!>
 
-<h4 id="left">Description</h4> <br>
+<h4 id="left">Description</h4> <br><br>
 <%= @petition.description.html_safe %> <br /><br /><br /><br />
+<div id="bar2"></div><br />
+
+
+
+<!-- OUR ASKS --!>
+
+<h4 id="left">Demands</h4> <br><br>
+
+<div id="bar2"></div><br />
+
 
 <!-- PETITION SIGNATURE BOX --!>
 
-<h4 id="left">Petition</h4> <br>
+<canvas id="simple_sketch" width="800" height="300"></canvas>
+<script type="text/javascript">
+  $(function() {
+    $('#simple_sketch').sketch();
+  });
+</script>
+
+
+<h4 id="left">Petition</h4> <br><br /><br />
 <% if signed_in? %>
 	<% if @b == "already signed" %>
 		<h2>Thanks for helping us reach <span id="numchange"></span>! </h2>
 	<% else %>
-		<h2><%= @totals %> signatures have been collected so far! Help us reach <span id="numchange"></span>! </h2><br /><br />
-		This information will be used exclusively to pressure governments and organisations. THANK YOU<br /><br /><br /><br />
+		<h2><%= @totals %> signatures have been collected! Help us reach <span id="numchange"></span>! </h2><br /><br />
 	<% end %>
 <% end %>	
 
-<div class="row">
-	<div class="span6 offset3">
+	
 		<% if signed_in? %>
 			<% if !(@b == "already signed") %>
 				<%= form_for(@signature, :html => { :class => "sigPad"} ) do |f| %>
@@ -62,14 +80,9 @@
 						  <div class="sig sigWrapper">
 							<div class="typed"></div>
 							<canvas class="pad" id="canvas" width="400" height="100"></canvas>
-						  </div>
-						  <br /><br />
-						<br /><br />
-
+						  </div><br />
 					<% if @b == "ok to sign" %> 
-					<form action="javascript:checkValues();">
-						<%= submit_tag "Sign thsdfe petition!", class: "btn btn-large btn-primary" %>
-					</form>	
+						<%= f.submit "Participate!", class: "btn btn-large btn-primary", id:"right" %>
 					<% end %>
 					<% if @b == "already signed" %> 
 						<p>
@@ -104,10 +117,8 @@
 				<%= link_to "Please sign in to participate", signin_path, class: "btn btn-large btn-primary" %>
 			<% end %>
 		<% end %>
-	</div>
-</div>
 
-	
+<br /><br /><br /><br />	
 	
 	
 <!-- SCRIPT FOR SIGNATURE PAD --!>

@@ -18,4 +18,4 @@ class SessionsController < ApplicationController
 	sign_out
     redirect_to petitions_path	
   end
-  end
+end

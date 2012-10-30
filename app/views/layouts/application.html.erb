@@ -15,9 +15,13 @@
 	<%= csrf_meta_tags %>
     <%= render 'layouts/shim' %>    
   </head>
-  <body class="toot">
-    <div id="holder">
-	<%= render 'layouts/header' %>
+  <% if !current_page? root_path %>
+  <body class="toot" id="greyback">
+  <% else %>
+  <body class="toot" id="whiteback">  
+  <% end %>
+	<div id="holder">
+	<%= render 'layouts/header' %>	
 	<% if (yield(:toppage)).present? %>
 		<h1><%= infull_title(yield(:toppage)) %></h1>
 	<%end%>
@@ -38,7 +42,7 @@
 			</div>
 		  </div>
 	  </div>
-	  <%= render 'layouts/footer' %>
+	<%= render 'layouts/footer' %>
 	</div>
   </body>
 </html>

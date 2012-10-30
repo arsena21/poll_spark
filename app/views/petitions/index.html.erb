@@ -6,18 +6,18 @@
 
 
 <h1> 
-	<span class="yellow">1</span> Vote on future campaigns
+	<span class="yellow">3</span> Votes
 </h1>	
 
 
 <%if signed_in?%>
-	<h5>
-		You have <%= pluralize(@user.vote, "vote") %> left! Educate yourself and vote on the campaigns which are the most important to you: 
-	</h5>
+	<p class="textwrap">
+		You have <span class="red"><%= pluralize(@user.vote, "vote") %> left</span>! Vote on the campaigns which are the most important to you: 
+	</p>
 <%else%>
-	<h5>
-		You have 5 votes left! Educate yourself and vote on the campaigns which are the most important to you: 
-	</h5>
+	<p class="textwrap">
+		You have <span class="red">3 votes left</span>! Vote on the campaigns which are the most important to you: 
+	</p>
 <%end%>
 	
 <!-- This section refers to a class imageholder and block which are used by JS: blocksit and blocksithelp...to make into pinterest array. see blocksithelp first --!>	
@@ -44,7 +44,7 @@
 
 <!-- This section is not ADMIN...which has access to ALL petitions, not just the ones with a "pass" --!>	
 	
-<div id="container", class="contained"> <br /><br /><br />
+<div id="container", class="contained"> 
 	<%if signed_in? %>
 		<% if current_user.admin? %>
 				NOT YET PASSED
@@ -67,29 +67,38 @@
 
 <!-- CURRENT CAMPAIGN --!>
 
-<h4><span id="countbox1"></span><br /> Until next campaign!</h4><br /><br />
-<div id="bar2"></div><br /><br />
+
+<div id="bar2"></div>
 
 
 <h1>
-	<span class="orange">2</span> Participate in the current campaign 
-</h1>							
+	<span class="orange">1</span> Campaign 
+</h1>	
+						
+
 
 <% @petitions.each do |petition| %>
 	<% if petition.pass == "pass" %>
 		<% if petition.launched == "yes" %>
+			<h4>Time remaining: <span id="countbox1"></span></h4>
 			<section class="block">
-				<h4><%= link_to petition.name, new_signature_path	, {:style=>'color:#000000;'} %></h4>
+				<div id="padd"><h4><%= link_to "Campaign Name: #{petition.name}", new_signature_path %></h4></div>
 				<div class="imgholder2">
 					<%= link_to image_tag(petition.pics_url), new_signature_path, id:"img2" %>
 				</div>							
 				<p class="textwrap"><%= truncate(petition.description, :length=>400 )  %></p>							
-				<h4><div class="meta"><%= @totals %> Paticipants</div></h4>
-				<%= link_to "Paticipate Now!", new_signature_path	, class: "btn btn-large btn-primary" %>
+				<h4><div class="meta"><%= @totals %> Paticipants</div></h4>	
+				<div class="centers">
+					<%= link_to "Paticipate!", new_signature_path	, class: "btn btn-large btn-primary" %>
+				</div>
 			</section>
+			<div id="left">
+			
+				
+			</div>
 		<% end %>	
 	<% end %>
-<% end %><br /><br /><br /><br />					
+<% end %>					
 
 
 
@@ -98,12 +107,16 @@
 <!-- LAST SECTION TO SHARE --!>	
 
 
-<div id="bar2"></div><br /><br />
-<h1><span class="red">3</span> Share </h1>
+<div id="bar2"></div>
+<h1><span class="red">5</span> Friends </h1>
 
-<h5>Share with 5 friends to skyrocket this campaign into the stratosphere!</h5>
-<%= link_to "Share!", share_path	, class: "btn btn-large btn-primary" %><br /><br />
-
+<section class="block" id="padd">
+<p class="textwrap">...is our request. Tackling these challenges will require a little effort from everyone.  
+Help make these campaings successful by sharing with your friends and family!</p>
+<div class="centers">
+<%= link_to "Share!", share_path	, class: "btn btn-large btn-primary" %>
+</div>
+</section>	
 
 
 
@@ -126,7 +139,7 @@
 dateFuture1 = new Date(2012,11,26,16,10,12);
 
 // TESTING: comment out the line below to print out the "dateFuture" for testing purposes
-//document.write(dateFuture +"<br />");
+//document.write(dateFuture +"");
 
 
 //###################################
