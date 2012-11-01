@@ -9,7 +9,6 @@ class PaymentsController < ApplicationController
 
   def create
   @payment = Payment.new(params[:payment])
-  
   if @payment.save_with_payment(@payment)
     redirect_to petitions_path, :notice => "Thank you for your support!"
   else

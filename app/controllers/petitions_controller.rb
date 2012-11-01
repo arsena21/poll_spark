@@ -112,6 +112,9 @@ end
 
   
   def destroy
+	@petition = Petition.find(params[:id])
+	@user = User.search_by(@petition.user_id)
+	updating @user
 	Petition.find(params[:id]).destroy
     flash[:success] = "Petition proposal destroyed."
     redirect_to root_path

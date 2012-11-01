@@ -6,4 +6,7 @@
 		<%= item.cost %> 
 	<%= item.petition_id %>
 	</div> 
+	<div class="imgholder">
+		<%= link_to image_tag(item.pictures_url), edit_item_path(:id => item.id)  %>
+	</div>
 <% end %>

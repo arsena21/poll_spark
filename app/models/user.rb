@@ -42,4 +42,6 @@ end
     end
   
   
+scope :search_by, lambda {|userid| where(:id => userid) }
+  
   end

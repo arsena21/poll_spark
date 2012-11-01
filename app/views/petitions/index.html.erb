@@ -44,15 +44,17 @@
 
 <!-- This section is not ADMIN...which has access to ALL petitions, not just the ones with a "pass" --!>	
 	
-<div id="container", class="contained"> 
+
 	<%if signed_in? %>
 		<% if current_user.admin? %>
-				NOT YET PASSED
+				<section id="row"><div id="bar2"></div></section>
+				<p class="textwrap">NOT YET PASSED</p>
+				<div id="container2", class="contained"> 
 				<% @petitions.each do |petition| %>
 						<% if petition.pass == "no" %>
 							<div class="block">
 								<div class="imgholder">
-									<%= link_to image_tag(petition.pics_url), edit_petition_path(petition)  %>
+									<%= link_to image_tag(petition.pics_url), edit_petition_path(petition) %>
 								</div>
 								<strong>
 									<%= link_to petition.name, edit_petition_path(petition)	, {:style=>'color:#000000;'} %>
@@ -60,9 +62,10 @@
 							</div>
 						<% end %>	
 				<% end %>
+				</div>
 		<% end %>
 	<% end %>	
-</div>
+
 
 
 <!-- CURRENT CAMPAIGN --!>

@@ -9,6 +9,9 @@
 	
 	<%= f.label :petition_id, "Petition ID" %>
     <%= f.text_field :petition_id %>
-
-    <%= f.submit "new item complete" %>
+	
+	<%= f.label :pictures, "Picture" %>
+	<%= f.file_field :pictures %> <br />
+    
+	<%= f.submit "new item complete" %>
 <% end %>

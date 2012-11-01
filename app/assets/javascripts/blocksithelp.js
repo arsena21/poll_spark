@@ -93,7 +93,20 @@ $(document).ready(function() {
 				offsetX: 8,
 				offsetY: 8
 			});
-		
+			
+			$('#container2').width(conWidth);
+			$('#container2').BlocksIt({
+				numOfCol: col,
+				offsetX: 8,
+				offsetY: 8
+			});
+			
+			$('#container3').width(conWidth);
+			$('#container3').BlocksIt({
+				numOfCol: col,
+				offsetX: 8,
+				offsetY: 8
+			});		
 	
 	});
 	
@@ -192,6 +205,24 @@ $(document).ready(function() {
 			currentWidth = conWidth;
 			$('#container').width(conWidth);
 			$('#container').BlocksIt({
+				numOfCol: col,
+				offsetX: 8,
+				offsetY: 8
+			});
+		}
+		if(conWidth != currentWidth) {
+			currentWidth = conWidth;
+			$('#container2').width(conWidth);
+			$('#container2').BlocksIt({
+				numOfCol: col,
+				offsetX: 8,
+				offsetY: 8
+			});
+		}
+		if(conWidth != currentWidth) {
+			currentWidth = conWidth;
+			$('#container3').width(conWidth);
+			$('#container3').BlocksIt({
 				numOfCol: col,
 				offsetX: 8,
 				offsetY: 8

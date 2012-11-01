@@ -9,6 +9,7 @@ PollSpark::Application.routes.draw do
 	resources :petitions, only: [:new, :create, :show, :index, :edit, :update, :destroy]
 	resources :microposts, only: [:create, :destroy]
 
+match '/newitem',  to: 'items#new' 
 match '/allitems',  to: 'items#index' 
 match '/share',  to: 'friends#email_share' 	
 match '/allpetitions',  to: 'petitions#index' 

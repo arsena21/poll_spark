@@ -10,7 +10,9 @@
 			<%= @petition.rating%> Votes 
 			<div class="row">
 				<h4 id="left">Description</h4>
-				<%= image_tag(@petition.pics_url) %>
+				<div class="span4">
+					<%= image_tag(@petition.pics_url) %>
+				</div>
 			<%= @petition.description.html_safe  %> 
 			</div>
 			<h4 id="left">Demands</h4>
@@ -42,11 +44,18 @@
 				<h4 id="left">Related Products</h4> 
 				<% @items.each do |item| %>
 					<% if item.petition_id == @petition.id %>
+						<div id="container3", class="contained"> 
+						<div class="block">
+						<div class="imgholder">
+							<%= link_to image_tag(item.pictures_url), edit_item_path(:id => item.id)  %> <br />
+						</div>	
 						<strong>
 							<%= link_to item.name, edit_item_path(:id => item.id)	, {:style=>'color:#000000;'} %>
 						</strong>
-						<div class="meta">
-							<%= item.cost %> $
+							<div class="meta">
+								<%= item.cost %> $
+							</div> 
+						</div>
 						</div> 
 					<% end %>	
 				<% end %> 
@@ -105,6 +114,7 @@
 					<%= submit_tag "Complete!", :name => 'done', class: "btn btn-large btn-primary" %>
 					<%= submit_tag "Save", :name => 'almostdone', class: "btn btn-large btn-primary" %>
 					<% if current_user.admin? %>
+						<%= f.file_field :pics %>
 						<%= link_to "delete", @petition, method: :delete,
 												  data: { confirm: "You sure?" }, class: "btn btn-large btn-primary" %>
 											  <%= f.label :pass %>

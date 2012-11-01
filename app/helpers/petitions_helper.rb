@@ -19,4 +19,11 @@ module PetitionsHelper
 		user.petitioner = "no"	
 		user.save!
 	end 	
+	
+	def updating(user)
+		user[0].petitioner = "no"
+		user[0].petition_id = ""
+		user[0].save!
+	end
+	
 end
