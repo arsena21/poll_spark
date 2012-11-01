@@ -4,7 +4,7 @@
 
 
 <h1><%= @petition.name.html_safe  %>  </h1>
-
+<%= @petition.id  %>
 
 <% if @petition.pass == "pass"%>
 			<%= @petition.rating%> Votes 
@@ -39,6 +39,18 @@
 			<% end %>	
 			</div>
 			<div id="bar2"></div>
+				<h4 id="left">Related Products</h4> 
+				<% @items.each do |item| %>
+					<% if item.petition_id == @petition.id %>
+						<strong>
+							<%= link_to item.name, edit_item_path(:id => item.id)	, {:style=>'color:#000000;'} %>
+						</strong>
+						<div class="meta">
+							<%= item.cost %> $
+						</div> 
+					<% end %>	
+				<% end %> 
+			<div id="bar2"></div>
 		<div class="span8 offset2" id="padd">
 			<% if @petition.microposts.any? %>
 			  <h3 id="padd">Comments (<%= @petition.microposts.count %>)</h3>
@@ -53,7 +65,7 @@
 					<%= render 'shared/micropost_form' %>		
 			  </ol>
 			<% end %>
-		</div>	
+		</div>			
 <%end%>
 
 
@@ -125,3 +137,4 @@
 	<%end%>
 <%end%>
 <%end%>
+

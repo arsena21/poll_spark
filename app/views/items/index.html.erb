@@ -1,0 +1,9 @@
+<% @items.each do |item| %>
+	<strong>
+		<%= link_to item.name, edit_item_path(item)	, {:style=>'color:#000000;'} %>
+	</strong>
+	<div class="meta">
+		<%= item.cost %> 
+	<%= item.petition_id %>
+	</div> 
+<% end %>

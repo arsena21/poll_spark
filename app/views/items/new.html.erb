@@ -1,0 +1,14 @@
+<%= form_for(@item) do |f| %>
+	<%= render 'shared/error_messages', object: f.object %>
+
+    <%= f.label :cost, "Price" %>
+    <%= f.text_field :cost  %>
+
+    <%= f.label :name, "Item name" %>
+    <%= f.text_field :name %>
+	
+	<%= f.label :petition_id, "Petition ID" %>
+    <%= f.text_field :petition_id %>
+
+    <%= f.submit "new item complete" %>
+<% end %>

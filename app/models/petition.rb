@@ -3,6 +3,7 @@ class Petition < ActiveRecord::Base
   belongs_to :user
   has_many :microposts
   has_one :signature
+  has_many :items
   
   after_initialize :pipi
   mount_uploader :pics, AvatarUploader
@@ -11,7 +12,6 @@ class Petition < ActiveRecord::Base
   validates :name, presence: true
   validates :rating, presence: true, :numericality => 
 				{ :greater_than_or_equal_to => 0}
-
   
 def pipi
   if new_record?

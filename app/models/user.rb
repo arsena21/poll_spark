@@ -4,6 +4,7 @@ class User < ActiveRecord::Base
   belongs_to :petition
   has_many :microposts
   has_many :friends
+  has_many :payments
   
   attr_accessible :name, :email, :vote, :country, :password, :password_confirmation, :remember_token
   has_secure_password
