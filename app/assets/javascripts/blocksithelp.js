@@ -107,7 +107,12 @@ $(document).ready(function() {
 				offsetX: 8,
 				offsetY: 8
 			});		
-	
+			$('#container4').width(conWidth);
+			$('#container4').BlocksIt({
+				numOfCol: col,
+				offsetX: 8,
+				offsetY: 8
+			});		
 	});
 	
 	
@@ -228,7 +233,16 @@ $(document).ready(function() {
 				offsetY: 8
 			});
 		}
-	});
+		if(conWidth != currentWidth) {
+			currentWidth = conWidth;
+			$('#container4').width(conWidth);
+			$('#container4').BlocksIt({
+				numOfCol: col,
+				offsetX: 8,
+				offsetY: 8
+			});
+		}
+		});
 	
 
 });

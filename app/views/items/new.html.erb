@@ -1,17 +1,23 @@
 <%= form_for(@item) do |f| %>
 	<%= render 'shared/error_messages', object: f.object %>
 
-    <%= f.label :cost, "Price" %>
+    <%= f.label :cost, "Price (in cents!!!)" %>
     <%= f.text_field :cost  %>
 
     <%= f.label :name, "Item name" %>
     <%= f.text_field :name %>
+
+	<%= f.label :name, "Description" %>
+    <%= f.text_area :description, class: "span8" %>
 	
 	<%= f.label :petition_id, "Petition ID" %>
     <%= f.text_field :petition_id %>
 	
 	<%= f.label :pictures, "Picture" %>
 	<%= f.file_field :pictures %> <br />
+	
+	<%= f.label :launched, "Launched?" %>
+	<%= f.text_field :launched %> <br />	
     
 	<%= f.submit "new item complete" %>
 <% end %>

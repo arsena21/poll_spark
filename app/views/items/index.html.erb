@@ -1,12 +1,43 @@
-<% @items.each do |item| %>
-	<strong>
-		<%= link_to item.name, edit_item_path(item)	, {:style=>'color:#000000;'} %>
-	</strong>
-	<div class="meta">
-		<%= item.cost %> 
-	<%= item.petition_id %>
-	</div> 
-	<div class="imgholder">
-		<%= link_to image_tag(item.pictures_url), edit_item_path(:id => item.id)  %>
+
+		<% if current_user.admin? %>
+			NOT LAUNCHED
+			<div id="container3", class="contained"> 
+				<% @items.each do |item| %>	
+					<% if  item.launched == "no" %>
+						<div class="block">
+							<div class="imgholder">
+								<%= link_to image_tag(item.pictures_url), edit_item_path(:id => item.id)  %> <br />
+							</div>	
+							<strong>
+								<%= link_to item.name, edit_item_path(:id => item.id)	, {:style=>'color:#000000;'} %>
+							</strong>
+							<div class="meta">
+								<%= item.cost.to_f/100 %> $
+							</div> 
+						</div>	
+					<% end %>
+				<%end%>
+			</div>
+		<%end%>
+	
+	<% if current_user.admin? %>
+		launched:
+	<%end%>	
+	<div id="container2", class="contained"> 
+	<% @items.each do |item| %>	
+		<% if  item.launched == "yes" %>
+			<div class="block">
+				<div class="imgholder">
+					<%= link_to image_tag(item.pictures_url), edit_item_path(:id => item.id)  %> <br />
+				</div>	
+				<strong>
+					<%= link_to item.name, edit_item_path(:id => item.id)	, {:style=>'color:#000000;'} %>
+				</strong>
+				<div class="meta">
+					<%= item.cost.to_f/100 %> $
+				</div> 
+			</div>	
+		<%end%>
+	<% end %>
 	</div>
-<% end %>
+

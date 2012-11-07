@@ -5,6 +5,12 @@ class SignaturesController < ApplicationController
 	@totals = last
 	@signature = Signature.new
 	@petition = find
+	@items = Item.find(:all)
+	if signed_in?
+	@micropost = Micropost.new(:user_id => current_user.id, :petition_id => @petition.id)
+	end
+	@microposts = @petition.microposts.paginate(page: params[:page])
+	
 	if current_user
 		@user = current_user
 		@id = current_user.id				
@@ -30,7 +36,7 @@ class SignaturesController < ApplicationController
       flash[:success] = "Thanks for participating in the Campaign!"
       redirect_to petitions_path
     else
-      render 'new'
+      render signatures_path
     end
   end
   

@@ -28,6 +28,9 @@ class FriendsController < ApplicationController
 	
 	
 	def email_share
+			@id = current_user.id
+			@friendsdone = Friend.where( :user_id => @id ).count
+			@friendsleft = 5- @friendsdone
 		if request.post?
 			save_friend
 			UserMailer.share(params).deliver

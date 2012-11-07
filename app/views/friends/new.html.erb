@@ -1,33 +1,37 @@
+<!--This is the OLD form to share with friends via email. EMAIL_SHARE IS NEW ONE-->
 
 <h1>Share!</h1>
 
-<h5>Thanks for participating! Please help us reach our goals by sharing with your friends and family. The more people who suppory the cause, the more chances we have 
-to making a difference! We ask that everyone share </h5>
+<h5>
+Thanks for participating! Please help us reach our goals by sharing with your friends and family. The more people who support this cause, the more chances we have 
+to making a difference! We ask that everyone share... 
+</h5>
+
 
 <h2>You have <%= pluralize(@friendsleft, "friend") %> left! </h2>
 
 <% if signed_in? %>
-<% if @friendsdone <= 4 %>
-			<%= form_for(@friends) do |f| %>
-				<%= render 'shared/error_messages', object: f.object %>
-					<%= f.hidden_field :user_id, :value => current_user.id %>
-					<%= f.text_field :name, placeholder:"Name", id:"formsy" %>
-					<%= f.text_field :email, placeholder:"e-mail", id:"formsy" %>
-				<%= f.submit "send!", name:"one" ,class: "btn btn-large btn-primary", id:"formsy" %>	
-			<% end %> 
-<% end %>
+	<% if @friendsdone <= 4 %>
+		<%= form_for(@friends) do |f| %>
+			<%= render 'shared/error_messages', object: f.object %>
+				<%= f.hidden_field :user_id, :value => current_user.id %>
+				<%= f.text_field :name, placeholder:"Name", id:"formsy" %>
+				<%= f.text_field :email, placeholder:"e-mail", id:"formsy" %>
+			<%= f.submit "send!", name:"one" ,class: "btn btn-large btn-primary", id:"formsy" %>	
+		<% end %> 
+	<% end %>
 
-<%if @friendsdone <4 %>
-<input type="text" placeholder="Text input" id="formsy"><input type="text" placeholder="Text input" id="formsy"> <br />
-<%if @friendsdone <3 %>
-<input type="text" placeholder="Text input" id="formsy"><input type="text" placeholder="Text input" id="formsy"> <br />
-<%if @friendsdone <2 %>
-<input type="text" placeholder="Text input" id="formsy"><input type="text" placeholder="Text input" id="formsy"> <br />
-<%if @friendsdone <1 %>
-<input type="text" placeholder="Text input" id="formsy"><input type="text" placeholder="Text input" id="formsy"> <br />
-<%end %>
-<%end %>
-<%end %>
-<%end %>
+	<%if @friendsdone <4 %>
+		<input type="text" placeholder="Text input" id="formsy"><input type="text" placeholder="Text input" id="formsy"> <br />
+		<%if @friendsdone <3 %>
+			<input type="text" placeholder="Text input" id="formsy"><input type="text" placeholder="Text input" id="formsy"> <br />
+			<%if @friendsdone <2 %>
+				<input type="text" placeholder="Text input" id="formsy"><input type="text" placeholder="Text input" id="formsy"> <br />
+				<%if @friendsdone <1 %>
+					<input type="text" placeholder="Text input" id="formsy"><input type="text" placeholder="Text input" id="formsy"> <br />
+				<%end %>
+			<%end %>
+		<%end %>
+	<%end %>
 
 <%end %>

@@ -1,116 +1,133 @@
+<!--This page is to edit your petition form once you have created it... OR to add votes to petitions that have PASSED -->
+
 <% provide :title do  %>
 	<%= @petition.name.html_safe %>
 <%end%>
 
 
 <h1><%= @petition.name.html_safe  %>  </h1>
-<%= @petition.id  %>
+
+<!--Petitions that have PASSED are below -->
 
 <% if @petition.pass == "pass"%>
-			<%= @petition.rating%> Votes 
-			<div class="row">
-				<h4 id="left">Description</h4>
-				<div class="span4">
-					<%= image_tag(@petition.pics_url) %>
-				</div>
-			<%= @petition.description.html_safe  %> 
-			</div>
-			<h4 id="left">Demands</h4>
-			<%= @petition.demands.html_safe  %> 
-			<h4 id="left">Links</h4> 
-			<%= @petition.links.html_safe  %> 
-
-			
-				<% if signed_in? %>
-					<% if !current_user.admin? %>
-						<% if current_user.vote != 0 %>
-							<%= form_for(@petition) do |f| %>
-							<div class="centers">
-							<%= f.submit "Vote for this campaign", class: "btn btn-large btn-primary" %>
-							</div>	
-							<% end %>
-						<% end %>	
-						<% if current_user.vote == 0 %>
-							<div class="centers"><div class="btn btn-large btn-info">You have used your 5 votes...</div></div>
-						<% end %>
-				   <% end %>	
-				<% end %>		
-			<div class="row">
-			<% if !signed_in? %>
-					<div class="centers"><%= link_to "Vote for this campaign", signin_path, class: "btn btn-large btn-primary" %></div>
+	<%= @petition.rating%> Votes 
+	<div class="row">
+		<h4 id="left">Description</h4>
+		<div class="span4">
+			<%= image_tag(@petition.pics_url) %>
+		</div>
+		<%= @petition.description.html_safe  %> 
+	</div>
+	<h4 id="left">Demands</h4>
+	<%= @petition.demands.html_safe  %> 
+	<h4 id="left">Links</h4> 
+	<%= @petition.links.html_safe  %> 
+	
+<!--VOTE FORM BELOW-->
+	
+	<% if signed_in? %>
+		<% if !current_user.admin? %>
+			<% if current_user.vote != 0 %>
+				<%= form_for(@petition) do |f| %>
+					<div class="centers">
+						<%= f.submit "Vote for this campaign", class: "btn btn-large btn-primary" %>
+					</div>	
+				<% end %>
 			<% end %>	
-			</div>
-			<div id="bar2"></div>
-				<h4 id="left">Related Products</h4> 
-				<% @items.each do |item| %>
-					<% if item.petition_id == @petition.id %>
-						<div id="container3", class="contained"> 
-						<div class="block">
+			<% if current_user.vote == 0 %>
+				<div class="centers"><div class="btn btn-large btn-info">You have used your 5 votes...</div></div>
+			<% end %>
+		<% end %>	
+	<% end %>		
+	
+	<div class="row">
+		<% if !signed_in? %>
+			<div class="centers"><%= link_to "Vote for this campaign", signin_path, class: "btn btn-large btn-primary" %></div>
+		<% end %>	
+	</div>
+	
+	
+	<div id="bar2"></div>
+	
+	<!--PRODUCTS for sale IN THE BLOCKSIT.JS THING-->
+	
+	<h4 id="left">Related Products</h4> 
+	<div id="container3", class="contained"> 
+		<% @items.each do |item| %>
+			<% if item.launched == "yes" %>
+				<% if item.petition_id == @petition.id %>
+					<div class="block">
 						<div class="imgholder">
 							<%= link_to image_tag(item.pictures_url), edit_item_path(:id => item.id)  %> <br />
 						</div>	
 						<strong>
 							<%= link_to item.name, edit_item_path(:id => item.id)	, {:style=>'color:#000000;'} %>
 						</strong>
-							<div class="meta">
-								<%= item.cost %> $
-							</div> 
-						</div>
+						<div class="meta">
+							<%= item.cost.to_f/100 %> $
 						</div> 
-					<% end %>	
-				<% end %> 
-			<div id="bar2"></div>
-		<div class="span8 offset2" id="padd">
-			<% if @petition.microposts.any? %>
-			  <h3 id="padd">Comments (<%= @petition.microposts.count %>)</h3>
-			  <ol class="microposts">
-			  <%= render 'shared/micropost_form' %>
-			  <%= render @microposts %>
-			  <%= will_paginate @microposts %>
-			  </ol>
-			<% else %>
-			  <h3>Post the first comment! </h3>
-			  <ol class="microposts">
-					<%= render 'shared/micropost_form' %>		
-			  </ol>
+					</div>
+				<% end %>
 			<% end %>
-		</div>			
+		<% end %> 
+	</div> 
+	
+	<div id="bar2"></div>
+	
+	<!--MICROPOSTS BELOW-->
+	
+	<div class="span8 offset2" id="padd">
+		<% if @petition.microposts.any? %>
+			<h3 id="padd">Comments (<%= @petition.microposts.count %>)</h3>
+			<ol class="microposts">
+				<%= render 'shared/micropost_form' %>
+				<%= render @microposts %>
+				<%= will_paginate @microposts %>
+			</ol>
+		<% else %>
+			<h3>Post the first comment! </h3>
+			<ol class="microposts">
+				<%= render 'shared/micropost_form' %>		
+			</ol>
+		<% end %>
+	</div>			
 <%end%>
 
 
+
+<!--Petitions that have NOT PASSED are below. THE FORM BELOW IS FOR PEOPLE WHO HAVE STARTED A PETITION BUT HAS NOT BEEN PASSED YET -->
+
 <% if signed_in? %>
-<% if (@petition.user_id == current_user.id) || (current_user.admin?) %>
-	<% if @petition.pass == "no"%>
+	<% if (@petition.user_id == current_user.id) || (current_user.admin?) %>
+		<% if @petition.pass == "no"%>
 			
-				<h2><div class="totheleft">PREVIEW</div></h2>
-				<h4 id="left">Description</h4> 
-				<%= @petition.description.html_safe  %>
-				<h4 id="left">Demands</h4> 
-				<%= @petition.demands.html_safe  %>
-				<% if @petition.links.present?  %>
+			<h2><div class="totheleft">PREVIEW</div></h2>
+			<h4 id="left">Description</h4> 
+			<%= @petition.description.html_safe  %>
+			<h4 id="left">Demands</h4> 
+			<%= @petition.demands.html_safe  %>
+			<% if @petition.links.present?  %>
 				<h4 id="left">Links</h4> 
-					<%= @petition.links.html_safe  %>
-				<%end%>
-				<div id=bar2></div>		
+				<%= @petition.links.html_safe  %>
+			<%end%>
+			
+			<div id=bar2></div>		
 
-				<h2><span>UPDATE CAMPAIGN</span></h2>
-				<%= link_to "Campaign Tips", tips_path, id:"right" %>	
-
-						
-				<%= form_for(@petition) do |f| %>
-					<%= render 'shared/error_messages', object: f.object %>
-					<h4 id="left">Campaign Name<h4 id="left">
-					<%= f.text_field :name %>
-					<h4 id="left">Campaign Description<h4 id="left">				
-					<%= render 'shared/text_editor' %>
-					<%= f.text_area :description, class: "span12", id: "wysihtml5-textarea"  %>	
-					<h4 id="left">Demands<h4 id="left">	
-					<%= render 'shared/text_editor3' %>
-					<%= f.text_area :demands, class: "span12", id: "wysihtml5-textarea3"  %>	
-					<h4 id="left">Useful Links<h4 id="left">
-					<%= f.text_area :links, class: "span12", id: "wysihtml5-textarea2"  %>
-					
-					<div class="centers">
+			<h2><span>UPDATE CAMPAIGN</span></h2>
+			<%= link_to "Campaign Tips", tips_path, id:"right" %>	
+			<%= form_for(@petition) do |f| %>
+				<%= render 'shared/error_messages', object: f.object %>
+				<h4 id="left">Campaign Name<h4 id="left">
+				<%= f.text_field :name %>
+				<h4 id="left">Campaign Description<h4 id="left">				
+				<%= render 'shared/text_editor' %>
+				<%= f.text_area :description, class: "span12", id: "wysihtml5-textarea"  %>	
+				<h4 id="left">Demands<h4 id="left">	
+				<%= render 'shared/text_editor3' %>
+				<%= f.text_area :demands, class: "span12", id: "wysihtml5-textarea3"  %>	
+				<h4 id="left">Useful Links<h4 id="left">
+				<%= f.text_area :links, class: "span12", id: "wysihtml5-textarea2"  %>
+				<div class="centers">
 					<%= submit_tag "Complete!", :name => 'done', class: "btn btn-large btn-primary" %>
 					<%= submit_tag "Save", :name => 'almostdone', class: "btn btn-large btn-primary" %>
 					<% if current_user.admin? %>
@@ -120,11 +137,11 @@
 											  <%= f.label :pass %>
 						<%= f.text_field :pass %>							  
 					<% end %>
-					</div>
-			    <% end %>	
+				</div>
+			<% end %>	
 
 
-
+			<!-- THIS IS FOR THE BLOCKSIT.JS...to make images line up nice -->
 
 			<script>
 			var editor = new wysihtml5.Editor("wysihtml5-textarea2", { // id of textarea element
@@ -142,9 +159,7 @@
 			  parserRules:  wysihtml5ParserRules // defined in parser rules set 
 			});			
 			</script>
-
-
+		<%end%>
 	<%end%>
-<%end%>
 <%end%>
 

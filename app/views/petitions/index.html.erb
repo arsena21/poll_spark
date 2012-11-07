@@ -20,59 +20,58 @@
 	</p>
 <%end%>
 	
-<!-- This section refers to a class imageholder and block which are used by JS: blocksit and blocksithelp...to make into pinterest array. see blocksithelp first --!>	
+<!-- This section refers to a class imageholder and block which are used by JS: blocksit and blocksithelp...to make into pinterest array. see blocksithelp.js --!>	
 	
 <div id="container", class="contained">
 	<% @petitions.each do |petition| %>
-			<% if petition.pass == "pass" %>
-				<% if petition.launched == "no" %>
+		<% if petition.pass == "pass" %>			<!-- campaigns need to "pass" before being visible by public --!>
+			<% if petition.launched == "no" %>
+				<div class="block">
+					<div class="imgholder">
+						<%= link_to image_tag(petition.pics_url), edit_petition_path(petition)  %>
+					</div>
+					<strong>
+						<%= link_to petition.name, edit_petition_path(petition)	, {:style=>'color:#000000;'} %>
+					</strong>
+					<div class="meta">
+						<%= petition.rating %> Votes
+					</div>
+				</div>
+			<% end %>	
+		<% end %>
+	<% end %>
+</div>
+
+
+
+<!-- The following section is for ADMIN...which has access to ALL petitions, not just the ones with a "pass" --!>	
+	
+<%if signed_in? %>
+	<% if current_user.admin? %>
+		<section id="row"><div id="bar2"></div></section>
+		<p class="textwrap">NOT YET PASSED</p>
+		<div id="container2", class="contained"> 
+			<% @petitions.each do |petition| %>
+				<% if petition.pass == "no" %>
 					<div class="block">
 						<div class="imgholder">
-							<%= link_to image_tag(petition.pics_url), edit_petition_path(petition)  %>
+							<%= link_to image_tag(petition.pics_url), edit_petition_path(petition) %>
 						</div>
 						<strong>
 							<%= link_to petition.name, edit_petition_path(petition)	, {:style=>'color:#000000;'} %>
 						</strong>
-						<div class="meta">
-							<%= petition.rating %> Votes
-						</div>
 					</div>
 				<% end %>	
 			<% end %>
+		</div>
 	<% end %>
-</div>
-
-<!-- This section is not ADMIN...which has access to ALL petitions, not just the ones with a "pass" --!>	
-	
-
-	<%if signed_in? %>
-		<% if current_user.admin? %>
-				<section id="row"><div id="bar2"></div></section>
-				<p class="textwrap">NOT YET PASSED</p>
-				<div id="container2", class="contained"> 
-				<% @petitions.each do |petition| %>
-						<% if petition.pass == "no" %>
-							<div class="block">
-								<div class="imgholder">
-									<%= link_to image_tag(petition.pics_url), edit_petition_path(petition) %>
-								</div>
-								<strong>
-									<%= link_to petition.name, edit_petition_path(petition)	, {:style=>'color:#000000;'} %>
-								</strong>
-							</div>
-						<% end %>	
-				<% end %>
-				</div>
-		<% end %>
-	<% end %>	
-
-
-
-<!-- CURRENT CAMPAIGN --!>
+<% end %>	
 
 
 <div id="bar2"></div>
 
+
+<!-- CURRENT CAMPAIGN --!>
 
 <h1>
 	<span class="orange">1</span> Campaign 
@@ -81,8 +80,8 @@
 
 
 <% @petitions.each do |petition| %>
-	<% if petition.pass == "pass" %>
-		<% if petition.launched == "yes" %>
+	<% if petition.pass == "pass" %>		
+		<% if petition.launched == "yes" %>     <!-- there is only 1 launched campaign at a time --!>
 			<h4>Time remaining: <span id="countbox1"></span></h4>
 			<section class="block">
 				<div id="padd"><h4><%= link_to "Campaign Name: #{petition.name}", new_signature_path %></h4></div>
@@ -95,30 +94,24 @@
 					<%= link_to "Paticipate!", new_signature_path	, class: "btn btn-large btn-primary" %>
 				</div>
 			</section>
-			<div id="left">
-			
-				
-			</div>
 		<% end %>	
 	<% end %>
 <% end %>					
 
-
+<div id="bar2"></div>
 
 
 
 <!-- LAST SECTION TO SHARE --!>	
 
-
-<div id="bar2"></div>
 <h1><span class="red">5</span> Friends </h1>
 
 <section class="block" id="padd">
-<p class="textwrap">...is our request. Tackling these challenges will require a little effort from everyone.  
-Help make these campaings successful by sharing with your friends and family!</p>
-<div class="centers">
-<%= link_to "Share!", share_path	, class: "btn btn-large btn-primary" %>
-</div>
+	<p class="textwrap">...is our request. Tackling these challenges will require a little effort from everyone.  
+	Help make these campaings successful by sharing with your friends and family!</p>
+	<div class="centers">
+		<%= link_to "Share!", share_path	, class: "btn btn-large btn-primary" %>
+	</div>
 </section>	
 
 

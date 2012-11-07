@@ -1,118 +1,160 @@
+<!--ADDING SIGNATURES TO LAUNCHED CAMPAIGNS..IF NOT SIGNED IN, HAVE SAME BOX BUT ASK TO SIGN IN-->
+
+
 <% provide :title do  %>
 	<%= @petition.name %>
 <%end%>
 
-
-<h1><%= @petition.name %>  </h1><br />
-
-
+<h1><%= @petition.name %>  </h1>
 
 <!-- VIDEO --!>
 
 <div class="row">
 	<h4>
-<iframe width="420" height="315" src="http://www.youtube.com/embed/2S-emnxQR7k" frameborder="0" allowfullscreen></iframe>
+		<iframe width="420" height="315" src="http://www.youtube.com/embed/2S-emnxQR7k" frameborder="0" allowfullscreen></iframe>
 	</h4>
-</div><br /><br />
-<div id="bar2"></div><br />
+</div>
 
+<div id="bar2"></div>
 
 <!-- DESCRIPTION --!>
 
-<h4 id="left">Description</h4> <br><br>
-<%= @petition.description.html_safe %> <br /><br /><br /><br />
-<div id="bar2"></div><br />
-
-
+<h4 id="left">Description</h4> 
+<%= @petition.description.html_safe %> 
+<div id="bar2"></div>
 
 <!-- OUR ASKS --!>
 
-<h4 id="left">Demands</h4> <br><br>
+<h4 id="left">Demands</h4> 
+<div id="bar2"></div>
 
-<div id="bar2"></div><br />
+<!-- ITEMS --!>
 
+<h4 id="left">Related Products</h4> 
+<div id="container3", class="contained"> 
+	<% @items.each do |item| %>
+		<% if item.launched == "yes" %>
+			<% if item.petition_id == @petition.id %>
+				<div class="block">
+					<div class="imgholder">
+						<%= link_to image_tag(item.pictures_url), edit_item_path(:id => item.id)  %> <br />
+					</div>	
+					<strong>
+						<%= link_to item.name, edit_item_path(:id => item.id)	, {:style=>'color:#000000;'} %>
+					</strong>
+					<div class="meta">
+						<%= item.cost.to_f/100 %> $
+					</div> 
+				</div>
+			<% end %>
+		<% end %>
+	<% end %> 
+</div> 
+<div id="bar2"></div>
 
 <!-- PETITION SIGNATURE BOX --!>
 
-
-
-<h4 id="left">Petition</h4> <br><br /><br />
+<div class="row"> 
+<h4 id="left">Petition</h4> 
 <% if signed_in? %>
 	<% if @b == "already signed" %>
 		<h2>Thanks for helping us reach <span id="numchange"></span>! </h2>
 	<% else %>
-		<h2><%= @totals %> signatures have been collected! Help us reach <span id="numchange"></span>! </h2><br /><br />
+		<h2><%= @totals %> signatures have been collected! Help us reach <span id="numchange"></span>! </h2>
 	<% end %>
 <% end %>	
 
 	
-		<% if signed_in? %>
-			<% if !(@b == "already signed") %>
-				<%= form_for(@signature, :html => { :class => "sigPad"} ) do |f| %>
-					<%= render 'shared/error_messages', object: f.object %>
-					
-					<%= f.hidden_field :user_id, :value => current_user.id %>
-					<%= f.hidden_field :petition_id, :value => @petition.id %>
-					
-					<%= f.label :name %>
-					<%= f.text_field :name, :value => current_user.name %><br /><br />
+<% if signed_in? %>
+	<% if !(@b == "already signed") %>
+		<%= form_for(@signature, :html => { :class => "sigPad"} ) do |f| %>
+			<%= render 'shared/error_messages', object: f.object %>
+			
+			<%= f.hidden_field :user_id, :value => current_user.id %>
+			<%= f.hidden_field :petition_id, :value => @petition.id %>
+			
+			<%= f.label :name %>
+			<%= f.text_field :name, :value => current_user.name %>
 
-					<%= f.label :email %>
-					<%= f.text_field :email, :value => current_user.email %><br /><br />
+			<%= f.label :email %>
+			<%= f.text_field :email, :value => current_user.email %>
 
-					<%= f.label :country %>
-					<%= f.text_field :country, :value => current_user.country %><br /><br /><br />
+			<%= f.label :country %>
+			<%= f.text_field :country, :value => current_user.country %>
 
-					<%= f.hidden_field :total, :value => @totals + 1 %>
-					<%= f.hidden_field :remember_token, :value => current_user.remember_token %>
+			<%= f.hidden_field :total, :value => @totals + 1 %>
+			<%= f.hidden_field :remember_token, :value => current_user.remember_token %>
 
-					<%= f.hidden_field :signaturepic, :id=>"canvascontent" %>
-							<ul class="sigNav">
-							<li class="drawIt"><a href="#draw-it">Draw your Signature</a></li>
-							<li class="clearButton"><a href="#clear">Clear</a></li>
-						  </ul>
-						  <div class="sig sigWrapper">
-							<div class="typed"></div>
-							<canvas class="pad" id="canvas" width="400" height="100"></canvas>
-						  </div><br />
-					<% if @b == "ok to sign" %> 
-						<%= f.submit "Participate!", class: "btn btn-large btn-primary", id:"right" %>
-					<% end %>
-					<% if @b == "already signed" %> 
-						<p>
-						You have already participated in this campaign! Thank you for your participation! 
-						</p>
-					<% end %>
-				<% end %>
+			<%= f.hidden_field :signaturepic, :id=>"canvascontent" %>
+				<ul class="sigNav">
+					<li class="drawIt"><a href="#draw-it">Draw your Signature</a></li>
+					<li class="clearButton"><a href="#clear">Clear</a></li>
+				</ul>
+				<div class="sig sigWrapper">
+					<div class="typed"></div>
+					<canvas class="pad" id="canvas" width="400" height="100"></canvas>
+				</div>
+			<% if @b == "ok to sign" %> 
+				<%= f.submit "Participate!", class: "btn btn-large btn-primary", id:"right" %>
+			<% end %>
+			<% if @b == "already signed" %> 
+				<p>
+					You have already participated in this campaign! Thank you for your participation! 
+				</p>
 			<% end %>
 		<% end %>
+	<% end %>
+<% end %>
 	  
 	 
-		<% if @b == "no user" %>
-			<%= form_for(@signature, :html => { :class => "sigPad"} ) do |f| %>
-				<%= f.label :name %>
-				<%= f.text_field :name %><br />
+<% if @b == "no user" %>
+	<%= form_for(@signature, :html => { :class => "sigPad"} ) do |f| %>
+		<%= f.label :name %>
+		<%= f.text_field :name %>
 
-				<%= f.label :email %>
-				<%= f.text_field :email %><br />
+		<%= f.label :email %>
+		<%= f.text_field :email %>
 
-				<%= f.label :country %>
-				<%= f.text_field :country %><br /><br />
+		<%= f.label :country %>
+		<%= f.text_field :country %>
 
-				<%= f.hidden_field :signaturepic, :id=>"canvascontent" %>
-					<ul class="sigNav">
-						<li class="drawIt"><a href="#draw-it">Draw your Signature</a></li>
-						<li class="clearButton"><a href="#clear">Clear</a></li>
-					</ul>
-					<div class="sig sigWrapper">
-					<div class="typed"></div>
-						<canvas class="pad" id="canvascontent" width="400" height="100"></canvas>
-					</div><br /><br />
-				<%= link_to "Please sign in to participate", signin_path, class: "btn btn-large btn-primary" %>
-			<% end %>
-		<% end %>
+		<%= f.hidden_field :signaturepic, :id=>"canvascontent" %>
+			<ul class="sigNav">
+				<li class="drawIt"><a href="#draw-it">Draw your Signature</a></li>
+				<li class="clearButton"><a href="#clear">Clear</a></li>
+			</ul>
+			<div class="sig sigWrapper">
+			<div class="typed"></div>
+				<canvas class="pad" id="canvascontent" width="400" height="100"></canvas>
+			</div>
+		<%= link_to "Please sign in to participate", signin_path, class: "btn btn-large btn-primary" %>
+	<% end %>
+<% end %>
+</div>
+<div id="bar2"></div>
 
-<br /><br /><br /><br />	
+
+<!-- PETITION SIGNATURE BOX --!>
+
+<div class="span8 offset2" id="padd">
+	<% if @petition.microposts.any? %>
+		<h3 id="padd">Comments (<%= @petition.microposts.count %>)</h3>
+		<ol class="microposts">
+			<%= render 'shared/micropost_form' %>
+			<%= render @microposts %>
+			<%= will_paginate @microposts %>
+		</ol>
+	<% else %>
+		<h3>Post the first comment! </h3>
+		<ol class="microposts">
+			<%= render 'shared/micropost_form' %>		
+		</ol>
+	<% end %>
+</div>			
+
+
+
+
 	
 	
 <!-- SCRIPT FOR SIGNATURE PAD --!>

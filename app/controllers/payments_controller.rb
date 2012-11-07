@@ -9,7 +9,8 @@ class PaymentsController < ApplicationController
 
   def create
   @payment = Payment.new(params[:payment])
-  if @payment.save_with_payment(@payment)
+  @num = @payment.price
+  if @payment.save_with_payment(@payment, @num)
     redirect_to petitions_path, :notice => "Thank you for your support!"
   else
     render :new
