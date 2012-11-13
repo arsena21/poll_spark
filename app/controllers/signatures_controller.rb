@@ -35,9 +35,13 @@ class SignaturesController < ApplicationController
     if @signature.save
 	  signature current_user
       flash[:success] = "Thanks for participating in the Campaign!"
-      redirect_to petitions_path
-    else
-      render signatures_path
+		if signed_in? && current_user.vote == 0  && current_user.signer == "yes" && current_user.shares.to_i > 4 
+			redirect_to done_path
+		else       
+			redirect_to petitionnow_path
+		end
+	else
+      redirect_to petitionnow_path
     end
   end
   

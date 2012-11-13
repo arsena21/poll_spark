@@ -36,10 +36,14 @@ class FriendsController < ApplicationController
 		if request.post?
 			save_friend
 			UserMailer.share(params).deliver
-			flash[:success] = "Your message has been sent!"
+			flash[:success] = "Thanks for sharing!"
 			@friendsdone = Friend.where( :user_id => @id ).count
 			shared @friendsdone
-			redirect_to petitions_path
+			if signed_in? && current_user.vote == 0  && current_user.signer == "yes" && current_user.shares.to_i > 4 
+				redirect_to done_path
+			else 
+				redirect_to share_path
+			end
 		end
 		end
 	end

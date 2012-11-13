@@ -102,8 +102,12 @@ end
 			    uprating @petition
 				votes_down current_user
 				flash[:success] = "Thanks for your vote!"
-				redirect_to petitions_path
-				return
+				if signed_in? && current_user.vote == 0  && current_user.signer == "yes" && current_user.shares.to_i > 4 
+					redirect_to done_path
+				else 				
+					redirect_to petitions_path
+				end
+			return
 		end		
 		if (current_user.vote == 0)
 					flash[:failure] = "No more votes!"

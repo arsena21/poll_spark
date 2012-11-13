@@ -20,10 +20,10 @@
 	</head>
 	
 	
-	<% if !current_page? root_path %>
-		<body class="toot" id="greyback">
-	<% else %>
+	<% if (current_page? root_path) || (current_page? done_path) %>
 		<body class="toot" id="whiteback">  
+	<% else %>
+		<body class="toot" id="greyback">
 	<% end %>
 		<div id="holder">
 			<%= render 'layouts/header' %>	
@@ -33,9 +33,11 @@
 			<div class="container-fluid" id="body">
 				<div class="row-fluid">
 					<div class="span2">
-					<% if !current_page? root_path %>
-						<%= render 'layouts/sidebar' %>      
-					<%end%></div>
+					<% if (current_page? root_path) || (current_page? done_path) %>
+					<%else%>
+						<%= render 'layouts/sidebar' %>
+					<%end%>
+					</div>
 					<div class="span8" id="white">
 						<div class="buffer">
 							<div class="span12" id ="sizer">
@@ -44,7 +46,7 @@
 									<div class="alert alert-<%= key %>"><%= value %></div>
 								<% end %>
 								<%= yield %>
-								<div id="push"></div>
+								<div id="push"></div>	
 							</div>
 						</div> 
 					</div>
