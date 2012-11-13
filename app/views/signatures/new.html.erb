@@ -11,7 +11,7 @@
 
 <div class="row">
 	<h4>
-		<iframe width="420" height="315" src="http://www.youtube.com/embed/2S-emnxQR7k" frameborder="0" allowfullscreen></iframe>
+		<iframe width="420" height="315" src="http://www.youtube.com/embed/8wXGrzDIcr8" frameborder="0" allowfullscreen></iframe>
 	</h4>
 </div>
 
@@ -20,51 +20,36 @@
 <!-- DESCRIPTION --!>
 
 <h4 id="left">Description</h4> 
+<div class="span4", id="formsy2">
+	<%= image_tag(@petition.pics_url) %>
+</div>
 <%= @petition.description.html_safe %> 
-<div id="bar2"></div>
 
-<!-- OUR ASKS --!>
+<!-- LINKS --!>
 
-<h4 id="left">Demands</h4> 
-<div id="bar2"></div>
+<div class="wid">
+<h4 id="left">References</h4> 
+<%= @petition.links.html_safe  %> 
+</div>	
 
-<!-- ITEMS --!>
+<div id="bar2"></div>	
 
-<h4 id="left">Related Products</h4> 
-<div id="container3", class="contained"> 
-	<% @items.each do |item| %>
-		<% if item.launched == "yes" %>
-			<% if item.petition_id == @petition.id %>
-				<div class="block">
-					<div class="imgholder">
-						<%= link_to image_tag(item.pictures_url), edit_item_path(:id => item.id)  %> <br />
-					</div>	
-					<strong>
-						<%= link_to item.name, edit_item_path(:id => item.id)	, {:style=>'color:#000000;'} %>
-					</strong>
-					<div class="meta">
-						<%= item.cost.to_f/100 %> $
-					</div> 
-				</div>
-			<% end %>
-		<% end %>
-	<% end %> 
-</div> 
-<div id="bar2"></div>
+<!-- CAMPAIGN GOALS --!>
+
+<h4 id="left">Campaign Goals</h4> 
+<%= @petition.demands.html_safe %> 
 
 <!-- PETITION SIGNATURE BOX --!>
 
-<div class="row"> 
-<h4 id="left">Petition</h4> 
 <% if signed_in? %>
 	<% if @b == "already signed" %>
-		<h2>Thanks for helping us reach <span id="numchange"></span>! </h2>
+		<h4>Thanks for helping us reach <span id="numchange"></span>! </h4>
 	<% else %>
-		<h2><%= @totals %> signatures have been collected! Help us reach <span id="numchange"></span>! </h2>
+		<h4><%= @totals %> signatures have been collected!</h4> <h4>Help us reach <span id="numchange"></span>! </h4>
 	<% end %>
 <% end %>	
 
-	
+<div id="formsy">	
 <% if signed_in? %>
 	<% if !(@b == "already signed") %>
 		<%= form_for(@signature, :html => { :class => "sigPad"} ) do |f| %>
@@ -131,13 +116,44 @@
 	<% end %>
 <% end %>
 </div>
+
+<div id="space">
+<div id="bar2"></div>
+</div>
+
+
+<!-- ITEMS --!>
+
+<h4 id="left">Related Products</h4> 
+
+All profits are used to promote campaigns and support our organization. Thank you!
+<div id="container3", class="contained"> 
+	<% @items.each do |item| %>
+		<% if item.launched == "yes" %>
+			<% if item.petition_id == @petition.id %>
+				<div class="block">
+					<div class="imgholder">
+						<%= link_to image_tag(item.pictures_url), edit_item_path(:id => item.id)  %> <br />
+					</div>	
+					<strong>
+						<%= link_to item.name, edit_item_path(:id => item.id)	, {:style=>'color:#000000;'} %>
+					</strong>
+					<div class="meta">
+						<%= item.cost.to_f/100 %> $
+					</div> 
+				</div>
+			<% end %>
+		<% end %>
+	<% end %> 
+</div> 
 <div id="bar2"></div>
 
 
-<!-- PETITION SIGNATURE BOX --!>
+<!-- MICROPOSTS --!>
 
 <div class="span8 offset2" id="padd">
-	<% if @petition.microposts.any? %>
+	
+<% if @petition.microposts.any? %>
 		<h3 id="padd">Comments (<%= @petition.microposts.count %>)</h3>
 		<ol class="microposts">
 			<%= render 'shared/micropost_form' %>
@@ -150,7 +166,7 @@
 			<%= render 'shared/micropost_form' %>		
 		</ol>
 	<% end %>
-</div>			
+</span>			
 
 
 

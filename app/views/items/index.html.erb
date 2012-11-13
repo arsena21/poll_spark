@@ -1,4 +1,4 @@
-
+	<% if signed_in? %>
 		<% if current_user.admin? %>
 			NOT LAUNCHED
 			<div id="container3", class="contained"> 
@@ -23,6 +23,7 @@
 	<% if current_user.admin? %>
 		launched:
 	<%end%>	
+	<%end%>
 	<div id="container2", class="contained"> 
 	<% @items.each do |item| %>	
 		<% if  item.launched == "yes" %>

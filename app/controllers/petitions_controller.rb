@@ -9,8 +9,10 @@ class PetitionsController < ApplicationController
 				  UserMailer.petition_confirmation(@petition).deliver
 				  flash[:success] = "Campaign has been submitted for review!"
 				  redirect_to petitions_path
-				  user_petition_save @user
-				  change_user_status @user
+				  if !@user.admin?
+					user_petition_save @user
+					change_user_status @user
+				  end
 				  return
 				else
 				  render 'new'
@@ -22,8 +24,10 @@ class PetitionsController < ApplicationController
 			  flash[:success] = "Campaign saved"
 			  user_petition_save @user
 			  redirect_to edit_petition_path(@petition)
-			  change_user_status @user
-			  user_petition_save @user
+			  if !@user.admin?
+				change_user_status @user
+				user_petition_save @user
+			  end
 			  return
 			else
 			  flash[:success] = "Petition not saved"

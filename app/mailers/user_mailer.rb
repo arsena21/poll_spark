@@ -8,11 +8,13 @@ class UserMailer < ActionMailer::Base
   
   def petition_confirmation(newpetition)
     @newpetition = newpetition
-	mail(:to => "ericarsenault6@gmail.com", :from => "ericarsenault6@gmail.com")
+	mail(:to => "ericarsenault6@gmail.com", :from => "ericarsenault@gmail.com")
   end  
   
 
   def share(params)
-    mail(:to => "#{params[:to]}", :from => "#{params[:email]}", :subject => "#{params[:subject]}", :message => "#{params[:message]}")
+	@message = (params[:message])
+	@from = (params[:email])
+    mail(:to => "#{params[:to]}", :from => @from, :subject => "#{params[:subject]}")
   end
-end
+  end

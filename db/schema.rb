@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121107194207) do
+ActiveRecord::Schema.define(:version => 20121112011530) do
 
   create_table "friends", :force => true do |t|
     t.string   "email"
@@ -103,6 +103,8 @@ ActiveRecord::Schema.define(:version => 20121107194207) do
     t.string   "petitioner"
     t.integer  "petition_id"
     t.string   "confirmed"
+    t.string   "signer"
+    t.string   "shares"
   end
 
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true

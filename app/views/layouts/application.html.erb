@@ -32,7 +32,10 @@
 			<%end%>
 			<div class="container-fluid" id="body">
 				<div class="row-fluid">
-					<div class="span2"></div>
+					<div class="span2">
+					<% if !current_page? root_path %>
+						<%= render 'layouts/sidebar' %>      
+					<%end%></div>
 					<div class="span8" id="white">
 						<div class="buffer">
 							<div class="span12" id ="sizer">

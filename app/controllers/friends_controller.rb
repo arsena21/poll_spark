@@ -7,6 +7,7 @@ class FriendsController < ApplicationController
 	@friendsleft = 5- @friendsdone
 	if @friends.save
 		flash[:success] = "Friend saved!"
+		shared @friendsdone
 		redirect_to share_path
     else
 		flash.now[:success] = "Petition not saved"
@@ -28,14 +29,18 @@ class FriendsController < ApplicationController
 	
 	
 	def email_share
+		if signed_in?
 			@id = current_user.id
-			@friendsdone = Friend.where( :user_id => @id ).count
+			@friendsdone = Friend.where( :user_id => @id ).count			
 			@friendsleft = 5- @friendsdone
 		if request.post?
 			save_friend
 			UserMailer.share(params).deliver
 			flash[:success] = "Your message has been sent!"
+			@friendsdone = Friend.where( :user_id => @id ).count
+			shared @friendsdone
 			redirect_to petitions_path
+		end
 		end
 	end
 	

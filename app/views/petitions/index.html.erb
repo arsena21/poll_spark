@@ -11,12 +11,18 @@
 
 
 <%if signed_in?%>
+	<%if @user.vote == 0 %>
 	<p class="textwrap">
-		You have <span class="red"><%= pluralize(@user.vote, "vote") %> left</span>! Vote on the campaigns which are the most important to you: 
+		Thanks for Voting!
 	</p>
+	<%else%>
+	<p class="textwrap">
+		You have <span class="red"><%= pluralize(@user.vote, "vote") %> left</span>! Vote on the campaigns which are most important to you to launch them: 
+	</p>
+	<%end%>
 <%else%>
 	<p class="textwrap">
-		You have <span class="red">3 votes left</span>! Vote on the campaigns which are the most important to you: 
+		You have <span class="red">3 votes left</span>! Vote on the campaigns which are most important to you to launch them: 
 	</p>
 <%end%>
 	
@@ -67,21 +73,48 @@
 	<% end %>
 <% end %>	
 
+<!-- CURRENT CAMPAIGN --!>
 
-<div id="bar2"></div>
+<%if signed_in? %>
+	<% if current_user.admin? %>
+		<section id="row"><div id="bar2"></div></section>
+		<p class="textwrap">CURRENT CAMPAIGN</p>
+		<div id="container2", class="contained"> 
+			<% @petitions.each do |petition| %>
+				<% if petition.launched == "yes" %>
+					<div class="block">
+						<div class="imgholder">
+							<%= link_to image_tag(petition.pics_url), edit_petition_path(petition) %>
+						</div>
+						<strong>
+							<%= link_to petition.name, edit_petition_path(petition)	, {:style=>'color:#000000;'} %>
+						</strong>
+					</div>
+				<% end %>	
+			<% end %>
+		</div>
+	<% end %>
+<% end %>	
+
+
+
 
 
 <!-- CURRENT CAMPAIGN --!>
 
+
+<!--						
+<%= link_to "View Current Campaign!", new_signature_path, class: "btn btn-large btn-primary", id: "right" %>
+
+<div id="bar2"></div>
 <h1>
 	<span class="orange">1</span> Campaign 
 </h1>	
-						
-
-
+--!>
+<!--
 <% @petitions.each do |petition| %>
 	<% if petition.pass == "pass" %>		
-		<% if petition.launched == "yes" %>     <!-- there is only 1 launched campaign at a time --!>
+		<% if petition.launched == "yes" %>     
 			<h4>Time remaining: <span id="countbox1"></span></h4>
 			<section class="block">
 				<div id="padd"><h4><%= link_to "Campaign Name: #{petition.name}", new_signature_path %></h4></div>
@@ -98,11 +131,12 @@
 	<% end %>
 <% end %>					
 
+
 <div id="bar2"></div>
 
 
 
-<!-- LAST SECTION TO SHARE --!>	
+
 
 <h1><span class="red">5</span> Friends </h1>
 
@@ -114,7 +148,7 @@
 	</div>
 </section>	
 
-
+--!>
 
 <!-- SCRIPT FOR COUNTOWN TIMER ONLY --!>	
 

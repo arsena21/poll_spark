@@ -25,4 +25,14 @@ module SignaturesHelper
     render :partial => 'shared/video', :locals => { :url => url }
   end 
   
+  def signature(user)
+    user.signer = "yes"
+	user.save
+  end  
+  
+    def shared(friendsdone)
+    current_user.shares = friendsdone
+	current_user.save
+  end 
+  
 end

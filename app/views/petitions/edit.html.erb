@@ -11,17 +11,28 @@
 
 <% if @petition.pass == "pass"%>
 	<%= @petition.rating%> Votes 
-	<div class="row">
-		<h4 id="left">Description</h4>
-		<div class="span4">
-			<%= image_tag(@petition.pics_url) %>
-		</div>
-		<%= @petition.description.html_safe  %> 
-	</div>
-	<h4 id="left">Demands</h4>
-	<%= @petition.demands.html_safe  %> 
-	<h4 id="left">Links</h4> 
-	<%= @petition.links.html_safe  %> 
+	
+<!-- DESCRIPTION --!>
+
+<h4 id="left">Description</h4> 
+<div class="span4", id="formsy2">
+	<%= image_tag(@petition.pics_url) %>
+</div>
+<%= @petition.description.html_safe %> 
+
+<!-- LINKS --!>
+
+<div class="wid">
+<h4 id="left">References</h4> 
+<%= @petition.links.html_safe  %> 
+</div>	
+
+<div id="bar2"></div>	
+
+<!-- CAMPAIGN GOALS --!>
+
+<h4 id="left">Campaign Goals</h4> 
+<%= @petition.demands.html_safe %> 
 	
 <!--VOTE FORM BELOW-->
 	
@@ -75,7 +86,7 @@
 	<div id="bar2"></div>
 	
 	<!--MICROPOSTS BELOW-->
-	
+	<section>
 	<div class="span8 offset2" id="padd">
 		<% if @petition.microposts.any? %>
 			<h3 id="padd">Comments (<%= @petition.microposts.count %>)</h3>
@@ -90,7 +101,8 @@
 				<%= render 'shared/micropost_form' %>		
 			</ol>
 		<% end %>
-	</div>			
+	</div>	
+	</section>
 <%end%>
 
 
@@ -99,8 +111,8 @@
 
 <% if signed_in? %>
 	<% if (@petition.user_id == current_user.id) || (current_user.admin?) %>
-		<% if @petition.pass == "no"%>
-			
+		<% if @petition.pass == "no" || (current_user.admin?) %>
+			<% if @petition.pass == "no" %>
 			<h2><div class="totheleft">PREVIEW</div></h2>
 			<h4 id="left">Description</h4> 
 			<%= @petition.description.html_safe  %>
@@ -110,7 +122,7 @@
 				<h4 id="left">Links</h4> 
 				<%= @petition.links.html_safe  %>
 			<%end%>
-			
+			<%end%>
 			<div id=bar2></div>		
 
 			<h2><span>UPDATE CAMPAIGN</span></h2>

@@ -14,7 +14,7 @@ to making a difference! We ask that everyone share...
 		<% if @friendsleft.to_i == 5 %>
 			<h2>You have 5 shares left </h2>
 		<% else %>
-			<% if (@friendsleft.to_i == 0 || @friendsleft.to_i == 1) %>
+			<% if (@friendsleft.to_i < 1 || @friendsleft.to_i == 1) %>
 				<% if @friendsleft.to_i == 1 %>
 					<h2>Only 1 friend left! </h2>
 				<% else %>

@@ -27,9 +27,10 @@ class User < ActiveRecord::Base
  
 def bobo
   if new_record?
-    self.vote ||= 5
+    self.vote ||= 3
 	self.petitioner ||= "no"
 	self.confirmed ||= "false"
+	self.signer ||= "no"
   end
 end
   

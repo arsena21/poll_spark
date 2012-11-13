@@ -12,10 +12,16 @@ html {
 
 
 
+.wid{
+width: 100%;
+font-size: 0.8em;
+}
+
 #bar{
 	border-top: 1px solid #79CDCD;
-	width: 60%;
-	float: right;
+	width: 100%;
+	margin-bottom: 15px;
+	margin-top: 15px;	
 	}
 
 	
@@ -26,6 +32,35 @@ html {
 	margin-top: 35px;
 }
 
+#unstyled{
+margin-top:90px;
+width:170px;
+float:right;
+text-align:right;
+font-size: 2em;
+letter-spacing: -2px;
+position: fixed;
+}
+
+
+
+#crossed {
+text-decoration: line-through;
+text-decoration-color: black;
+}
+
+
+#tag{
+width: 16px;
+float: right;
+}
+
+
+
+
+
+
+
 .section{
 width: 500px;
 }
@@ -34,7 +69,6 @@ width: 500px;
 	font-size: 1.0em;
 	letter-spacing: 0.5px;
 	font-weight: normal;
-	float:right;
 }
 
 #container2{
@@ -114,11 +148,19 @@ h4 {
 #left{
 text-align: left;
 }
-
-#right{
-float: right;
+#lefty{
+float:left;
+}
+#lefts{
+text-align:left;
+float:left;
+margin-left:23px;
 }
 
+#lefti{
+text-align:left;
+float:left;
+}
 
 h1 {
   font-size: 4em;
@@ -388,9 +430,11 @@ height:40px;
   text-align:justify;
 }
 
+
+
 img {
-	float:left;
-	margin-right: 15px;
+float:left;
+width:  350px;
 #img2 {
     width:  350px;
 }	
@@ -406,6 +450,13 @@ margin-top:20px;
 margin-left:20px;
 margin-right:20px;
 margin-bottom:20px;
+}
+
+#formsy2{
+margin-top:7px;
+margin-left:0px;
+margin-right:20px;
+margin-bottom:10px;
 }
 
 #wrap {
@@ -448,7 +499,6 @@ text-align: right;
 
 #padd{
 margin-bottom: 30px;
-	margin-top: 30px;
 }
 
 .centers{
@@ -458,8 +508,7 @@ margin: 0 auto;
 }
 
 #right{
-text-align:right; 
-margin: 0 auto;
+float:right; 
 vertical-align:middle;
 margin-bottom:10px;
 margin-top:10px;
@@ -508,4 +557,8 @@ height: 100px;
 }
 #wysihtml5-textarea3{
 height: 200px;
+}
+
+#space{
+margin-top:83px;
 }

@@ -1,16 +1,125 @@
-			
-				<%= link_to petitionnow_path do %>
-					<br /><div id="bar"></div><br />
-					<div id="sides">
-					2 - Participate
-					</div>
-				<% end %>	<br />
+<div class="span12">
+<div id="unstyled">
+		<div id="bar"></div>
+		<div>
+			<% if signed_in? %>
+				<% if current_user.vote == 0  %>
+					<% if current_page? petitions_path %>
+						<li id="lefty"></li>
+							<%= link_to "3", petitions_path, class: "yellow", id:"lefti" %>
+							<%= link_to "Votes!", petitions_path%>	
+							<img src="/images/check.jpg", id="tag" />
+					<% else %>
+						<%= link_to "3", petitions_path, class: "yellow", id:"lefts" %>
+						<%= link_to "Votes", petitions_path%>
+						<img src="/images/check.jpg", id="tag" />
+					<% end %>		
+				<% else %>
+					<% if current_page? petitions_path %>
+						<li id="lefty"></li>
+							<%= link_to "3", petitions_path, class: "yellow", id:"lefti" %>
+							<%= link_to "Votes!", petitions_path%>	
+							<img src="/images/xmark.jpg", id="tag" />
+					<% else %>
+						<%= link_to "3", petitions_path, class: "yellow", id:"lefts" %>
+						<%= link_to "Votes", petitions_path%>
+						<img src="/images/xmark.jpg", id="tag" />
+					<% end %>				
+				<% end %>	
+			<% else %>	
+				<% if current_page? petitions_path %>
+					<li id="lefty"></li>
+					<%= link_to "3", petitions_path, class: "yellow", id:"lefti" %>
+					<%= link_to "Votes", petitions_path%>
+					<img src="/images/xmark.jpg", id="tag" />
+				<% else %>
+					<%= link_to "3", petitions_path, class: "yellow", id:"lefts" %>
+					<%= link_to "Votes", petitions_path%>
+					<img src="/images/xmark.jpg", id="tag" />
+				<% end %>
+			<% end %>
+		</div>
+		
+		<div id="bar"></div>
+		
+		<div>
+			<% if signed_in? %>
+				<% if current_user.signer == "yes" %>
+					<% if current_page? petitionnow_path %>
+						<li id="lefty"></li>
+							<%= link_to "1", petitionnow_path, class: "orange", id:"lefti" %>
+							<%= link_to "Campaign", petitionnow_path %>		
+							<img src="/images/check.jpg", id="tag" />
+					<% else %>
+						<%= link_to "1", petitionnow_path, class: "orange", id:"lefts" %>
+						<%= link_to "Campaign", petitionnow_path %>	
+						<img src="/images/check.jpg", id="tag" />
+					<% end %>		
+				<% else %>
+					<% if current_page? petitionnow_path %>
+						<li id="lefty"></li>
+							<%= link_to "1", petitionnow_path, class: "orange", id:"lefti" %>
+							<%= link_to "Campaign", petitionnow_path %>	
+							<img src="/images/xmark.jpg", id="tag" />
+					<% else %>
+						<%= link_to "1", petitionnow_path, class: "orange", id:"lefts" %>
+						<%= link_to "Campaign", petitionnow_path %>	
+						<img src="/images/xmark.jpg", id="tag" />
+					<% end %>				
+				<% end %>	
+			<% else %>	
+				<% if current_page? petitionnow_path %>
+					<li id="lefty"></li>
+					<%= link_to "1", petitionnow_path, class: "orange", id:"lefti" %>
+					<%= link_to "Campaign", petitionnow_path %>	
+					<img src="/images/xmark.jpg", id="tag" />
+				<% else %>
+					<%= link_to "1", petitionnow_path, class: "orange", id:"lefts" %>
+					<%= link_to "Campaign", petitionnow_path %>	
+					<img src="/images/xmark.jpg", id="tag" />
+				<% end %>
+			<% end %>
+		</div>		
 
-
-
-				<%= link_to '#' do %>
-					<br /><div id="bar"></div><br />
-					<div id="sides">
-					3 - Share
-					</div>
-				<% end %>	<br />	
+		<div id="bar"></div>
+		
+		<div>
+			<% if signed_in? %>
+				<% if current_user.shares.to_i > 4 %>
+					<% if current_page? share_path %>
+						<li id="lefty"></li>
+							<%= link_to "5", share_path, class: "red", id:"lefti" %>		
+							<%= link_to "Friends", share_path %>	
+							<img src="/images/check.jpg", id="tag" />
+					<% else %>
+						<%= link_to "5", share_path, class: "red", id:"lefts" %>		
+						<%= link_to "Friends", share_path %>
+						<img src="/images/check.jpg", id="tag" />
+					<% end %>		
+				<% else %>
+					<% if current_page? share_path %>
+						<li id="lefty"></li>
+							<%= link_to "5", share_path, class: "red", id:"lefti" %>		
+							<%= link_to "Friends", share_path %>
+							<img src="/images/xmark.jpg", id="tag" />
+					<% else %>
+						<%= link_to "5", share_path, class: "red", id:"lefts" %>		
+						<%= link_to "Friends", share_path %>
+						<img src="/images/xmark.jpg", id="tag" />
+					<% end %>				
+				<% end %>	
+			<% else %>	
+				<% if current_page? share_path %>
+					<li id="lefty"></li>
+					<%= link_to "5", share_path, class: "red", id:"lefti" %>		
+					<%= link_to "Friends", share_path %>	
+					<img src="/images/xmark.jpg", id="tag" />
+				<% else %>
+					<%= link_to "5", share_path, class: "red", id:"lefts" %>		
+					<%= link_to "Friends", share_path %>	
+					<img src="/images/xmark.jpg", id="tag" />
+				<% end %>
+			<% end %>
+		</div>			
+</div>
+</div>
