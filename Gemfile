@@ -36,3 +36,5 @@ group :production do
 end
 
 gem 'stripe'
+gem 'omniauth'
+gem 'omniauth-twitter'

@@ -5,6 +5,7 @@ class User < ActiveRecord::Base
   has_many :microposts
   has_many :friends
   has_many :payments
+  has_many :authentications
   
   attr_accessible :name, :email, :vote, :country, :password, :password_confirmation, :remember_token
   has_secure_password
