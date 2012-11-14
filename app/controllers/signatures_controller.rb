@@ -1,5 +1,6 @@
 class SignaturesController < ApplicationController
-
+	def edit
+	end
 
   def new
 	@totals = last

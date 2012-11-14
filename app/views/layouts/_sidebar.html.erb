@@ -1,117 +1,162 @@
 <div class="span12">
 <div id="unstyled">
-		<div id="bar"></div>
+		<div id="sidebarbar"></div>
 		<div>
 			<% if signed_in? %>
 				<% if current_user.vote == 0  %>
-					<% if current_page? petitions_path %>
-						<li id="lefty"></li>
-							<%= link_to "3", petitions_path, class: "yellow", id:"lefti" %>
+					<% if (current_page? petitions_path) || (current_page?(edit_petition_path(1..100))) %>
+						<div class="greys">
+							<div class="middle">
+							<%= link_to "3", petitions_path, class: "yellow", id:"lefts" %>
 							<%= link_to "Votes!", petitions_path%>	
 							<img src="/images/check.jpg", id="tag" />
+							</div>
+						</div>	
 					<% else %>
+						<div class="middle2">
 						<%= link_to "3", petitions_path, class: "yellow", id:"lefts" %>
 						<%= link_to "Votes", petitions_path%>
 						<img src="/images/check.jpg", id="tag" />
+						</div>
 					<% end %>		
 				<% else %>
 					<% if current_page? petitions_path %>
-						<li id="lefty"></li>
-							<%= link_to "3", petitions_path, class: "yellow", id:"lefti" %>
+						<div class="greys">
+							<div class="middle">
+							<%= link_to "3", petitions_path, class: "yellow", id:"lefts" %>
 							<%= link_to "Votes!", petitions_path%>	
 							<img src="/images/xmark.jpg", id="tag" />
+							</div>
+						</div>	
 					<% else %>
+						<div class="middle2">
 						<%= link_to "3", petitions_path, class: "yellow", id:"lefts" %>
 						<%= link_to "Votes", petitions_path%>
 						<img src="/images/xmark.jpg", id="tag" />
+						</div>
 					<% end %>				
 				<% end %>	
 			<% else %>	
 				<% if current_page? petitions_path %>
-					<li id="lefty"></li>
-					<%= link_to "3", petitions_path, class: "yellow", id:"lefti" %>
-					<%= link_to "Votes", petitions_path%>
-				<% else %>
+				<div class="greys">
+					<div class="middle">
 					<%= link_to "3", petitions_path, class: "yellow", id:"lefts" %>
 					<%= link_to "Votes", petitions_path%>
+					</div>
+				</div>	
+				<% else %>
+					<div class="middle2">
+					<%= link_to "3", petitions_path, class: "yellow", id:"lefts" %>
+					<%= link_to "Votes", petitions_path%>
+					</div>
 				<% end %>
 			<% end %>
 		</div>
 		
-		<div id="bar"></div>
+		<div id="sidebarbar"></div>
 		
 		<div>
 			<% if signed_in? %>
 				<% if current_user.signer == "yes" %>
 					<% if current_page? petitionnow_path %>
-						<li id="lefty"></li>
-							<%= link_to "1", petitionnow_path, class: "orange", id:"lefti" %>
+					<div class="greys">
+						<div class="middle">
+							<%= link_to "1", petitionnow_path, class: "orange", id:"lefts" %>
 							<%= link_to "Campaign", petitionnow_path %>		
 							<img src="/images/check.jpg", id="tag" />
+						</div>
+					</div>	
 					<% else %>
+						<div class="middle2">	
 						<%= link_to "1", petitionnow_path, class: "orange", id:"lefts" %>
 						<%= link_to "Campaign", petitionnow_path %>	
 						<img src="/images/check.jpg", id="tag" />
+						</div>
 					<% end %>		
 				<% else %>
 					<% if current_page? petitionnow_path %>
-						<li id="lefty"></li>
-							<%= link_to "1", petitionnow_path, class: "orange", id:"lefti" %>
+					<div class="greys">
+						<div class="middle">
+							<%= link_to "1", petitionnow_path, class: "orange", id:"lefts" %>
 							<%= link_to "Campaign", petitionnow_path %>	
 							<img src="/images/xmark.jpg", id="tag" />
+						</div>	
+					</div>	
 					<% else %>
+						<div class="middle2">
 						<%= link_to "1", petitionnow_path, class: "orange", id:"lefts" %>
 						<%= link_to "Campaign", petitionnow_path %>	
 						<img src="/images/xmark.jpg", id="tag" />
+						</div>
 					<% end %>				
 				<% end %>	
 			<% else %>	
 				<% if current_page? petitionnow_path %>
-					<li id="lefty"></li>
-					<%= link_to "1", petitionnow_path, class: "orange", id:"lefti" %>
-					<%= link_to "Campaign", petitionnow_path %>	
-				<% else %>
+				<div class="greys">
+					<div class="middle">
 					<%= link_to "1", petitionnow_path, class: "orange", id:"lefts" %>
 					<%= link_to "Campaign", petitionnow_path %>	
+					</div>	
+					</div>
+				<% else %>
+					<div class="middle2">
+					<%= link_to "1", petitionnow_path, class: "orange", id:"lefts" %>
+					<%= link_to "Campaign", petitionnow_path %>	
+					</div>
 				<% end %>
 			<% end %>
 		</div>		
 
-		<div id="bar"></div>
+		<div id="sidebarbar"></div>
 		
 		<div>
 			<% if signed_in? %>
 				<% if current_user.shares.to_i > 4 %>
 					<% if current_page? share_path %>
-						<li id="lefty"></li>
-							<%= link_to "5", share_path, class: "red", id:"lefti" %>		
+					<div class="greys">
+							<div class="middle">
+							<%= link_to "5", share_path, class: "red", id:"lefts" %>		
 							<%= link_to "Friends", share_path %>	
 							<img src="/images/check.jpg", id="tag" />
+							</div>
+					</div>		
 					<% else %>
+						<div class="middle2">
 						<%= link_to "5", share_path, class: "red", id:"lefts" %>		
 						<%= link_to "Friends", share_path %>
 						<img src="/images/check.jpg", id="tag" />
+						</div>
 					<% end %>		
 				<% else %>
 					<% if current_page? share_path %>
-						<li id="lefty"></li>
-							<%= link_to "5", share_path, class: "red", id:"lefti" %>		
+					<div class="greys">
+							<div class="middle">
+							<%= link_to "5", share_path, class: "red", id:"lefts" %>		
 							<%= link_to "Friends", share_path %>
 							<img src="/images/xmark.jpg", id="tag" />
+							</div>
+					</div>		
 					<% else %>
+						<div class="middle2">
 						<%= link_to "5", share_path, class: "red", id:"lefts" %>		
 						<%= link_to "Friends", share_path %>
 						<img src="/images/xmark.jpg", id="tag" />
+						</div>
 					<% end %>				
 				<% end %>	
 			<% else %>	
 				<% if current_page? share_path %>
-					<li id="lefty"></li>
-					<%= link_to "5", share_path, class: "red", id:"lefti" %>		
-					<%= link_to "Friends", share_path %>	
+				<div class="greys">
+					<div class="middle">
+					<%= link_to "5", share_path, class: "red", id:"lefts" %>		
+					<%= link_to "Friends", share_path %>
+					</div>
+				</div>	
 				<% else %>
+					<div class="middle2">
 					<%= link_to "5", share_path, class: "red", id:"lefts" %>		
 					<%= link_to "Friends", share_path %>	
+					</div>
 				<% end %>
 			<% end %>
 		</div>			

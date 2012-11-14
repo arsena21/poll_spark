@@ -10,6 +10,23 @@ html {
   overflow-y: scroll;
 }
 
+.greys{
+background-color:white;
+height:48px;
+width:188px;
+}
+
+.middle{
+padding-top:15px;
+padding-bottom:15px;
+padding-right:20px;
+}
+
+.middle2{
+margin-top:15px;
+margin-bottom:15px;
+}
+
 
 
 .wid{
@@ -24,6 +41,11 @@ font-size: 0.8em;
 	margin-top: 15px;	
 	}
 
+#sidebarbar{
+	border-top: 1px solid #79CDCD;
+	width: 188px;
+
+}
 	
 #bar2{
 	border-top: 1px solid #79CDCD;
@@ -53,6 +75,7 @@ text-decoration-color: black;
 #tag{
 width: 16px;
 float: right;
+padding-left:5px;
 }
 
 
@@ -154,7 +177,7 @@ float:left;
 #lefts{
 text-align:left;
 float:left;
-margin-left:23px;
+margin-left:20px;
 }
 
 #lefti{
