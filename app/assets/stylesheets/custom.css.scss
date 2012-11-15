@@ -41,7 +41,6 @@ font-size: 0.8em;
 #sidebarbar{
 	border-top: 1px solid #79CDCD;
 	width: 120%;
-
 }
 	
 #bar2{
@@ -67,8 +66,6 @@ padding-right:20px;
 }
 
 .middle2{
-margin-top:15px;
-margin-bottom:15px;
 padding-right:20px;
 }
 
@@ -76,10 +73,15 @@ padding-right:20px;
 background-color:white;
 height:48px;
 width:120%;
+ z-index: 50000;
+ position:relative;
 }
 
 .greys2{
 width:120%;
+background-color:#FAF9F9;
+height:48px;
+
 }
 
 #crossed {

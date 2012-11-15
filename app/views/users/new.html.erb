@@ -7,7 +7,7 @@
 <% end %>
 
 
-<% if current_page? root_path %>
+<% if current_page? root_path %><br />	<br /><br />	<br />
 	<h3>
 	Generation315 is a platform for collective action. 	<br />	<br />
 	
@@ -59,10 +59,10 @@
 
 <div class="votes">
 	<% if current_page? root_path %>
-		<%= link_to "Sign up!", signup_path, class: "btn btn-large btn-primary" %>
-		<%= link_to "Skip", petitions_path %>
+		<%= link_to "Sign up!", signup_path, class: "btn btn-large btn-primary" %><br />
+		<%= link_to "Skip", petitions_path %><br />
 	<% end %>
-	<p>
+
 		Already a user? <%= link_to "Sign in!", signin_path %>
-	</p>
+
 </div>
