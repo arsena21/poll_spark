@@ -35,7 +35,10 @@ def bobo
   end
 end
   
-  
+    def apply_omniauth(omniauth)
+		authentications.build(:provider => omniauth['provider'],:uid => omniauth['uid'])
+    end
+    
 
     def create_remember_token
         if new_record?

@@ -16,13 +16,13 @@ class AuthenticationsController < ApplicationController
 		redirect_to authentications_path
 	else
 		user = User.new
-		user.authentications.build(:provider => omniauth['provider'],:uid => omniauth['uid'])
+		user.apply_omniauth(omniauth)
 		if user.save
 			flash[:notice] = "signeddd in"
 			sign_in(user)
 		else
 			session[:omniauth] = omniauth.except('extra')
-			redirect_to signin_path
+			redirect_to registration_path
 		end
 	end
   end

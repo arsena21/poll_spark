@@ -47,7 +47,6 @@ class UsersController < ApplicationController
   
   def registered
 	@user = current_user
-
   end
   
 end

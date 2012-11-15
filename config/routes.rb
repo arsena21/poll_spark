@@ -5,12 +5,14 @@ PollSpark::Application.routes.draw do
 	resources :items
 	resources :payments
 	resources :authentications
+	resources :registrations, only: [:new]
 	resources :signatures
 	resources :friends, only: [:create, :new, :email_share]
     resources :sessions, only: [:new, :create, :destroy]
 	resources :petitions, only: [:new, :create, :show, :index, :edit, :update, :destroy]
 	resources :microposts, only: [:create, :destroy]
 
+match '/registration',  to: 'registrations#new' 	
 match '/auth/:provider/callback',  to: 'authentications#create'	
 match '/done',  to: 'static_pages#finished' 	
 match '/newitem',  to: 'items#new' 

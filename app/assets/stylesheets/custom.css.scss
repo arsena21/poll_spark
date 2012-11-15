@@ -20,22 +20,9 @@ height: 32px;
 width: 32px;
 }
 
-.greys{
-background-color:white;
-height:48px;
-width:188px;
-}
 
-.middle{
-padding-top:15px;
-padding-bottom:15px;
-padding-right:20px;
-}
 
-.middle2{
-margin-top:15px;
-margin-bottom:15px;
-}
+
 
 
 
@@ -53,7 +40,7 @@ font-size: 0.8em;
 
 #sidebarbar{
 	border-top: 1px solid #79CDCD;
-	width: 188px;
+	width: 120%;
 
 }
 	
@@ -66,15 +53,34 @@ font-size: 0.8em;
 
 #unstyled{
 margin-top:90px;
-width:170px;
+width:100%;
 float:right;
 text-align:right;
 font-size: 2em;
 letter-spacing: -2px;
-position: fixed;
 }
 
+.middle{
+padding-top:15px;
+padding-bottom:15px;
+padding-right:20px;
+}
 
+.middle2{
+margin-top:15px;
+margin-bottom:15px;
+padding-right:20px;
+}
+
+.greys{
+background-color:white;
+height:48px;
+width:120%;
+}
+
+.greys2{
+width:120%;
+}
 
 #crossed {
 text-decoration: line-through;
@@ -83,7 +89,7 @@ text-decoration-color: black;
 
 
 #tag{
-width: 16px;
+width: 20px;
 float: right;
 padding-left:5px;
 }
@@ -261,7 +267,6 @@ p {
 
 #white {
 	background-color: white;
-	margin-top: 40px;
 	box-shadow: 0 1px 3px rgba(34,25,25,0.07);
 }
 
