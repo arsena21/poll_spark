@@ -40,6 +40,8 @@ gem 'omniauth'
 gem 'omniauth-twitter'
 gem 'devise'
 
+# Errors logging
+gem "airbrake"
 
 # Deploy
 gem 'capistrano'
