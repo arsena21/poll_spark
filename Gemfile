@@ -39,3 +39,8 @@ gem 'stripe'
 gem 'omniauth'
 gem 'omniauth-twitter'
 gem 'devise'
+
+
+# Deploy
+gem 'capistrano'
+gem 'rvm-capistrano'
