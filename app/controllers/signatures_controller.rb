@@ -3,7 +3,7 @@ class SignaturesController < ApplicationController
 	end
 
   def new
-	@totals = last
+	@totals = Signature.find(:last)
 	@signature = Signature.new
 	@petition = find
 	@items = Item.find(:all)
