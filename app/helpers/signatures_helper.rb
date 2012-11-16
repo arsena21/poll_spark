@@ -1,7 +1,5 @@
 module SignaturesHelper
-	def last
-		return Signature.last.total
-	end
+
 	
 	
 	def test

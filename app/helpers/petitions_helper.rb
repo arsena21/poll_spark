@@ -26,4 +26,6 @@ module PetitionsHelper
 		user[0].save!
 	end
 	
+	
+	
 end

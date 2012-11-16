@@ -21,7 +21,9 @@ def pipi
   end
 end
 
-
+def last
+	return Signature.last.total
+end
 
 
 end
