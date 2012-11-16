@@ -46,7 +46,7 @@ class PetitionsController < ApplicationController
 
   def index
   	@petitions = Petition.find(:all)
-	@totals = Signature.last[:total]
+	@totals = Signature.find(:last)
 	@user = current_user
   end
  
