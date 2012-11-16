@@ -10,7 +10,7 @@ class SignaturesController < ApplicationController
 	if signed_in?
 	@micropost = Micropost.new(:user_id => current_user.id, :petition_id => @petition.id)
 	end
-	@microposts = @petition.microposts.paginate(page: params[:page])
+	@microposts = @petition.microposts.paginate(page: params[:page], per_page: 15)
 	
 	if current_user
 		@user = current_user
