@@ -7,19 +7,26 @@
 <% end %>
 
 
-<% if current_page? root_path %><br />	<br /><br />	<br />
-	<h3>
-	Generation315 is a platform for collective action. 	<br />	<br />
+<% if current_page? root_path %>
+	<h3><br/>
+		<div id="logo2">GENERATION</div>
+		<div id="logo2", class="yellow">3</div>
+		<div id="logo2", class="orange">1</div>
+		<div id="logo2", class="red">5</div>
+		<div id="logo2">&nbsp is a platform for <i>collective action</i>.</div>
+			
+			
+				<br /><br/>
+	<img src="/images/front page logo.png" id="frontlogo"/>
 	
-	<!--	The Internet has changed the world. 
-	Never has it been so easy to communicate, collaborate and  be heard. In the interconnected world, the ability to change policies, 
-	organizations and behavior are within reach. --!>
-	What would you change? Vote, and be heard! 	<br /><br />
-	<b><span class="yellow">3</span> Votes</b> will help launch...	<br />
-	<b><span class="orange">1</span> Campaign</b> based on popular vote. Sharing with...	<br />
-	<b><span class="red">5</span> Friends</b> is our request to help make this happen <br /><br />
-
-	Generation315 is a non-profit with a goal of making the world a better place, through the use of social networks and an interconnected world. 
+	
+	<br/>
+	<div class="fronttext">
+		If you could change <i>anything</i> about our world, what would it be? Vote, and make yourself heard! 	<br /><br />
+		<b><span class="yellow">3</span>&nbspVotes</b> to launch...	<br />
+		<b><span class="orange">1</span>&nbspCampaign</b> based on popular vote...	<br />
+		<b><span class="red">5</span>&nbspFriends</b> is the number of people we ask you share this with once complete <br /><br />
+	</div>
 	</h3>
 <% end %>
 
@@ -49,8 +56,9 @@
 
 		  <%= f.label :password_confirmation, "Confirmation" %>
 		  <%= f.password_field :password_confirmation %>
-
+			<div class="votes">
 		  <%= f.submit "Signup!", class: "btn btn-large btn-primary" %>
+		  </div>
 		<% end %>
 
 <% end %>
@@ -59,10 +67,13 @@
 
 <div class="votes">
 	<% if current_page? root_path %>
-		<%= link_to "Sign up!", signup_path, class: "btn btn-large btn-primary" %><br />
-		<%= link_to "Skip", petitions_path %><br />
+		<%= link_to "Start Voting!", petitions_path, class: "btn btn-large btn-primary" %><br />
 	<% end %>
-
 		Already a user? <%= link_to "Sign in!", signin_path %>
-
 </div>
+	<% if current_page? root_path %>
+	<br /><br /><br />
+	<small class="centers">
+	Generation315 is a non-profit with a goal of making the world a better place, through the use of social networks and an interconnected world. 
+	</small>
+	<% end %>

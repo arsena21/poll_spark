@@ -52,36 +52,35 @@ font-size: 0.8em;
 
 #unstyled{
 margin-top:90px;
-width:100%;
+width:13.7%;
 float:right;
-text-align:right;
+
 font-size: 2em;
 letter-spacing: -2px;
+position:fixed;
 }
 
 .middle{
 padding-top:15px;
 padding-bottom:15px;
-padding-right:20px;
 }
 
 .middle2{
-padding-right:20px;
+padding-right:30px;
+padding-top:15px;
+padding-bottom:15px;
 }
 
 .greys{
 background-color:white;
 height:48px;
 width:120%;
- z-index: 50000;
- position:relative;
 }
 
 .greys2{
 width:120%;
 background-color:#FAF9F9;
 height:48px;
-
 }
 
 #crossed {
@@ -94,6 +93,7 @@ text-decoration-color: black;
 width: 20px;
 float: right;
 padding-left:5px;
+padding-right:5px;
 }
 
 
@@ -196,6 +196,7 @@ float:left;
 text-align:left;
 float:left;
 margin-left:20px;
+margin-right:10px;
 }
 
 #lefti{
@@ -267,9 +268,35 @@ p {
   }
 }
 
+#logo2 {
+  font-size: 1.2em;
+  text-transform: uppercase;
+  letter-spacing: -1px;
+  padding-top: 9px;
+  font-weight: bold;
+  line-height: 1;
+  float:left;
+}
+
+.fronttext {
+  margin-right: 3;
+}
+
 #white {
 	background-color: white;
 	box-shadow: 0 1px 3px rgba(34,25,25,0.07);
+	z-index:2;
+	position: relative;
+}
+
+#white2 {
+	background-color: white;
+}
+
+#frontlogo{
+float:left;
+margin-left:20px;
+margin-right:40px;
 }
 
 .silver {
@@ -300,6 +327,7 @@ footer {
 	background-color: #C7C7C7;
 	margin-left: 50px;
 	margin-right: 50px;
+		z-index:5;
 
   a {
     color: $gray;
@@ -344,6 +372,7 @@ html,body{
 
 #headerspace {
 height:40px;
+ z-index: 10;
 }
 
 /* petitions index */

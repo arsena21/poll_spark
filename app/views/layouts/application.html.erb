@@ -31,14 +31,11 @@
 				<h1><%= infull_title(yield(:toppage)) %></h1>
 			<%end%>
 			<div class="container-fluid" id="body">
-				<div class="row-fluid">
-					<div class="span2">
+				<div class="row-fluid" id="whitey">
 					<% if (current_page? root_path) || (current_page? done_path) %>
-					<%else%>
-						<%= render 'layouts/sidebar' %>
-					<%end%>
-					</div>
-					<div class="span8" id="white">
+						<div class="span1">
+						</div>
+						<div class="span10" id="white2">
 						<div class="buffer">
 							<div class="span12" id ="sizer">
 								<div id="headerspace"></div>
@@ -49,7 +46,28 @@
 								<div id="push"></div>	
 							</div>
 						</div> 
-					</div>
+					</div> 
+					<%else%>
+						<div class="span2">
+						<% if (current_page? share_path) || (current_page? petitionnow_path) || (current_page? petitions_path) || (current_page?(edit_petition_path(1..99))) %>
+							<%= render 'layouts/sidebar' %>
+						<% else %>
+							
+						<% end %>
+						</div>
+						<div class="span8" id="white">
+						<div class="buffer">
+							<div class="span12" id ="sizer">
+								<div id="headerspace"></div>
+								<% flash.each do |key, value| %>
+									<div class="alert alert-<%= key %>"><%= value %></div>
+								<% end %>
+								<%= yield %>
+								<div id="push"></div>	
+							</div>
+						</div> 
+					</div> 
+					<%end%>					
 				</div>
 			</div>
 			<%= render 'layouts/footer' %>

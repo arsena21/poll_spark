@@ -1,14 +1,14 @@
-<div class="span12">
+
 <div id="unstyled">
 		<div id="sidebarbar"></div>
 		<div>
 			<% if signed_in? %>
 				<% if current_user.vote == 0  %>
-					<% if (current_page? petitions_path) || (current_page?(edit_petition_path(1..100))) %>
+					<% if (current_page? petitions_path) || (current_page?(edit_petition_path(1..99))) %>
 						<div class="greys">
 							<div class="middle">
 							<%= link_to "3", petitions_path, class: "yellow", id:"lefts" %>
-							<%= link_to "Votes!", petitions_path%>	
+							<%= link_to "Votes", petitions_path%>	
 							<img src="/images/check2.png", id="tag" />
 							</div>
 						</div>	
@@ -26,7 +26,7 @@
 						<div class="greys">
 							<div class="middle">
 							<%= link_to "3", petitions_path, class: "yellow", id:"lefts" %>
-							<%= link_to "Votes!", petitions_path%>	
+							<%= link_to "Votes", petitions_path%>	
 							<img src="/images/xmark2.png", id="tag" />
 							</div>
 						</div>	
@@ -43,14 +43,14 @@
 			<% else %>	
 				<% if current_page? petitions_path %>
 				<div class="greys">
-					<div class="middle">
+					<div class="middle2">
 					<%= link_to "3", petitions_path, class: "yellow", id:"lefts" %>
 					<%= link_to "Votes", petitions_path%>
 					</div>
 				</div>	
 				<% else %>
 					<div class="greys2">
-					<div class="middle">
+					<div class="middle2">
 					<%= link_to "3", petitions_path, class: "yellow", id:"lefts" %>
 					<%= link_to "Votes", petitions_path%>
 					</div>
@@ -103,14 +103,14 @@
 			<% else %>	
 				<% if current_page? petitionnow_path %>
 				<div class="greys">
-					<div class="middle">
+					<div class="middle2">
 					<%= link_to "1", petitionnow_path, class: "orange", id:"lefts" %>
 					<%= link_to "Campaign", petitionnow_path %>	
 					</div>	
 					</div>
 				<% else %>
 					<div class="greys2">
-					<div class="middle">
+					<div class="middle2">
 					<%= link_to "1", petitionnow_path, class: "orange", id:"lefts" %>
 					<%= link_to "Campaign", petitionnow_path %>	
 					</div>
@@ -163,14 +163,14 @@
 			<% else %>	
 				<% if current_page? share_path %>
 				<div class="greys">
-					<div class="middle">
+					<div class="middle2">
 					<%= link_to "5", share_path, class: "red", id:"lefts" %>		
 					<%= link_to "Friends", share_path %>
 					</div>
 				</div>	
 				<% else %>
 					<div class="greys2">
-					<div class="middle">
+					<div class="middle2">
 					<%= link_to "5", share_path, class: "red", id:"lefts" %>		
 					<%= link_to "Friends", share_path %>	
 					</div>
@@ -178,5 +178,4 @@
 				<% end %>
 			<% end %>
 		</div>			
-</div>
 </div>
