@@ -65,14 +65,14 @@
 
 <!-- Skip signup form from root_path, or just Signin --!>
 
-<div class="votes">
+
 	<% if current_page? root_path %>
 		<%= link_to "Start Voting!", petitions_path, class: "btn btn-large btn-primary" %><br />
 	<% end %>
 		Already a user? <%= link_to "Sign in!", signin_path %>
-</div>
+
 	<% if current_page? root_path %>
-	<br /><br /><br />
+	<br /><br /><br /><br />
 	<small class="centers">
 	Generation315 is a non-profit with a goal of making the world a better place, through the use of social networks and an interconnected world. 
 	</small>

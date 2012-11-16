@@ -3,7 +3,7 @@ $(document).ready(function() {
 
 
 $(window).load(function() {
-	first = $('#whitey').height();
+	first = $('#sizer').height();
 	var footer = $('.footer').height();
 	var initHeight = $(window).height();
 	var size = initHeight-footer-first;
