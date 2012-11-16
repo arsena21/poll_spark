@@ -9,7 +9,7 @@ class User < ActiveRecord::Base
   
   attr_accessible :name, :email, :vote, :country, :password, :password_confirmation, :remember_token
   has_secure_password
-  after_initialize :bobo
+  after_initialize Bobo.new
 
   before_save { |user| user.email = email.downcase }
   before_save :create_remember_token
@@ -26,7 +26,7 @@ class User < ActiveRecord::Base
   
 
  
-def bobo
+class Bobo
   if new_record?
     self.vote ||= 3
 	self.petitioner ||= "no"
