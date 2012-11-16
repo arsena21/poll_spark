@@ -5,7 +5,17 @@ class SignaturesController < ApplicationController
   def new
 	@totals = Signature.find(:last)
 	@signature = Signature.new
-	@petition = find
+	
+	@petitions = Petition.find(:all)
+	@petitions.each do |petition| 
+		if petition.pass == "pass"
+			if petition.launched == "yes"
+				@petition = petition
+				return
+			end	
+		end
+	end	
+		
 	@items = Item.find(:all)
 	if signed_in?
 	@micropost = Micropost.new(:user_id => current_user.id, :petition_id => @petition.id)

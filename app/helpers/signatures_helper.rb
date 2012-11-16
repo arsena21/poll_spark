@@ -6,17 +6,7 @@ module SignaturesHelper
 		Signature.find_by_remember_token(current_user.remember_token).present?
 	end
 	
-	def find
-		@petitions = Petition.find(:all)
-		@petitions.each do |petition| 
-			if petition.pass == "pass"
-			if petition.launched == "yes"
-				return petition
-				
-			end	
-			end
-		end	
-	end
+	
 	
   # this method will embed the code from the partial
   def youtube_video(url)
