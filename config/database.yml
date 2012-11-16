@@ -25,4 +25,4 @@ production:
   database: poll_spark
   pool: 5
   username: poll_spark
-  password:
+  password: poll_spark
