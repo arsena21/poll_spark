@@ -9,7 +9,7 @@ class User < ActiveRecord::Base
   
   attr_accessible :name, :email, :vote, :country, :password, :password_confirmation, :remember_token
   has_secure_password
-  after_initialize Bobo.new
+  after_initialize :bobo
 
   before_save { |user| user.email = email.downcase }
   before_save :create_remember_token
@@ -26,14 +26,13 @@ class User < ActiveRecord::Base
   
 
  
-class Bobo
-  if new_record?
+def  if new_record?
     self.vote ||= 3
 	self.petitioner ||= "no"
 	self.confirmed ||= "false"
 	self.signer ||= "no"
-  end
 end
+
   
     def apply_omniauth(omniauth)
 		authentications.build(:provider => omniauth['provider'],:uid => omniauth['uid'])
