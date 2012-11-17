@@ -6,7 +6,7 @@ class ItemsController < ApplicationController
   def create
 	@item = Item.new(params[:item])
 	@item.save
-	redirect_to allitems_path
+	redirect_to items_path
   end
 
   def edit
@@ -24,4 +24,9 @@ class ItemsController < ApplicationController
   def index
     @items = Item.find(:all)
   end
+  
+	def health
+	    @items = Item.find(:all)
+	end
+  
 end

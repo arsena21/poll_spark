@@ -3,13 +3,35 @@
 <%end%>
 
 
-<h1>Contact Us</h1>
+<h1>Contact</h1>
 
 <p>
-Fill in the form below and we will get back in touch with you as soon as possible. Due to the volume of messages received,
-we do not ensure immediate responses. 
-
-Regards,
-<br> 
-ChangeByFive
+Fill in the form below and we will get in touch with you as soon as possible. Thank you!
 </p>
+
+
+<%= form_tag((@user), :html => {:class => 'form-horizontal' }) do %>
+	
+	<br />
+	<% if signed_in? %>
+	<h4><div id="left">Contact information: </div></h4>
+	<div id="left">Your name:   </div>
+	<%= text_field_tag :name, nil, :value => current_user.name, class: "span4" %>
+	<div id="left">Your e-mail:   </div>
+	<%= text_field_tag :email, nil, :value => current_user.email, class: "span4" %>
+	<% end %>
+	
+
+	<h4 id="left">Subject:</h4>
+	<%= text_area_tag :subject,  nil, :rows => 1, class: "span6" %>	
+
+	<h4 id="left">Message:</h4>
+	<%= text_area_tag :message, nil, :rows => 10, class: "span10"%> <br />
+	
+	<% if signed_in? %>
+		<%= submit_tag "Send", class: "btn btn-large btn-primary"%>
+	<% else %>
+		<%= link_to "Please sign in to contact us", signin_path, class: "btn btn-large btn-primary" %>
+	<% end %>	
+	<br /><br /><br /><br />
+<%end%>  

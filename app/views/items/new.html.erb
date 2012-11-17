@@ -1,3 +1,8 @@
+
+<h1> 
+	Add new Items
+</h1>	
+
 <%= form_for(@item) do |f| %>
 	<%= render 'shared/error_messages', object: f.object %>
 
@@ -15,9 +20,12 @@
 	
 	<%= f.label :pictures, "Picture" %>
 	<%= f.file_field :pictures %> <br />
-	
+
 	<%= f.label :launched, "Launched?" %>
-	<%= f.text_field :launched %> <br />	
+	<%= f.select :launched, [['yes','yes'],['no','no']] %>  
+	
+	<%= f.label :health, "Health?" %>
+	<%= f.select :health, [['yes','yes'],['no','no']] %>  
     
 	<%= f.submit "new item complete" %>
 <% end %>

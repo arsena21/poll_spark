@@ -1,3 +1,11 @@
+<% provide :title do  %>
+	<%= '315 Store' %>
+<%end%>
+
+
+<h1>All Items</h1>
+
+
 	<% if signed_in? %>
 		<% if current_user.admin? %>
 			NOT LAUNCHED
@@ -24,7 +32,7 @@
 		launched:
 	<%end%>	
 	<%end%>
-	<div id="container2", class="contained"> 
+	<div id="container", class="contained"> 
 	<% @items.each do |item| %>	
 		<% if  item.launched == "yes" %>
 			<div class="block">

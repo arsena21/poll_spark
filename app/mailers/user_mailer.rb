@@ -17,4 +17,14 @@ class UserMailer < ActionMailer::Base
 	@from = (params[:email])
     mail(:to => "#{params[:to]}", :from => @from, :subject => "#{params[:subject]}")
   end
+  
+  def contact(params)
+	@message = (params[:message])
+	@email = (params[:email])
+	@name = (params[:name])
+    mail(:to => "ericarsenault6@gmail.com", :from => "ericarsenault6@gmail.com", :subject => "#{params[:subject]}")
+  end  
+  
+  
+  
   end

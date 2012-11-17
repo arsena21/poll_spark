@@ -1,4 +1,59 @@
 
+<% if current_page? items_path %>
+<div id="unstyled">
+	<div id="sidebarbar"></div>
+	<div>
+
+				<div class="greys">
+					<div class="middle">
+					<%= link_to "All Items", petitions_path %>	
+					</div>
+				</div>
+				
+				<div id="sidebarbar"></div>
+				
+				<div class="greys">
+					<div class="middle">
+					<%= link_to "Health", health_path%>
+					</div>
+				</div>
+				
+				<div id="sidebarbar"></div>
+				
+				<div class="greys">
+					<div class="middle">
+					<%= link_to "Kids", petitions_path%>
+					</div>
+				</div>				
+
+				<div id="sidebarbar"></div>
+						
+				<div class="greys">
+					<div class="middle">
+					<%= link_to "Play", petitions_path%>
+					</div>
+				</div>			
+
+				<div id="sidebarbar"></div>
+								
+				<div class="greys">
+					<div class="middle">
+					<%= link_to "Energy", petitions_path%>
+					</div>
+				</div>	
+				
+				<div id="sidebarbar"></div>
+								
+				<div class="greys">
+					<div class="middle">
+					<%= link_to "Books", petitions_path%>
+					</div>
+				</div>		
+	</div>		
+</div>		
+
+
+<%else%>
 <div id="unstyled">
 		<div id="sidebarbar"></div>
 		<div>
@@ -179,3 +234,4 @@
 			<% end %>
 		</div>			
 </div>
+<%end%>
