@@ -20,9 +20,13 @@ test:
 
 production:
   host: localhost
-  adapter: postgresql
+  #adapter: postgresql
   encoding: unicode
   database: poll_spark
   pool: 5
   username: poll_spark
   password: poll_spark
+  
+  adapter: sqlite3
+  #database: /absolute/path_to_db/on_server/production.sqlite3 # instead of db/production.sqlite3
+  #timeout: 5000

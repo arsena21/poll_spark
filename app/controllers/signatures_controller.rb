@@ -5,23 +5,14 @@ class SignaturesController < ApplicationController
   def new
 	@totals = Signature.find(:last)
 	@signature = Signature.new
-		
-		@petitions = Petition.find(:all)
-		@petitions.each do |petition| 
-			if petition.pass == "pass"
-				if petition.launched == "yes"
-					@petition = petition
-				end	
-			end
-		end	
-		
+	@petition = find
 	@items = Item.find(:all)
 	if signed_in?
 	@micropost = Micropost.new(:user_id => current_user.id, :petition_id => @petition.id)
 	end
-#	if @petition.microposts.any?
-#	@microposts = @petition.microposts.paginate(page: params[:page], per_page: 15)
-#	end
+	if @petition.microposts.any?
+	@microposts = @petition.microposts.paginate(page: params[:page], per_page: 15)
+	end
 	
 	if current_user
 		@user = current_user
