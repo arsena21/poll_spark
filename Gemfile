@@ -1,6 +1,7 @@
 source 'https://rubygems.org'
 gem 'bootstrap-wysihtml5-rails'
 
+
 gem 'rails', '3.2.8'
 gem 'bootstrap-sass', '2.0.4'
 gem 'bcrypt-ruby', '3.0.1'
@@ -13,6 +14,7 @@ gem 'bootstrap-will_paginate', '0.0.6'
 group :development, :test do
   gem 'sqlite3', '1.3.5'
   gem 'rspec-rails', '2.11.0'
+  gem 'capistrano-file_db'
 end
 
 # Gems used only for assets and not required
