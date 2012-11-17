@@ -38,4 +38,3 @@ end
 
         require './config/boot'
         require 'airbrake/capistrano'
-		require 'capistrano-file_db'
