@@ -1,54 +1,101 @@
 
-<% if current_page? items_path %>
+<% if (current_page? items_path) || (current_page? home_path) || (current_page? fitness_path) || (current_page? food_path) || (current_page? fun_path) || (current_page? books_path) %>
 <div id="unstyled">
 	<div id="sidebarbar"></div>
 	<div>
+		<% if current_page? items_path %>
+		<div class="greys">
+			<div class="middle">
+			<%= link_to "All Items", items_path %>	
+			</div>
+		</div>
+		<% else %>
+		<div class="greys2">
+			<div class="middle">
+			<%= link_to "All Items", items_path %>	
+			</div>
+		</div>		
+		<% end %>
+		
+		<div id="sidebarbar"></div>
+		
+		<% if current_page? home_path %>
+		<div class="greys">
+			<div class="middle">
+			<%= link_to "Home", home_path%>
+			</div>
+		</div>
+		<% else %>
+		<div class="greys2">
+			<div class="middle">
+			<%= link_to "Home", home_path%>
+			</div>
+		</div>	
+		<% end %>
+		
+		<div id="sidebarbar"></div>
+		
+		<% if current_page? fitness_path %>
+		<div class="greys">
+			<div class="middle">
+			<%= link_to "Fitness", fitness_path%>
+			</div>
+		</div>
+		<% else %>
+		<div class="greys2">
+			<div class="middle">
+			<%= link_to "Fitness", fitness_path%>
+			</div>
+		</div>	
+		<% end %>
 
-				<div class="greys">
-					<div class="middle">
-					<%= link_to "All Items", petitions_path %>	
-					</div>
-				</div>
-				
-				<div id="sidebarbar"></div>
-				
-				<div class="greys">
-					<div class="middle">
-					<%= link_to "Health", health_path%>
-					</div>
-				</div>
-				
-				<div id="sidebarbar"></div>
-				
-				<div class="greys">
-					<div class="middle">
-					<%= link_to "Kids", petitions_path%>
-					</div>
-				</div>				
-
-				<div id="sidebarbar"></div>
+		<div id="sidebarbar"></div>
+		
+		<% if current_page? food_path %>
+		<div class="greys">
+			<div class="middle">
+			<%= link_to "Food", food_path%>
+			</div>
+		</div>
+		<% else %>
+		<div class="greys2">
+			<div class="middle">
+			<%= link_to "Food", food_path%>
+			</div>
+		</div>	
+		<% end %>
+		
+		<div id="sidebarbar"></div>
+		
+		<% if current_page? fun_path %>
+		<div class="greys">
+			<div class="middle">
+			<%= link_to "Fun", fun_path%>
+			</div>
+		</div>
+		<% else %>
+		<div class="greys2">
+			<div class="middle">
+			<%= link_to "Fun", fun_path%>
+			</div>
+		</div>	
+		<% end %>
+		
+		<div id="sidebarbar"></div>
 						
-				<div class="greys">
-					<div class="middle">
-					<%= link_to "Play", petitions_path%>
-					</div>
-				</div>			
-
-				<div id="sidebarbar"></div>
-								
-				<div class="greys">
-					<div class="middle">
-					<%= link_to "Energy", petitions_path%>
-					</div>
-				</div>	
-				
-				<div id="sidebarbar"></div>
-								
-				<div class="greys">
-					<div class="middle">
-					<%= link_to "Books", petitions_path%>
-					</div>
-				</div>		
+		<% if current_page? books_path %>
+		<div class="greys">
+			<div class="middle">
+			<%= link_to "Books", books_path%>
+			</div>
+		</div>
+		<% else %>
+		<div class="greys2">
+			<div class="middle">
+			<%= link_to "Books", books_path%>
+			</div>
+		</div>	
+		<% end %>
 	</div>		
 </div>		
 

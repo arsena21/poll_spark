@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121117231544) do
+ActiveRecord::Schema.define(:version => 20121118002043) do
 
   create_table "authentications", :force => true do |t|
     t.integer  "user_id"
@@ -37,7 +37,11 @@ ActiveRecord::Schema.define(:version => 20121117231544) do
     t.string   "pictures"
     t.string   "description"
     t.string   "launched"
-    t.string   "health"
+    t.string   "home"
+    t.string   "book"
+    t.string   "fun"
+    t.string   "food"
+    t.string   "fitness"
   end
 
   create_table "microposts", :force => true do |t|

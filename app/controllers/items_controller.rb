@@ -25,8 +25,21 @@ class ItemsController < ApplicationController
     @items = Item.find(:all)
   end
   
-	def health
+
+	def home
+	    @items = Item.find(:all)
+	end	
+	def fitness
 	    @items = Item.find(:all)
 	end
-  
+	def food
+	    @items = Item.find(:all)
+	end
+	def fun
+	    @items = Item.find(:all)
+	end	
+	
+	def book
+	    @items = Item.find(:all)
+	end
 end

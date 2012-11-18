@@ -1,11 +1,17 @@
-<%= @item.name %>
-<div class="imgholder">
-	<div class="span4">
-		<%= image_tag(@item.pictures_url)  %>
+<h1><%= @item.name %></h1>
+<div class="block">
+	<div class="shh">
+		<div class="imgholder3", id="us">
+			<%= image_tag(@item.pictures_url)%>
+		</div>
+		<%= @item.description %> <br />
+		<%= @item.cost.to_f/100 %> $<br />
 	</div>
 </div>
-<%= @item.description %>
-<%= @item.cost.to_f/100 %> $
+<br />
+**All profits are used to market and promote campaings listed on the website. Thank you for supporting our organization! <br /><br />
+
+
 
 
 <!--the following form is for the PAYMENT model/controller...it is related to stripe.js-->
@@ -42,7 +48,7 @@
 		<noscript>JavaScript is not enabled and is required for this form. First enable it in your web browser settings.</noscript>
 	</div>
 	<div class="actions">
-		<%= f.submit "pay" %>
+		<%= f.submit "pay", class: "btn btn-large btn-primary" %>
 	</div>
 <% end %>
 
@@ -75,3 +81,5 @@
 		<% end %>
 	<% end %>
 <% end %>
+
+<br /><br /><br />
