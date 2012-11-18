@@ -23,10 +23,14 @@ ActiveRecord::Schema.define(:version => 20121118002043) do
 
   create_table "friends", :force => true do |t|
     t.string   "email"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
     t.integer  "user_id"
+    t.string   "name2"
   end
+
+  add_index "friends", ["created_at"], :name => "index_friends_on_created_at"
+  add_index "friends", ["user_id"], :name => "index_friends_on_user_id"
 
   create_table "items", :force => true do |t|
     t.string   "name"
