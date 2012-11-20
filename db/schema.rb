@@ -39,7 +39,7 @@ ActiveRecord::Schema.define(:version => 20121118002043) do
     t.datetime "updated_at",  :null => false
     t.integer  "petition_id"
     t.string   "pictures"
-    t.string   "description"
+    t.text   "description"
     t.string   "launched"
     t.string   "home"
     t.string   "book"
@@ -61,7 +61,7 @@ ActiveRecord::Schema.define(:version => 20121118002043) do
   create_table "newpetitions", :force => true do |t|
     t.string   "name"
     t.string   "email"
-    t.string   "description"
+    t.text     "description"
     t.datetime "created_at",  :null => false
     t.datetime "updated_at",  :null => false
   end
@@ -82,14 +82,14 @@ ActiveRecord::Schema.define(:version => 20121118002043) do
     t.integer  "rating"
     t.datetime "created_at",  :null => false
     t.datetime "updated_at",  :null => false
-    t.string   "description"
+    t.text     "description"
     t.string   "pics"
     t.string   "pass"
     t.integer  "user_id"
-    t.string   "links"
+    t.text     "links"
     t.string   "launched"
     t.string   "url"
-    t.string   "demands"
+    t.text   "demands"
   end
 
   create_table "signatures", :force => true do |t|
