@@ -1,7 +1,7 @@
 class ChangeDataTypeForItemDescription < ActiveRecord::Migration
   def change
     change_table :items do |t|
-      t.text :description
+      t.change :description, :text
     end
   end
 end

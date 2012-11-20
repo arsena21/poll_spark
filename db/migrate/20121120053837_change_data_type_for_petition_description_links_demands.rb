@@ -1,9 +1,9 @@
 class ChangeDataTypeForPetitionDescriptionLinksDemands < ActiveRecord::Migration
   def change
     change_table :petitions do |t|
-      t.text :description
-      t.text :links
-      t.text :demands
+      t.change :description, :text
+      t.change :links, :text
+      t.change :demands, :text
     end
   end
 end
