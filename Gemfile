@@ -12,7 +12,8 @@ gem 'will_paginate', '~> 3.0'
 gem 'bootstrap-will_paginate', '0.0.6'
 
 group :development, :test do
-  gem 'pg', '0.12.2'
+  #gem 'pg', '0.12.2'
+  gem "sqlite3-ruby", "~> 1.3.0", :require => "sqlite3"
   gem 'rspec-rails', '2.11.0'
 end
 
@@ -29,9 +30,9 @@ gem 'jquery-rails', '2.0.2'
 group :test do
   gem 'capybara', '1.1.2'
   gem 'factory_girl_rails', '4.1.0'
-
 end
 
+gem 'yaml_db'
 group :production do
   gem 'pg', '0.12.2'
 end
