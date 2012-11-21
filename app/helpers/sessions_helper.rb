@@ -22,14 +22,6 @@ module SessionsHelper
     cookies.delete(:remember_token)
 	end
 	
-  def votes_left(user)
-	user.vote
-  end
- 
- def votes_down(user)
-	user.vote -= 1
-	user.save
-  end
   
  def current_user?(user)
     user == current_user

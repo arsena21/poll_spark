@@ -22,12 +22,13 @@
 	
 	<br/>
 	<div class="fronttext">
-		If you could change <i>anything</i> about our world, what would it be? Vote, and make yourself heard! 	<br /><br />
+		If you could change <i>anything</i>, what would it be?	<br /><br />
 		<b><span class="yellow">3</span>&nbspVotes</b> to launch...	<br />
 		<b><span class="orange">1</span>&nbspCampaign</b> based on popular vote...	<br />
-		<b><span class="red">5</span>&nbspFriends</b> is the number of people we ask you share this with once complete <br /><br />
+		<b><span class="red">5</span>&nbspFriends</b> is the number of people we ask you share this with <br />
 	</div>
 	</h3>
+	<h3>Vote, Participate and spread the word! </h3><br />
 <% end %>
 
 
@@ -35,7 +36,7 @@
 
 <% if !current_page? root_path %>
 	<h3>
-		Only 1 email will be delivered every 6 months. That's it!
+		No Spam Guarantee! You will only receive emails from us if the campaign you voted for is launched. (We suprisingly hate junk mail too!)
 	</h3>
 
 
@@ -65,14 +66,16 @@
 
 <!-- Skip signup form from root_path, or just Signin --!>
 
-
+	<div id="right">
 	<% if current_page? root_path %>
-		<%= link_to "Start Voting!", petitions_path, class: "btn btn-large btn-primary" %><br />
+		<%= link_to "Start Voting!", petitions_path, class: "btn btn-large btn-primary", id: "belowbutton" %><br />
+		<%= link_to "More info",   about_path, id: "belowbutton" %><br />
 	<% end %>
-		Already a user? <%= link_to "Sign in!", signin_path %>
-
+		<div id="belowbutton">Already a user? <%= link_to "Sign in!", signin_path%></div>
+	</div>
+	
 	<% if current_page? root_path %>
-	<br /><br /><br /><br />
+	<br /><br /><br /><br /><br /><br /><br />
 	<small class="centers">
 	Generation315 is a non-profit with a goal of making the world a better place, through the use of social networks and an interconnected world. 
 	</small>

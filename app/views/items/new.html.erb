@@ -23,9 +23,17 @@
 
 	<%= f.label :launched, "Launched?" %>
 	<%= f.select :launched, [['yes','yes'],['no','no']] %>  
-	
-	<%= f.label :health, "Health?" %>
-	<%= f.select :health, [['yes','yes'],['no','no']] %>  
+
+	<%= f.label :home, "Home?" %>
+	<%= f.select :home, [['yes','yes'],['no','no']] %> 
+	<%= f.label :fitness, "Fitness?" %>
+	<%= f.select :fitness, [['yes','yes'],['no','no']] %> 
+	<%= f.label :food, "Food?" %>
+	<%= f.select :food, [['yes','yes'],['no','no']] %> 
+	<%= f.label :fun, "Fun?" %>
+	<%= f.select :fun, [['yes','yes'],['no','no']] %> 
+	<%= f.label :book, "Books?" %>
+	<%= f.select :book, [['yes','yes'],['no','no']] %> 
     
 	<%= f.submit "new item complete" %>
 <% end %>

@@ -4,6 +4,22 @@ module PetitionsHelper
 		petition.rating += 1
 		petition.save!
 	end
+	
+	def record(petition)
+		current_user.create_vote
+		current_user.vote.vote1 = @petition.id
+		current_user.vote.save
+	end	
+	
+	def record2(petition)
+		if current_user.votesleft == 2
+			current_user.vote.vote2 = @petition.id
+			current_user.vote.save
+		else
+			current_user.vote.vote3 = @petition.id
+			current_user.vote.save
+		end	
+	end		
 		
 	  def change_user_status(user)
 		user.petitioner = "yes"
@@ -26,6 +42,13 @@ module PetitionsHelper
 		user[0].save!
 	end
 	
-	
+	  def votes_left(user)
+		user.votesleft
+	end
+ 
+	def votesdown(user)
+		user.votesleft -= 1
+		user.save!
+	end
 	
 end

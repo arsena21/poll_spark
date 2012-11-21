@@ -6,8 +6,9 @@ class User < ActiveRecord::Base
   has_many :friends
   has_many :payments
   has_many :authentications
+  has_one :vote
   
-  attr_accessible :name, :email, :vote, :country, :password, :password_confirmation, :remember_token
+  attr_accessible :name, :email, :votesleft, :country, :password, :password_confirmation, :remember_token
   has_secure_password
   after_initialize :bobo
 
@@ -21,11 +22,9 @@ class User < ActiveRecord::Base
                     uniqueness: { case_sensitive: false }
   validates :password, presence: true, length: { minimum: 6 }, :on => :create
   validates :password_confirmation, presence: true, :on => :create
-  validates :vote, presence: true, :numericality => 
-				{ :greater_than_or_equal_to => 0, :less_than_or_equal_to => 5 }
+  validates :votesleft, presence: true, :numericality => 
+				{ :greater_than_or_equal_to => 0, :less_than_or_equal_to => 3 }
   
-
- 
 
   
     def apply_omniauth(omniauth)
@@ -45,7 +44,7 @@ scope :search_by, lambda {|userid| where(:id => userid) }
 private
 def bobo
   if new_record?
-    self.vote ||= 3
+    self.votesleft ||= 3
 	self.petitioner ||= "no"
 	self.confirmed ||= "false"
 	self.signer ||= "no"

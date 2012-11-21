@@ -105,7 +105,7 @@
 		<div id="sidebarbar"></div>
 		<div>
 			<% if signed_in? %>
-				<% if current_user.vote == 0  %>
+				<% if current_user.votesleft == 0  %>
 					<% if (current_page? petitions_path) || (current_page?(edit_petition_path(1..99))) %>
 						<div class="greys">
 							<div class="middle">

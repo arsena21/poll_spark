@@ -93,14 +93,22 @@ end
 		end		
 	end
 		if current_user.admin?
+			if @petition.pass == "no"
 			if @petition.update_attributes(params[:petition])
 			  flash[:success] = "Petition has been saved!"
 			  redirect_to petitions_path
 			end
+			end
 		end
-		if (current_user.vote != 0)
-			    uprating @petition
-				votes_down current_user
+		if (current_user.votesleft != 0)
+			    if (current_user.votesleft == 3)
+					record @petition
+				else
+					record2 @petition
+				end
+				
+				uprating @petition
+				votesdown current_user
 				flash[:success] = "Thanks for your vote!"
 				if signed_in? && current_user.vote == 0  && current_user.signer == "yes" && current_user.shares.to_i > 4 
 					redirect_to done_path
@@ -109,7 +117,7 @@ end
 				end
 			return
 		end		
-		if (current_user.vote == 0)
+		if (current_user.votesleft == 0)
 					flash[:failure] = "No more votes!"
 					redirect_to petitions_path
 		end		

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121118002043) do
+ActiveRecord::Schema.define(:version => 20121120231519) do
 
   create_table "authentications", :force => true do |t|
     t.integer  "user_id"
@@ -23,23 +23,19 @@ ActiveRecord::Schema.define(:version => 20121118002043) do
 
   create_table "friends", :force => true do |t|
     t.string   "email"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.datetime "created_at"
+    t.datetime "updated_at"
     t.integer  "user_id"
-    t.string   "name2"
   end
-
-  add_index "friends", ["created_at"], :name => "index_friends_on_created_at"
-  add_index "friends", ["user_id"], :name => "index_friends_on_user_id"
 
   create_table "items", :force => true do |t|
     t.string   "name"
     t.integer  "cost"
-    t.datetime "created_at",  :null => false
-    t.datetime "updated_at",  :null => false
+    t.datetime "created_at",                 :null => false
+    t.datetime "updated_at",                 :null => false
     t.integer  "petition_id"
     t.string   "pictures"
-    t.text   "description"
+    t.text     "description", :limit => 255
     t.string   "launched"
     t.string   "home"
     t.string   "book"
@@ -61,7 +57,7 @@ ActiveRecord::Schema.define(:version => 20121118002043) do
   create_table "newpetitions", :force => true do |t|
     t.string   "name"
     t.string   "email"
-    t.text     "description"
+    t.string   "description"
     t.datetime "created_at",  :null => false
     t.datetime "updated_at",  :null => false
   end
@@ -80,16 +76,16 @@ ActiveRecord::Schema.define(:version => 20121118002043) do
   create_table "petitions", :force => true do |t|
     t.string   "name"
     t.integer  "rating"
-    t.datetime "created_at",  :null => false
-    t.datetime "updated_at",  :null => false
-    t.text     "description"
+    t.datetime "created_at",                 :null => false
+    t.datetime "updated_at",                 :null => false
+    t.text     "description", :limit => 255
     t.string   "pics"
     t.string   "pass"
     t.integer  "user_id"
-    t.text     "links"
+    t.text     "links",       :limit => 255
     t.string   "launched"
     t.string   "url"
-    t.text   "demands"
+    t.text     "demands",     :limit => 255
   end
 
   create_table "signatures", :force => true do |t|
@@ -113,7 +109,7 @@ ActiveRecord::Schema.define(:version => 20121118002043) do
     t.datetime "updated_at",                         :null => false
     t.string   "password_digest"
     t.string   "remember_token"
-    t.integer  "vote"
+    t.integer  "votesleft"
     t.string   "avatars"
     t.string   "country"
     t.boolean  "admin",           :default => false
@@ -126,5 +122,14 @@ ActiveRecord::Schema.define(:version => 20121118002043) do
 
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true
   add_index "users", ["remember_token"], :name => "index_users_on_remember_token"
+
+  create_table "votes", :force => true do |t|
+    t.integer  "user_id"
+    t.integer  "vote1"
+    t.integer  "vote2"
+    t.integer  "vote3"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
 
 end

@@ -37,18 +37,16 @@
 <!--VOTE FORM BELOW-->
 	
 	<% if signed_in? %>
-		<% if !current_user.admin? %>
-			<% if current_user.vote != 0 %>
+			<% if current_user.votesleft != 0 %>
 				<%= form_for(@petition) do |f| %>
 					<div class="centers">
 						<%= f.submit "Vote for this campaign", class: "btn btn-large btn-primary" %>
 					</div>	
 				<% end %>
 			<% end %>	
-			<% if current_user.vote == 0 %>
+			<% if current_user.votesleft == 0 %>
 				<div class="centers"><div class="btn btn-large btn-info">Thanks for voting!</div></div>
-			<% end %>
-		<% end %>	
+			<% end %>	
 	<% end %>		
 	
 	<div class="row">
