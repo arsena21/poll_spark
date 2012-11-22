@@ -12,6 +12,8 @@ PollSpark::Application.routes.draw do
 	resources :petitions, only: [:new, :create, :show, :index, :edit, :update, :destroy]
 	resources :microposts, only: [:create, :destroy]
 
+match '/delete', to: 'static_pages#delete'
+match '/remove', to: 'users#remove'
 match '/registration',  to: 'registrations#new' 	
 match '/auth/:provider/callback',  to: 'authentications#create'	
 match '/done',  to: 'static_pages#finished' 	

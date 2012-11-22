@@ -12,6 +12,19 @@ class UsersController < ApplicationController
     redirect_to petitions_path
   end
   
+  
+  def remove
+	@vote = current_user.vote
+	#redirect_to(delete_path) and return if params[:cancel]
+	#@petition = Petition.find.where( :id => @vote.vote1 )
+	#@petitionvotes = @petition.rating
+	#downvote @petitionvotes
+	@vote.destroy
+	change current_user
+	redirect_to petitions_path
+  end
+  
+  
   def create
     @user = User.new(params[:user])
     if @user.save

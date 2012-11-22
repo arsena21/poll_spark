@@ -51,4 +51,14 @@ module PetitionsHelper
 		user.save!
 	end
 	
+	def change(user)
+	user.votesleft = 3
+	user.save
+	end
+	
+	def downvote(petitionvotes)
+		petitionvotes -= 1
+		petitionvotes.save!
+	end
+	
 end

@@ -58,6 +58,12 @@ class PetitionsController < ApplicationController
   	@user = current_user
   	@items = Item.find(:all)
 	@petition = Petition.find(params[:id])
+	if @petition.petition_type.present?
+	else
+		@petition.build_petition_type
+	end
+	
+	@id = @petition.id
 	if signed_in?
 	@micropost = Micropost.new(:user_id => current_user.id, :petition_id => @petition.id)
 	end

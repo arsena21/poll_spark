@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121120231519) do
+ActiveRecord::Schema.define(:version => 20121121231637) do
 
   create_table "authentications", :force => true do |t|
     t.integer  "user_id"
@@ -71,6 +71,18 @@ ActiveRecord::Schema.define(:version => 20121120231519) do
     t.string   "stripe_charge_token"
     t.integer  "item_id"
     t.integer  "price"
+  end
+
+  create_table "petition_types", :force => true do |t|
+    t.integer  "petition_id"
+    t.string   "home"
+    t.string   "book"
+    t.string   "fun"
+    t.string   "food"
+    t.string   "fitness"
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
+    t.integer  "petitionid"
   end
 
   create_table "petitions", :force => true do |t|

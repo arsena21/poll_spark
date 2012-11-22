@@ -37,7 +37,8 @@ class User < ActiveRecord::Base
 			self.remember_token = SecureRandom.urlsafe_base64
 		end
     end
-  
+  	
+
   
 scope :search_by, lambda {|userid| where(:id => userid) }
 
