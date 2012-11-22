@@ -107,7 +107,7 @@ end
 			end
 		end
 		if (current_user.votesleft != 0)
-			    if (current_user.votesleft == 3)
+			    if (!current_user.vote.present?)
 					record @petition
 				else
 					record2 @petition

@@ -15,10 +15,15 @@ module PetitionsHelper
 		if current_user.votesleft == 2
 			current_user.vote.vote2 = @petition.id
 			current_user.vote.save
-		else
+		end
+		if current_user.votesleft == 3
 			current_user.vote.vote3 = @petition.id
 			current_user.vote.save
 		end	
+		if current_user.votesleft == 1
+			current_user.vote.vote1 = @petition.id
+			current_user.vote.save
+		end			
 	end		
 		
 	  def change_user_status(user)
@@ -52,7 +57,7 @@ module PetitionsHelper
 	end
 	
 	def change(user)
-	user.votesleft = 3
+	user.votesleft += 1
 	user.save
 	end
 	
@@ -61,4 +66,21 @@ module PetitionsHelper
 		petitionvotes.save!
 	end
 	
+	def updati(petition)
+		petition.rating -= 1
+		petition.save!
+	end		
+	
+	def deleting1(vote)
+		vote.vote1 = ""
+		vote.save!
+	end	
+	def deleting2(vote)
+		vote.vote2 = ""
+		vote.save!
+	end	
+	def deleting3(vote)
+		vote.vote3 = ""
+		vote.save!
+	end		
 end

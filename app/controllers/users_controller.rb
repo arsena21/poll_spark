@@ -14,14 +14,49 @@ class UsersController < ApplicationController
   
   
   def remove
-	@vote = current_user.vote
+	#@votedfor = Vote.where(:user_id=>params[:current_user]).where(:vote1=>params[:petition])
+	#@votedfor = Vote.where(current_user=>params[:user_id])
+	@votedfor = current_user.vote
+	@vote1 = @votedfor.vote1
+	@vote2 = @votedfor.vote2
+	@vote3 = @votedfor.vote3
+	@petitionnum = params[:order_param]  
+	@petition = Petition.find(params[:order_param])
+	@rating = @petition.rating
+	#if @vote1 == params[:zing]
+		#@deleting = @vote1
+	#@votedfor.vote1.destroy
 	#redirect_to(delete_path) and return if params[:cancel]
 	#@petition = Petition.find.where( :id => @vote.vote1 )
 	#@petitionvotes = @petition.rating
 	#downvote @petitionvotes
-	@vote.destroy
-	change current_user
-	redirect_to petitions_path
+	flash[:success] = "Vote removed!"
+	
+	if @vote1 == @petitionnum.to_i
+		deleting1 @votedfor
+		change current_user
+		updati @petition
+		redirect_to petitions_path
+		return
+	end
+	if @vote2 == @petitionnum.to_i
+		deleting2 @votedfor
+		change current_user
+		updati @petition
+		redirect_to petitions_path
+		return
+	end
+	if @vote3 == @petitionnum.to_i
+		deleting3 @votedfor
+		change current_user
+		updati @petition
+		redirect_to petitions_path
+		return
+	end	
+	
+	
+	
+	
   end
   
   

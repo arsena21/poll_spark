@@ -17,13 +17,58 @@
 
 <%if signed_in?%>
 	<%if @user.vote == 0 %>
-	<p class="textwrap">
-		Thanks for Voting!
-	</p>
+		<p class="textwrap">
+			Thanks for Voting!
+		</p>
 	<%else%>
-	<p class="textwrap">
-		You have <span class="red"><%= pluralize(@user.votesleft, "vote") %> left</span>! Vote on the campaigns which are most important to you to launch them: 
-	</p>
+		<p class="textwrap2">
+			You have <span class="red"><%= pluralize(@user.votesleft, "vote") %> left</span>! Vote on the campaigns which are most important to you to launch them: <br />
+		<input type="button" value="View my Votes" id="toggle_code" class="btn btn-link"/>
+		</p>
+		<% if current_user.vote.present? %>
+			<div class="highlight">
+				<div class="shh">
+					<% if current_user.vote.present? %>		
+						<h4 id="left">My Campaigns</h4> <br/>
+						<% @petitions.each do |petition| %>		
+							<% if (current_user.vote.vote1 == petition.id) || (current_user.vote.vote2 == petition.id) || (current_user.vote.vote3 == petition.id)%>
+								<div class="block" id="img4">
+									<div class="imgholder">
+										<%= link_to image_tag(petition.pics_url), edit_petition_path(petition)  %>
+									</div>
+									<strong>
+										<%= link_to petition.name, edit_petition_path(petition)	, {:style=>'color:#000000;'} %>
+									</strong>
+									<div class="meta">
+										<%= petition.rating %> Votes
+									</div>
+									<% if(current_user.vote.vote1 == petition.id) && (current_user.vote.vote3 == petition.id) && (current_user.vote.vote2 == petition.id)%>
+									You voted <b>three times</b> for this campaign
+									<% else %>
+										<% if (current_user.vote.vote2 == petition.id) && (current_user.vote.vote3 == petition.id)%>
+										You voted <b>twice</b> for this campaign
+										<% else %>							
+											<% if (current_user.vote.vote1 == petition.id) && (current_user.vote.vote3 == petition.id)%>
+												You voted <b>twice</b> for this campaign
+											<% else %>							
+												<% if (current_user.vote.vote1 == petition.id) && (current_user.vote.vote2 == petition.id) %>
+												You voted <b>twice</b> for this campaign
+												<% else %>	
+													You voted <b>once</b> for this campaign
+												<% end %>	
+											<% end %>							
+										<% end %>
+									<% end %>	<br />
+									<%= link_to "Remove vote", :action => "remove", :order_param => petition.id, :controller=>"users" %><br />
+								</div>
+							<% end %>	
+						<% end %>
+					<% end %>
+				</div>
+				<div id="bar2"></div>
+				<h4 id="left">All Campaings</h4>
+			</div>
+		<% end %>
 	<%end%>
 <%else%>
 	<p class="textwrap">
@@ -33,52 +78,10 @@
 
 
 
-<script>
-$(function(){
-    $('.highlight').hide()
-	$('#toggle_code').click(function(){
-        $('.highlight').toggle({
-        })
-    });
-});
-</script>
 
-<%= link_to("delete", remove_path, :class => "delete") %><br />
-<input type="button" value="hide/show" id="toggle_code" />
 
-<% if signed_in? %>
-<div class="highlight">
-<div class="shh">
-		<% if current_user.vote.present? %>		
-			<h4 id="left">My Campaigns</h4> <br/>
-			
-				<% @petitions.each do |petition| %>		
-					<% if (current_user.vote.vote1 == petition.id) || (current_user.vote.vote2 == petition.id) || (current_user.vote.vote3 == petition.id)%>
-						
-							<div class="block" id="img4">
-								<div class="imgholder">
-									<%= link_to image_tag(petition.pics_url), edit_petition_path(petition)  %>
-								</div>
-								<strong>
-									<%= link_to petition.name, edit_petition_path(petition)	, {:style=>'color:#000000;'} %>
-								</strong>
-								<div class="meta">
-									<%= petition.rating %> Votes
-								</div>
-							</div>
-						
-					<% end %>	
-				<% end %>
-			
-			
-			
-		<% end %>
-	
-</div>
-<div id="bar2"></div>
-<h4 id="left">All Campaings</h4>
-</div>
-<% end %>
+
+
 <!-- This section refers to a class imageholder and block which are used by JS: blocksit and blocksithelp...to make into pinterest array. see blocksithelp.js --!>	
 
 	
@@ -280,7 +283,20 @@ window.onload=function(){
 
 
 
-
+<script>
+$(function(){
+    $('.highlight').hide()
+	$('#toggle_code').click(function(){
+        $('.highlight').toggle({});
+		if ($('#toggle_code').val() == "View my Votes") {
+			$(this).val("Hide my Votes");
+		}
+		else {
+			$(this).val("View my Votes");
+		}
+    });
+});
+</script>
 
 
 
