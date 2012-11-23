@@ -35,9 +35,7 @@
 <!-- Sign-up form --!>
 
 <% if !current_page? root_path %>
-	<h3>
-		No Spam Guarantee! You will only receive emails from us if the campaign you voted for is launched. (We suprisingly hate junk mail too!)
-	</h3>
+<div>*You will <b>only</b> receive 1 email if a campaign you voted for is launched.* <br /><i>(We <u>also</u> hate spam!)</i></div><br/><br/>
 
 
 		<%= form_for(@user) do |f| %>

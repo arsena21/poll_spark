@@ -45,7 +45,7 @@ class PetitionsController < ApplicationController
   
 
   def index
-  	@petitions = Petition.find(:all)
+	@rating = Petition.find(:all, :order => "rating DESC")
 	@totals = Signature.last[:total]
 	@user = current_user
   end

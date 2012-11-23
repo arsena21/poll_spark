@@ -13,8 +13,6 @@
 
 
 
-
-
 <%if signed_in?%>
 	<%if @user.vote == 0 %>
 		<p class="textwrap">
@@ -30,7 +28,7 @@
 				<div class="shh">
 					<% if current_user.vote.present? %>		
 						<h4 id="left">My Campaigns</h4> <br/>
-						<% @petitions.each do |petition| %>		
+						<% @rating.each do |petition| %>		
 							<% if (current_user.vote.vote1 == petition.id) || (current_user.vote.vote2 == petition.id) || (current_user.vote.vote3 == petition.id)%>
 								<div class="block" id="img4">
 									<div class="imgholder">
@@ -85,9 +83,9 @@
 <!-- This section refers to a class imageholder and block which are used by JS: blocksit and blocksithelp...to make into pinterest array. see blocksithelp.js --!>	
 
 	
-
-<div id="container2", class="contained">
-	<% @petitions.each do |petition| %>
+<div id="belowbutton" class="small">*Campaigns are listed in order of popularity</div><br />
+<div id="container", class="contained">
+	<% @rating.each do |petition| %>
 		<% if petition.pass == "pass" %>			<!-- campaigns need to "pass" before being visible by public --!>
 			<% if petition.launched == "no" %>
 				<div class="block">
@@ -114,8 +112,8 @@
 	<% if current_user.admin? %>
 		<section id="row"><div id="bar2"></div></section>
 		<p class="textwrap">NOT YET PASSED</p>
-		<div id="container2", class="contained"> 
-			<% @petitions.each do |petition| %>
+		<div id="container", class="contained"> 
+			<% @rating.each do |petition| %>
 				<% if petition.pass == "no" %>
 					<div class="block">
 						<div class="imgholder">
@@ -137,8 +135,8 @@
 	<% if current_user.admin? %>
 		<section id="row"><div id="bar2"></div></section>
 		<p class="textwrap">CURRENT CAMPAIGN</p>
-		<div id="container2", class="contained"> 
-			<% @petitions.each do |petition| %>
+		<div id="container", class="contained"> 
+			<% @rating.each do |petition| %>
 				<% if petition.launched == "yes" %>
 					<div class="block">
 						<div class="imgholder">
@@ -170,7 +168,7 @@
 </h1>	
 --!>
 <!--
-<% @petitions.each do |petition| %>
+<% @rating.each do |petition| %>
 	<% if petition.pass == "pass" %>		
 		<% if petition.launched == "yes" %>     
 			<h4>Time remaining: <span id="countbox1"></span></h4>
