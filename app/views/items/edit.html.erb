@@ -1,20 +1,30 @@
-<h1><%= @item.name %></h1>
-<div class="block">
+<br /><br />
 	<div class="shh">
-		<div class="imgholder3", id="us">
-			<%= image_tag(@item.pictures_url)%>
+		<div class="row">
+		<div class="span4">
+			<%= image_tag @item.pictures_url, :class=>"topspace"%>
 		</div>
+		<div class="span8">
+		<h3><%= @item.name %></h3>
+		<b>Description:</b> <br />
 		<%= @item.description %> <br />
+		<b>Volume:</b> <br />
+		100mL <br />
+		<b>Price:</b> <br />
 		<%= @item.cost.to_f/100 %> $<br />
-	</div>
-</div>
-<br />
-**All profits are used to market and promote campaings listed on the website. Thank you for supporting our organization! <br /><br />
+		<b>About Lavera:</b><br />
+		At Lavera, we only feature products that are All Natural, Safe, Free from Animal Testing, and Gluten-Free. Beauty products that have been tested carefully by our team, certified by leading organizations and found to be free from any harmful ingredients. This means that you will not find any products that contain Parabens, sodium lauryl sulfate, synthetic sunscreen actives, artificial dyes or fragrances on this site, to name just a few.
+		</div>
+		</div>
+	</div> <br /> <br />
+
+<div id="belowbutton" class="small">*All profits are used to market and promote campaings listed on the website. Thank you for supporting our organization!*</div> <br />
+ 
 
 
 
 
-<!--the following form is for the PAYMENT model/controller...it is related to stripe.js-->
+<!--the following form is for the PAYMENT model/controller...it is related to stripe.js
 <%= form_for @payment do |f| %>
 	<%= render 'shared/error_messages', object: f.object %>
 	<% if signed_in? %>
@@ -81,5 +91,4 @@
 		<% end %>
 	<% end %>
 <% end %>
-
-<br /><br /><br />
+-->
