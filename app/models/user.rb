@@ -7,11 +7,18 @@ class User < ActiveRecord::Base
   has_many :payments
   has_many :authentications
   has_one :vote
+  has_one :cart
+  has_many :itempairs
+  
+  
+  accepts_nested_attributes_for :cart
   
   attr_accessible :name, :email, :votesleft, :country, :password, :password_confirmation, :remember_token
   has_secure_password
   after_initialize :bobo
+	
 
+	
   before_save { |user| user.email = email.downcase }
   before_save :create_remember_token
   

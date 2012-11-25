@@ -61,6 +61,7 @@ class PetitionsController < ApplicationController
 	if @petition.petition_type.present?
 	else
 		@petition.build_petition_type
+		@petition.petition_type.save
 	end
 	
 	@id = @petition.id
@@ -112,7 +113,6 @@ end
 				else
 					record2 @petition
 				end
-				
 				uprating @petition
 				votesdown current_user
 				flash[:success] = "Thanks for your vote!"

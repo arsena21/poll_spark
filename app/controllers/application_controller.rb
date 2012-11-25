@@ -3,5 +3,5 @@ class ApplicationController < ActionController::Base
   include SessionsHelper
   include PetitionsHelper
   include SignaturesHelper
-  
+    include ItemsHelper
   end

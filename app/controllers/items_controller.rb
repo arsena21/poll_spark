@@ -13,12 +13,12 @@ class ItemsController < ApplicationController
 	@item = Item.find(params[:id])
 	@cost = @item.cost
 	@payment = Payment.new
+	@user = current_user
   end
 
   def update
 	@item = Item.find(params[:id])
-	@item.update_attributes(params[:item])
-	redirect_to edit_item_path(@item)
+	@item.update_attributes(params[:item])		
   end
 
   def index
@@ -42,4 +42,9 @@ class ItemsController < ApplicationController
 	def book
 	    @items = Item.find(:all)
 	end
+	
+
+	
+	
+	
 end

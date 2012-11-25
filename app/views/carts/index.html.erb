@@ -1,0 +1,10 @@
+<br /><br /><br /><br /><br /><br />
+
+
+
+<% @items.each do |item| %>
+	<%= item.number %> 
+	<%= item.item_id %>
+	<%= item.id %>
+	<%= link_to "remove", nomore_path(:item_number => item.id)  %><br />
+<% end %>	

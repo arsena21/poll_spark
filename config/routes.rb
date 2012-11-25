@@ -2,6 +2,7 @@ PollSpark::Application.routes.draw do
 
     root :to => 'users#new'	
 	resources :users
+	resources :carts
 	resources :items
 	resources :payments
 	resources :authentications
@@ -12,6 +13,8 @@ PollSpark::Application.routes.draw do
 	resources :petitions, only: [:new, :create, :show, :index, :edit, :update, :destroy]
 	resources :microposts, only: [:create, :destroy]
 
+match '/nomore', to: 'carts#destroy'	
+match '/additem', to: 'users#add'
 match '/delete', to: 'static_pages#delete'
 match '/remove', to: 'users#remove'
 match '/registration',  to: 'registrations#new' 	

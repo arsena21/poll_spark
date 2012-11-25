@@ -97,4 +97,17 @@ class UsersController < ApplicationController
 	@user = current_user
   end
   
+  
+  
+  	def add
+		current_user.itempairs.create( :item_id => params[:item_id], :number => params[:number] ) 
+		redirect_to items_path
+	end
+  
+  
+  
+  
+  
+  
+  
 end
