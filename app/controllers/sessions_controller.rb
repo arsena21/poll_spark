@@ -4,18 +4,19 @@ class SessionsController < ApplicationController
   end
 
   def create
-    user = User.find_by_email(params[:session][:email].downcase)
-    if user && user.authenticate(params[:session][:password])
-      sign_in user
-      redirect_to petitions_path
-    else
-      flash.now[:error] = 'Invalid email/password combination'
-      render 'new'
-    end
+    user = User.from_omniauth(env["omniauth.auth"])
+    session[:user_id] = user.id
+    redirect_to root_url, notice: "Signed in!"
   end
 
   def destroy
-	sign_out
-    redirect_to petitions_path	
+    session[:user_id] = nil
+    cookies.delete(:remember_token)
+    current_user = nil
+    redirect_to root_url, notice: "Signed out!"
+  end
+
+  def failure
+    redirect_to root_url, alert: "Authentication failed, please try again."
   end
 end

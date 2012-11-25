@@ -1,4 +1,4 @@
-<% provide :title do  %>
+<!-- <% provide :title do  %>
 	<% "Sign in" %>
 <%end%>
 
@@ -19,6 +19,23 @@
 New user? <%= link_to "Sign up now!", signup_path %>
 
 
+--!>
 
 
+<% provide :title do  %>
+	<% "Sign in" %>
+<%end%>
+
+
+<h1>Sign in</h1>
+
+<a href="/auth/twitter"><img src="/images/twitter_64.png" height="64px" style="width:64px !important" /></a>
+<a href="/auth/facebook"><img src="/images/facebook_64.png" height="64px" style="width:64px !important" /></a>
+
+
+<p>
+  <strong>Don&rsquo;t use these services?</strong>
+  <%= link_to "Create an account", "/auth/identity/register" %> or
+  <%= link_to "login", "/auth/identity" %> with a password.
+</p>
 

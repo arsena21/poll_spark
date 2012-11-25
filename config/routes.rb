@@ -1,6 +1,6 @@
 PollSpark::Application.routes.draw do
 
-    root :to => 'users#new'	
+    root :to => 'users#new'
 	resources :users
 	resources :carts
 	resources :items
@@ -13,21 +13,21 @@ PollSpark::Application.routes.draw do
 	resources :petitions, only: [:new, :create, :show, :index, :edit, :update, :destroy]
 	resources :microposts, only: [:create, :destroy]
 
-match '/nomore', to: 'carts#destroy'	
+match '/nomore', to: 'carts#destroy'
 match '/additem', to: 'users#add'
 match '/delete', to: 'static_pages#delete'
 match '/remove', to: 'users#remove'
-match '/registration',  to: 'registrations#new' 	
-match '/auth/:provider/callback',  to: 'authentications#create'	
-match '/done',  to: 'static_pages#finished' 	
-match '/newitem',  to: 'items#new' 
+match '/registration',  to: 'registrations#new'
+match '/auth/:provider/callback',  to: 'sessions#create'
+match '/done',  to: 'static_pages#finished'
+match '/newitem',  to: 'items#new'
 match '/home',  to: 'items#home'
 match '/fitness',  to: 'items#fitness'
 match '/fun',  to: 'items#fun'
 match '/books',  to: 'items#book'
 match '/food',  to: 'items#food'
-match '/share',  to: 'friends#email_share' 	
-match '/allpetitions',  to: 'petitions#index' 
+match '/share',  to: 'friends#email_share'
+match '/allpetitions',  to: 'petitions#index'
 match '/tips',  to: 'static_pages#tips'
 match '/newpetition',  to: 'petitions#new'
 match '/signin',  to: 'sessions#new'

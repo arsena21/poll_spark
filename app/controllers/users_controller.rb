@@ -4,15 +4,15 @@ class UsersController < ApplicationController
 	@user = User.new
 	if current_user.present?
 		redirect_to petitions_path
-	end	
+	end
   end
-  
+
   def destroy
     sign_out
     redirect_to petitions_path
   end
-  
-  
+
+
   def remove
 	#@votedfor = Vote.where(:user_id=>params[:current_user]).where(:vote1=>params[:petition])
 	#@votedfor = Vote.where(current_user=>params[:user_id])
@@ -20,7 +20,7 @@ class UsersController < ApplicationController
 	@vote1 = @votedfor.vote1
 	@vote2 = @votedfor.vote2
 	@vote3 = @votedfor.vote3
-	@petitionnum = params[:order_param]  
+	@petitionnum = params[:order_param]
 	@petition = Petition.find(params[:order_param])
 	@rating = @petition.rating
 	#if @vote1 == params[:zing]
@@ -31,7 +31,7 @@ class UsersController < ApplicationController
 	#@petitionvotes = @petition.rating
 	#downvote @petitionvotes
 	flash[:success] = "Vote removed!"
-	
+
 	if @vote1 == @petitionnum.to_i
 		deleting1 @votedfor
 		change current_user
@@ -52,14 +52,14 @@ class UsersController < ApplicationController
 		updati @petition
 		redirect_to petitions_path
 		return
-	end	
-	
-	
-	
-	
+	end
+
+
+
+
   end
-  
-  
+
+
   def create
     @user = User.new(params[:user])
     if @user.save
@@ -70,7 +70,7 @@ class UsersController < ApplicationController
       render 'new'
     end
   end
-  
+
   def edit
   	@user = User.find(params[:id])
 	@status = @user.confirmed
@@ -78,11 +78,11 @@ class UsersController < ApplicationController
 			confirm @user
 			sign_in @user
 			flash[:success] = "Account created!"
-			redirect_to petitions_path	
-		end		
+			redirect_to petitions_path
+		end
   end
-  
-  
+
+
   def update
 	if current_user.update_attributes(params[:user])
 		flash[:success] = "Modified Account!"
@@ -92,22 +92,22 @@ class UsersController < ApplicationController
 		redirect_to petitions_path
 	end
   end
-  
+
   def registered
 	@user = current_user
   end
-  
-  
-  
+
+
+
   	def add
-		current_user.itempairs.create( :item_id => params[:item_id], :number => params[:number] ) 
+		current_user.itempairs.create( :item_id => params[:item_id], :number => params[:number] )
 		redirect_to items_path
 	end
-  
-  
-  
-  
-  
-  
-  
+
+
+
+
+
+
+
 end

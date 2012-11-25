@@ -40,6 +40,8 @@ end
 gem 'stripe'
 gem 'omniauth'
 gem 'omniauth-twitter'
+gem 'omniauth-facebook'
+gem 'omniauth-identity'
 gem 'devise'
 
 # Errors logging

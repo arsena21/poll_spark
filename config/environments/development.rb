@@ -1,6 +1,6 @@
 PollSpark::Application.configure do
   # Settings specified here will take precedence over those in config/application.rb
-
+    OpenSSL::SSL::VERIFY_PEER = OpenSSL::SSL::VERIFY_NONE
   # In the development environment your application's code is reloaded on
   # every request. This slows down response time but is perfect for development
   # since you don't have to restart the web server when you make code changes.
@@ -34,11 +34,11 @@ PollSpark::Application.configure do
 
   # Expands the lines which load the assets
   config.assets.debug = true
-  
-  
+
+
   config.action_mailer.delivery_method = :smtp
   config.action_mailer.default_url_options = { :host => 'localhost:3001' }
-  
+
 #TWITTER_KEY = 'hslBR5EgaFPDAuisonhVoQ'
 #TWITTER_SECRET = '6A5v4o8oueGBoyY5hokS0JGxQrB3rlqKkLt6QabI'
 end
