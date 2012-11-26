@@ -4,11 +4,11 @@ module SessionsHelper
     cookies[:remember_token] = user.remember_token
     self.current_user = user
   end
-  
+
   def signed_in?
     !current_user.nil?
   end
-  
+
     def current_user=(user)
     @current_user = user
   end
@@ -16,13 +16,13 @@ module SessionsHelper
   def current_user
     @current_user ||= User.find_by_remember_token(cookies[:remember_token])
   end
-  
+
     def sign_out
     self.current_user = nil
     cookies.delete(:remember_token)
 	end
-	
-  
+
+
  def current_user?(user)
     user == current_user
   end
@@ -33,13 +33,13 @@ module SessionsHelper
       redirect_to signin_url, notice: "Please sign in."
     end
   end
-  
+
   	def confirm(user)
 		user.confirmed = "true"
 		user.save
 	end
-  
-  
+
+
 	def save_friend
 		emails = params[:to].to_s
 		section = emails.scan(/\b[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}\b/i)
@@ -48,12 +48,12 @@ module SessionsHelper
 		section.each do
 		email = section[a]
 		@friend = Friend.new(:email => email, :user_id => user)
-		@friend.save	
+		@friend.save
 		a =+ 1
 		end
-	end	
-	
-	
-	
-	
+	end
+
+
+
+
 end
