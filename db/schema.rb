@@ -34,6 +34,14 @@ ActiveRecord::Schema.define(:version => 20121125005357) do
     t.integer  "user_id"
   end
 
+  create_table "identities", :force => true do |t|
+    t.string   "name"
+    t.string   "email"
+    t.string   "password_digest"
+    t.datetime "created_at",      :null => false
+    t.datetime "updated_at",      :null => false
+  end
+
   create_table "itempairs", :force => true do |t|
     t.integer  "number"
     t.datetime "created_at", :null => false
@@ -147,6 +155,8 @@ ActiveRecord::Schema.define(:version => 20121125005357) do
     t.string   "confirmed"
     t.string   "signer"
     t.string   "shares"
+    t.string   "provider"
+    t.string   "uid"
   end
 
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true

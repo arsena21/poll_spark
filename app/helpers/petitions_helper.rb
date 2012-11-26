@@ -12,17 +12,20 @@ module PetitionsHelper
 	end	
 	
 	def record2(petition)
-		if current_user.votesleft == 2
-			current_user.vote.vote2 = @petition.id
+		if current_user.vote.vote2.nil? 
+			current_user.vote.vote2 = petition.id
 			current_user.vote.save
+			return
 		end
-		if current_user.votesleft == 3
-			current_user.vote.vote3 = @petition.id
+		if current_user.vote.vote3.nil? 
+			current_user.vote.vote3 = petition.id
 			current_user.vote.save
+			return
 		end	
-		if current_user.votesleft == 1
-			current_user.vote.vote1 = @petition.id
+		if current_user.vote.vote1.nil? 
+			current_user.vote.vote1 = petition.id
 			current_user.vote.save
+			return
 		end			
 	end		
 		

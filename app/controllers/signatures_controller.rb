@@ -14,7 +14,7 @@ class SignaturesController < ApplicationController
 	@microposts = @petition.microposts.paginate(page: params[:page], per_page: 15)
 	end
 	
-	if current_user
+	if signed_in?
 		@user = current_user
 		@id = current_user.id				
 		@friendsshared = Friend.where( :user_id => @id ).count
