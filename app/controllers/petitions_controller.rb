@@ -58,6 +58,7 @@ class PetitionsController < ApplicationController
   	@user = current_user
   	@items = Item.find(:all)
 	@petition = Petition.find(params[:id])
+	@location = edit_petition_path(@petition.id)
 	if @petition.petition_type.present?
 	else
 		@petition.build_petition_type

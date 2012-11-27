@@ -3,7 +3,7 @@ module SignaturesHelper
 	
 	
 	def test
-		Signature.find_by_remember_token(current_user.remember_token).present?
+		Signature.find_by_email(current_user.email).present?
 	end
 	
 	def find
@@ -11,10 +11,18 @@ module SignaturesHelper
 		@petitions.each do |petition| 
 			if petition.pass == "pass"
 				return petition
-				
 			end	
-			end
-		end	
+		end
+	end	
+	
+	def find2
+		@petitions = Petition.find(:all)
+		@petitions.each do |petition| 
+			if petition.launched == "yes"
+				return petition
+			end	
+		end
+	end		
 	
   # this method will embed the code from the partial
   def youtube_video(url)

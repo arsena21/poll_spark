@@ -3,7 +3,8 @@
 	  <%= f.hidden_field :petition_id, :value => @petition.id %>
 		<%= f.text_area :content, placeholder: "Comment here...", class: "span12", rows:"5" %>
 		<div class="row">
-		<%= f.submit "Post", class: "btn btn-large btn-primary", id: "right" %>
+		<%= f.hidden_field :location, :value => @location %>
+		<%= f.submit "Post", class: "btn btn-large btn-primary", id: "right"  %>
 		</div>
 	<% end %>
 <% else %>

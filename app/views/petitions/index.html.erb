@@ -13,16 +13,18 @@
 
 
 
-<%if signed_in?%>
-	<%if @user.vote == 0 %>
+<%if signed_in? %>
+	<%if @user.votesleft == 0 %>
 		<p class="textwrap">
-			Thanks for Voting!
+			Thanks for Voting!<br />
+			<input type="button" value="View my Votes" id="toggle_code" class="btn btn-link"/>
 		</p>
 	<%else%>
 		<p class="textwrap2">
 			You have <span class="red"><%= pluralize(@user.votesleft, "vote") %> left</span>! Vote on the campaigns which are most important to you to launch them: <br />
 		<input type="button" value="View my Votes" id="toggle_code" class="btn btn-link"/>
 		</p>
+	<% end %>	
 		<% if current_user.vote.present? %>
 			<div class="highlight">
 				<div class="shh">
@@ -66,7 +68,6 @@
 				<div id="bar2"></div>
 				<h4 id="left">All Campaings</h4>
 			</div>
-		<% end %>
 	<%end%>
 <%else%>
 	<p class="textwrap">

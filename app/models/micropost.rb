@@ -1,5 +1,5 @@
 class Micropost < ActiveRecord::Base
-  attr_accessible :content, :user_id, :petition_id
+  attr_accessible :content, :user_id, :petition_id, :location
 
   belongs_to :petition
   belongs_to :user

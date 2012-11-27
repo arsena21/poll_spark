@@ -41,15 +41,16 @@
 
 <!-- PETITION SIGNATURE BOX --!>
 
+
 <% if signed_in? %>
 	<% if @b == "already signed" %>
 		<h4>Thanks for helping us reach <span id="numchange"></span>! </h4>
 	<% else %>
-		<h4><%= @totals %> signatures have been collected!</h4> <h4>Help us reach <span id="numchange"></span>! </h4>
+		<h4><%= pluralize(@totals.total, "signature") %> have been collected!</h4> <h4>Help us reach <span id="numchange"></span>! </h4>
 	<% end %>
-<% end %>	
+<% end %>
 
-<div id="formsy">	
+<div id="formsy">
 <% if signed_in? %>
 	<% if !(@b == "already signed") %>
 		<%= form_for(@signature, :html => { :class => "sigPad"} ) do |f| %>
@@ -153,7 +154,7 @@ All profits are used to promote campaigns and support our organization. Thank yo
 
 <div class="span8 offset2" id="padd">
 	
-<% if @petition.microposts.any? %>
+	<% if @petition.microposts.any? %>
 		<h3 id="padd">Comments (<%= @petition.microposts.count %>)</h3>
 		<ol class="microposts">
 			<%= render 'shared/micropost_form' %>

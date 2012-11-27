@@ -5,8 +5,9 @@ class SignaturesController < ApplicationController
   def new
 	@totals = Signature.find(:last)
 	@signature = Signature.new
-	@petition = find
+	@petition = find2
 	@items = Item.find(:all)
+	@location = petitionnow_path
 	if signed_in?
 	@micropost = Micropost.new(:user_id => current_user.id, :petition_id => @petition.id)
 	end

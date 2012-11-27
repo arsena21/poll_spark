@@ -31,19 +31,18 @@
 	<%= @petition.demands.html_safe %>
 
 	<!--VOTE FORM BELOW-->
-<<<<<<< HEAD
-		
+	
 		<% if signed_in? %>
-				<% if current_user.votesleft != 0 %>
-					<%= form_for(@petition) do |f| %>
-						<div class="centers">
-							<%= f.submit "Vote for this campaign", class: "btn btn-large btn-primary" %>
-						</div>	
-					<% end %>
-				<% end %>	
-				<% if current_user.votesleft == 0 %>
-					<div class="centers"><div class="btn btn-large btn-info">Thanks for voting!</div></div>
-				<% end %>	
+			<% if @user.votesleft != 0 %>
+				<%= form_for(@petition) do |f| %>
+					<div class="centers">
+						<%= f.submit "Vote for this campaign", class: "btn btn-large btn-primary" %>
+					</div>	
+				<% end %>
+			<% end %>	
+			<% if @user.votesleft == 0 %>
+				<div class="centers"><div class="btn btn-large btn-info">Thanks for voting!</div></div>
+			<% end %>	
 		<% end %>		
 		
 		<div class="row">
@@ -74,57 +73,16 @@
 							<div class="meta">
 								<%= item.cost.to_f/100 %> $
 							</div> 
-=======
-	<% if signed_in? %>
-			<% if current_user.votesleft != 0 %>
-				<%= form_for(@petition) do |f| %>
-					<div class="centers">
-						<%= f.submit "Vote for this campaign", class: "btn btn-large btn-primary" %>
-					</div>
+						</div>					
+					<% end %>
 				<% end %>
 			<% end %>
-			<% if current_user.votesleft == 0 %>
-				<div class="centers"><div class="btn btn-large btn-info">Thanks for voting!</div></div>
-			<% end %>
-	<% end %>
-
-	<div class="row">
-		<% if !signed_in? %>
-			<div class="centers"><%= link_to "Sign in to vote", signin_path, class: "btn btn-large btn-primary" %></div>
-		<% else %>
-		<% end %>
-	</div>
-
+		</div>
 
 	<div id="bar2"></div>
 
-	<!--PRODUCTS for sale IN THE BLOCKSIT.JS THING-->
-	<h4 id="left">Related Products</h4>
-	<div id="container3", class="contained">
-		<% @items.each do |item| %>
-			<% if item.launched == "yes" %>
-				<!--  if (item.home == @petition.petition_type.home) || (item.fun == @petition.petition_type.fun) ||(item.book == @petition.petition_type.book) ||(item.fitness == @petition.petition_type.fitness)
-				--!>
-				<% if item.petition_id == @petition.id %>
-					<div class="block">
-						<div class="imgholder">
-							<%= link_to image_tag(item.pictures_url), edit_item_path(:id => item.id)  %> <br />
->>>>>>> ec8e55582bdaac1d1950e46c1a4f42f4102a25d1
-						</div>
-						<strong>
-							<%= link_to item.name, edit_item_path(:id => item.id)	, {:style=>'color:#000000;'} %>
-						</strong>
-						<div class="meta">
-							<%= item.cost.to_f/100 %> $
-						</div>
-					</div>
-				<% end %>
-			<% end %>
-		<% end %>
-	</div>
-
-	<div id="bar2"></div>
-
+	
+	
 	<!--MICROPOSTS BELOW-->
 	<section>
 		<div class="span8 offset2" id="padd">
