@@ -4,4 +4,5 @@ class ApplicationController < ActionController::Base
   include PetitionsHelper
   include SignaturesHelper
     include ItemsHelper
+	include PaymentsHelper
   end

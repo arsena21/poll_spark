@@ -72,7 +72,7 @@ class UsersController < ApplicationController
   end
 
   def edit
-  	@user = User.find(params[:id])
+  	@user = current_user
 	@status = @user.confirmed
 		if @status == "false"
 			confirm @user
@@ -100,7 +100,7 @@ class UsersController < ApplicationController
 
 
   	def add
-		current_user.itempairs.create( :item_id => params[:item_id], :number => params[:number] )
+		current_user.itempairs.create( :item_id => params[:item_id], :number => params[:number], :itemname => params[:itemname], :pic => params[:pic], :itemcost => params[:itemcost] )
 		redirect_to items_path
 	end
 

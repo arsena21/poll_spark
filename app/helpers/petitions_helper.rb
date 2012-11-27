@@ -7,7 +7,7 @@ module PetitionsHelper
 	
 	def record(petition)
 		current_user.create_vote
-		current_user.vote.vote1 = @petition.id
+		current_user.vote.vote1 = petition.id
 		current_user.vote.save
 	end	
 	

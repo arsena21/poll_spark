@@ -16,8 +16,17 @@ class CartsController < ApplicationController
 
   def index
 	@items = current_user.itempairs
+	@total = 0
+	@payment = Payment.new
+	@list = ""
   end
 
   def create
   end
+  
+  def checkout
+	
+  end
+  
+  
 end

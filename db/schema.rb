@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121125005357) do
+ActiveRecord::Schema.define(:version => 20121127180120) do
 
   create_table "authentications", :force => true do |t|
     t.integer  "user_id"
@@ -48,6 +48,10 @@ ActiveRecord::Schema.define(:version => 20121125005357) do
     t.datetime "updated_at", :null => false
     t.integer  "user_id"
     t.integer  "item_id"
+    t.integer  "itemcost"
+    t.string   "itemname"
+    t.string   "pic"
+    t.string   "paid"
   end
 
   create_table "items", :force => true do |t|
@@ -94,7 +98,7 @@ ActiveRecord::Schema.define(:version => 20121125005357) do
     t.integer  "user_id"
     t.string   "stripe_customer_token"
     t.string   "stripe_charge_token"
-    t.integer  "item_id"
+    t.string   "item_id"
     t.integer  "price"
   end
 
@@ -129,8 +133,8 @@ ActiveRecord::Schema.define(:version => 20121125005357) do
     t.string   "name"
     t.string   "email"
     t.string   "country"
-    t.datetime "created_at",     :null => false
-    t.datetime "updated_at",     :null => false
+    t.datetime "created_at"
+    t.datetime "updated_at"
     t.integer  "total"
     t.string   "remember_token"
     t.string   "signaturepic"

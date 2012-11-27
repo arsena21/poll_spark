@@ -1,10 +1,156 @@
+
+
+
 <br /><br /><br /><br /><br /><br />
 
+<div class="shh">
+<div class="span2">
+</div>
+<div class="span2">
+Name
+</div>
+<div class="span2">
+Cost
+</div>
+<div class="span2">
+Number of items
+</div>
+<div class="span2">
+Total
+</div></div><br /><br /><br />
 
 
 <% @items.each do |item| %>
-	<%= item.number %> 
-	<%= item.item_id %>
-	<%= item.id %>
-	<%= link_to "remove", nomore_path(:item_number => item.id)  %><br />
+<% if item.paid == "no" %>
+	<div class="shh">
+	<div class="span2">
+		<%= image_tag(item.pic)  %> 
+	</div>
+	<div class="span2">
+		 <%= item.itemname %> 
+	</div>	
+	<div class="span2">
+		<%= (item.itemcost.to_f)/100 %> $
+	</div>
+	<div class="span2">
+		<%= item.number %>
+	</div>
+	<div class="span2">
+		<%= (item.itemcost.to_f)*(item.number)/100 %> $
+	</div>
+	<div class="span2">
+		<%= link_to "remove", nomore_path(:item_number => item.id)  %>
+	</div>
+	<br />
+	</div>
+	<% @total += (item.itemcost.to_f)*(item.number)/100 %>
+	<% @list = @list + "#{item.number}X#{item.itemname}@#{(item.itemcost.to_f)/100}," %>
 <% end %>	
+<% end %>	
+
+<%= @list %>
+
+<div id="bar2"></div>	
+
+<div class="shh">
+<div class="span2">
+</div>
+<div class="span2">
+</div>
+<div class="span2">
+</div>
+<div class="span2">
+</div>
+<div class="span2">
+<%= @total %> $ <br />
+
+5$<br /><% @total = @total+5 %>
+
+<%= @total %> $
+</div>
+<div class="span2">
+<br />
+
+(Shipping)<br />
+
+(Total)
+</div>
+
+</div>
+
+<br /><br /><br />
+
+<input type="button" value="Checkout" id="toggle_code" class="btn btn-link"/><br /><br />
+
+<div class="highlight">
+<div class="centers">
+<%= form_for @payment do |f| %>
+	<%= render 'shared/error_messages', object: f.object %>
+	<%= f.hidden_field :user_id, value: current_user.id %>	
+	<%= f.hidden_field :email, value: current_user.email %>
+
+	<%= f.hidden_field :stripe_card_token %>
+	<%= f.hidden_field :price, value: @total*100 %>
+	<%= f.hidden_field :item_id, value: @list %>
+	
+	<div class="span4">
+	
+	</div>
+	<div class="span4">
+	  <b>Total:</b><br />
+	  <%= @total %> $
+	</div><br /><br /><br />
+	
+	<div class="span4">
+	</div>
+	<div class="span4">
+	  <div class="bold"><%= label_tag :card_number, "Credit Card Number" %> </div>
+	  <%= text_field_tag :card_number, nil, name: nil %>
+	</div><br />
+	
+	<div class="span4">
+	</div>
+	<div class="span4 offset4">
+	  <%= label_tag :card_code, "Security Code on Card (CVV)" %>
+	  <%= text_field_tag :card_code, nil, name: nil %>
+	</div><br />
+	<div class="span4">
+	</div>
+	<div class="span4">
+	<%= label_tag :card_month, "Card Expiration" %>
+	<%= select_month nil, {add_month_numbers: true}, {name: nil, id: "card_month"} %>
+	<%= select_year nil, {start_year: Date.today.year, end_year: Date.today.year+15}, {name: nil, id: "card_year"} %>
+	</div><br />
+	
+	<div class="span4">
+	</div>
+	<div class="span4">	
+	<div id="stripe_error">
+		<noscript>JavaScript is not enabled and is required for this form. First enable it in your web browser settings.</noscript>
+	</div>
+	</div>
+	
+	<div class="span4">
+	</div>
+	<div class="span4">	
+	<div class="actions">
+		<%= f.submit "pay", class: "btn btn-large btn-primary" %><br /><br /><br /><br />
+	</div>
+	</div>
+<% end %>
+
+
+</div>
+</div>
+
+
+
+
+<script>
+$(function(){
+    $('.highlight').hide()
+	$('#toggle_code').click(function(){
+        $('.highlight').toggle({});
+    });
+});
+</script>
