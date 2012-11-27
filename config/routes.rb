@@ -20,6 +20,7 @@ match '/delete', to: 'static_pages#delete'
 match '/remove', to: 'users#remove'
 match '/registration',  to: 'registrations#new'
 match '/auth/:provider/callback',  to: 'sessions#create'
+match "/auth/failure", to: "sessions#failure"
 match '/done',  to: 'static_pages#finished'
 match '/newitem',  to: 'items#new'
 match '/home',  to: 'items#home'

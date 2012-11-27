@@ -10,31 +10,28 @@
 <!--Petitions that have PASSED are below -->
 
 <% if @petition.pass == "pass"%>
-		<%= @petition.rating%> Votes 
-		
-	<!-- DESCRIPTION --!>
+		<%= @petition.rating%> Votes
 
-	<h4 id="left">Description</h4> 
+	<!-- DESCRIPTION --!>
+	<h4 id="left">Description</h4>
 	<div class="span4", id="formsy2">
 		<%= image_tag(@petition.pics_url) %>
 	</div>
-	<%= @petition.description.html_safe %> 
+	<%= @petition.description.html_safe %>
 
 	<!-- LINKS --!>
-
 	<div class="wid">
-	<h4 id="left">References</h4> 
-	<%= @petition.links.html_safe  %> 
-	</div>	
-
-	<div id="bar2"></div>	
+	<h4 id="left">References</h4>
+	<%= @petition.links.html_safe  %>
+	</div>
+	<div id="bar2"></div>
 
 	<!-- CAMPAIGN GOALS --!>
+	<h4 id="left">Campaign Goals</h4>
+	<%= @petition.demands.html_safe %>
 
-	<h4 id="left">Campaign Goals</h4> 
-	<%= @petition.demands.html_safe %> 
-		
 	<!--VOTE FORM BELOW-->
+<<<<<<< HEAD
 		
 		<% if signed_in? %>
 				<% if current_user.votesleft != 0 %>
@@ -77,16 +74,59 @@
 							<div class="meta">
 								<%= item.cost.to_f/100 %> $
 							</div> 
-						</div>
-					<% end %>
+=======
+	<% if signed_in? %>
+			<% if current_user.votesleft != 0 %>
+				<%= form_for(@petition) do |f| %>
+					<div class="centers">
+						<%= f.submit "Vote for this campaign", class: "btn btn-large btn-primary" %>
+					</div>
 				<% end %>
-			<% end %> 
-		</div> 
-		
-		<div id="bar2"></div>
-		
-		<!--MICROPOSTS BELOW-->
-		<section>
+			<% end %>
+			<% if current_user.votesleft == 0 %>
+				<div class="centers"><div class="btn btn-large btn-info">Thanks for voting!</div></div>
+			<% end %>
+	<% end %>
+
+	<div class="row">
+		<% if !signed_in? %>
+			<div class="centers"><%= link_to "Sign in to vote", signin_path, class: "btn btn-large btn-primary" %></div>
+		<% else %>
+		<% end %>
+	</div>
+
+
+	<div id="bar2"></div>
+
+	<!--PRODUCTS for sale IN THE BLOCKSIT.JS THING-->
+	<h4 id="left">Related Products</h4>
+	<div id="container3", class="contained">
+		<% @items.each do |item| %>
+			<% if item.launched == "yes" %>
+				<!--  if (item.home == @petition.petition_type.home) || (item.fun == @petition.petition_type.fun) ||(item.book == @petition.petition_type.book) ||(item.fitness == @petition.petition_type.fitness)
+				--!>
+				<% if item.petition_id == @petition.id %>
+					<div class="block">
+						<div class="imgholder">
+							<%= link_to image_tag(item.pictures_url), edit_item_path(:id => item.id)  %> <br />
+>>>>>>> ec8e55582bdaac1d1950e46c1a4f42f4102a25d1
+						</div>
+						<strong>
+							<%= link_to item.name, edit_item_path(:id => item.id)	, {:style=>'color:#000000;'} %>
+						</strong>
+						<div class="meta">
+							<%= item.cost.to_f/100 %> $
+						</div>
+					</div>
+				<% end %>
+			<% end %>
+		<% end %>
+	</div>
+
+	<div id="bar2"></div>
+
+	<!--MICROPOSTS BELOW-->
+	<section>
 		<div class="span8 offset2" id="padd">
 			<% if @petition.microposts.any? %>
 				<h3 id="padd">Comments (<%= @petition.microposts.count %>)</h3>
@@ -98,11 +138,11 @@
 			<% else %>
 				<h3>Post the first comment! </h3>
 				<ol class="microposts">
-					<%= render 'shared/micropost_form' %>		
+					<%= render 'shared/micropost_form' %>
 				</ol>
 			<% end %>
-		</div>	
-		</section>
+		</div>
+	</section>
 <%end%>
 
 
@@ -114,51 +154,51 @@
 		<% if @petition.pass == "no" || (current_user.admin?) %>
 			<% if @petition.pass == "no" %>
 				<h2><div class="totheleft">PREVIEW</div></h2>
-				<h4 id="left">Description</h4> 
+				<h4 id="left">Description</h4>
 				<%= @petition.description.html_safe  %>
-				<h4 id="left">Demands</h4> 
+				<h4 id="left">Demands</h4>
 				<%= @petition.demands.html_safe  %>
 				<% if @petition.links.present?  %>
-					<h4 id="left">Links</h4> 
+					<h4 id="left">Links</h4>
 					<%= @petition.links.html_safe  %>
 				<%end%>
 			<%end%>
-			<div id=bar2></div>		
+			<div id=bar2></div>
 
 			<h2><span>UPDATE CAMPAIGN</span></h2>
-			<%= link_to "Campaign Tips", tips_path, id:"right" %>	
+			<%= link_to "Campaign Tips", tips_path, id:"right" %>
 			<%= form_for(@petition) do |f| %>
 				<%= render 'shared/error_messages', object: f.object %>
 				<h4 id="left">Campaign Name<h4 id="left">
 				<%= f.text_field :name %>
-				<h4 id="left">Campaign Description<h4 id="left">				
+				<h4 id="left">Campaign Description<h4 id="left">
 				<%= render 'shared/text_editor' %>
-				<%= f.text_area :description, class: "span12", id: "wysihtml5-textarea"  %>	
-				<h4 id="left">Demands<h4 id="left">	
+				<%= f.text_area :description, class: "span12", id: "wysihtml5-textarea"  %>
+				<h4 id="left">Demands<h4 id="left">
 				<%= render 'shared/text_editor3' %>
-				<%= f.text_area :demands, class: "span12", id: "wysihtml5-textarea3"  %>	
+				<%= f.text_area :demands, class: "span12", id: "wysihtml5-textarea3"  %>
 				<h4 id="left">Useful Links<h4 id="left">
 				<%= f.text_area :links, class: "span12", id: "wysihtml5-textarea2"  %>
 
-			
+
 				<%= f.fields_for :petition_type do |builder| %>
 					<%= builder.hidden_field :petitionid, :value => @petition.id %>
 					<%= builder.label :home, "Home?" %>
-					<%= builder.select :home, [['yes','yes'],['no','no']], :value => @petition.petition_type.home %> 
+					<%= builder.select :home, [['yes','yes'],['no','no']], :value => @petition.petition_type.home %>
 					<%= builder.label :fitness, "Fitness?" %>
-					<%= builder.select :fitness, [['yes','yes'],['no','no']], :value => @petition.petition_type.fitness %> 
+					<%= builder.select :fitness, [['yes','yes'],['no','no']], :value => @petition.petition_type.fitness %>
 					<%= builder.label :food, "Food?" %>
-					<%= builder.select :food, [['yes','yes'],['no','no']], :value => @petition.petition_type.food %> 
+					<%= builder.select :food, [['yes','yes'],['no','no']], :value => @petition.petition_type.food %>
 					<%= builder.label :fun, "Fun?" %>
-					<%= builder.select :fun, [['yes','yes'],['no','no']], :value => @petition.petition_type.fun %> 
+					<%= builder.select :fun, [['yes','yes'],['no','no']], :value => @petition.petition_type.fun %>
 					<%= builder.label :book, "Books?" %>
-					<%= builder.select :book, [['yes','yes'],['no','no']], :value => @petition.petition_type.book %> 
+					<%= builder.select :book, [['yes','yes'],['no','no']], :value => @petition.petition_type.book %>
 				<% end %>
 
-				
-				
-				
-				
+
+
+
+
 				<div class="centers">
 					<%= submit_tag "Complete!", :name => 'done', class: "btn btn-large btn-primary" %>
 					<%= submit_tag "Save", :name => 'almostdone', class: "btn btn-large btn-primary" %>
@@ -167,15 +207,15 @@
 						<%= link_to "delete", @petition, method: :delete,
 												  data: { confirm: "You sure?" }, class: "btn btn-large btn-primary" %>
 											  <%= f.label :pass %>
-						<%= f.text_field :pass %>							  
+						<%= f.text_field :pass %>
 					<% end %>
 				</div>
-			<% end %>	
+			<% end %>
 		<%end%>
 	<%end%>
-	
-	
-	
+
+
+
 <%end%>
 
 
@@ -186,18 +226,18 @@
 			<script>
 			var editor = new wysihtml5.Editor("wysihtml5-textarea2", { // id of textarea element
 			  toolbar:      "wysihtml5-toolbar2", // id of toolbar element
-			  parserRules:  wysihtml5ParserRules // defined in parser rules set 
+			  parserRules:  wysihtml5ParserRules // defined in parser rules set
 			});
 			</script>
 			<script>var editor = new wysihtml5.Editor("wysihtml5-textarea", { // id of textarea element
 			  toolbar:      "wysihtml5-toolbar", // id of toolbar element
-			  parserRules:  wysihtml5ParserRules // defined in parser rules set 
+			  parserRules:  wysihtml5ParserRules // defined in parser rules set
 			});
 			</script>
 			<script>var editor = new wysihtml5.Editor("wysihtml5-textarea3", { // id of textarea element
 			  toolbar:      "wysihtml5-toolbar3", // id of toolbar element
-			  parserRules:  wysihtml5ParserRules // defined in parser rules set 
-			});			
+			  parserRules:  wysihtml5ParserRules // defined in parser rules set
+			});
 			</script>
-			
-			
+
+
