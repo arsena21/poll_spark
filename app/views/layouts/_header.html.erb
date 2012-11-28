@@ -16,9 +16,7 @@
 							<li><%= link_to "Add items", newitem_path %>	</li>
 						<% end %>
 						<%if current_user.itempairs.present? %>
-							<%if current_user.itempairs.paid == "no" %>
-								<li><%= link_to "My Cart", carts_path %>	</li>
-							<% end %>
+
 						<% end %>
 						<%if current_user.petitioner == "yes" %>
 							<li><%= link_to "My Campaign", edit_petition_path(current_user.petition_id) %></li>
