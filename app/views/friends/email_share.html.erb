@@ -2,36 +2,40 @@
 <!--This is the form to share with friends via email-->
 
 <h1> 
-	<span class="red">5</span> Friends (and family!)
+	<span class="red">5</span> Friends
 </h1>	
 
-<h5>
-Please help us reach our goals by sharing with your friends and family. Numbers matter!
-</h5>
-
-<%= form_tag((@user), :html => {:class => 'form-horizontal' }) do %>
+<p class="textwrap2">
+	Help reach our goal by sharing with 5 friends and family. Numbers do make a difference!	
 
 	<% if signed_in? %>
-		<% if @friendsleft.to_i == 5 %>
-			<h2>You have 5 shares left </h2>
-		<% else %>
-			<% if (@friendsleft.to_i < 1 || @friendsleft.to_i == 1) %>
-				<% if @friendsleft.to_i == 1 %>
-					<h2>Only 1 friend left! </h2>
-				<% else %>
-					<h2>Thank You for sharing! </h2>
+			<% if @friendsleft.to_i == 5 %>
+				You have <span class="red">5 shares</span> left!
+			<% else %>
+				<% if (@friendsleft.to_i < 1 || @friendsleft.to_i == 1) %>
+					<% if @friendsleft.to_i == 1 %>
+						Only <span class="red">1</span>  left!
+					<% else %>
+						Thank You for sharing! 
+					<% end %>	
+				<% else %>			
+					You have <span class="red"><%= pluralize(@friendsleft, "share") %></span> left to reach 5! 
 				<% end %>	
-			<% else %>			
-				<h2>You have <%= pluralize(@friendsleft, "friend") %> left to reach 5! </h2>
-			<% end %>	
-		<% end %>
-		<h4><div id="left">Your e-mail:   </div></h4>
-		<%= text_field_tag :email, nil, :value => current_user.email, class: "span4" %>
+			<% end %>
 	<% else %>
-		<h2>You have 5 shares left! </h2>
+		You have <span class="red">5 shares</span> left!
+	<% end %>
+</p>
+
+<%= form_tag((@user), :html => {:class => 'form-horizontal' }) do %>
+	<% if signed_in? %>
+		<h4><div id="left">Your e-mail:   </div></h4>
+		<%= text_field_tag :email, nil, :value => current_user.email, class: "span4" %>	
+	<% else %>
 		<h4><div id="left">Your e-mail:   </div></h4>
 		<%= text_field_tag :email, nil, :placeholder => "Your email here", class: "span4" %>
 	<% end %>	
+	
 	
 	<h4 id="left">Subject:</h4>
 	<%= text_area_tag :subject,  nil, :rows => 1, class: "span6" %>	

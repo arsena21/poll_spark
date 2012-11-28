@@ -4,14 +4,13 @@
 	<%= @petition.name.html_safe %>
 <%end%>
 
-
 <h1><%= @petition.name.html_safe  %>  </h1>
+
 
 <!--Petitions that have PASSED are below -->
 
 <% if @petition.pass == "pass"%>
-		<%= @petition.rating%> Votes
-
+	
 	<!-- DESCRIPTION --!>
 	<h4 id="left">Description</h4>
 	<div class="span4", id="formsy2">
@@ -20,12 +19,39 @@
 	<%= @petition.description.html_safe %>
 
 	<!-- LINKS --!>
+	
+	
+<input type="button" value="View References" id="toggle_code" class="btn btn-link"/>
+
+<div class="highlight">	
 	<div class="wid">
 	<h4 id="left">References</h4>
 	<%= @petition.links.html_safe  %>
 	</div>
-	<div id="bar2"></div>
+</div>
 
+	<div id="bar2"></div>
+	
+<script>
+$(function(){
+    $('.highlight').hide()
+	$('#toggle_code').click(function(){
+        $('.highlight').toggle({});
+				if ($('#toggle_code').val() == "View References") {
+			$(this).val("Hide References");
+		}
+		else {
+			$(this).val("View References");
+		}
+    });
+});
+</script>
+	
+	
+	
+	
+	
+	
 	<!-- CAMPAIGN GOALS --!>
 	<h4 id="left">Campaign Goals</h4>
 	<%= @petition.demands.html_safe %>
@@ -52,10 +78,13 @@
 		</div>
 		
 		
-		<div id="bar2"></div>
+
 		
 		<!--PRODUCTS for sale IN THE BLOCKSIT.JS THING-->
 		
+		
+		<% if @prod %>
+		<div id="bar2"></div>
 		<h4 id="left">Related Products</h4> 
 		<div id="container3", class="contained"> 
 			<% @items.each do |item| %>
@@ -78,12 +107,16 @@
 				<% end %>
 			<% end %>
 		</div>
+		<% end %>
 
 	<div id="bar2"></div>
 
 	
 	
 	<!--MICROPOSTS BELOW-->
+	
+	<input type="button" value="View Comments" id="toggle_code2" class="btn btn-link"/><br /><br />
+	<div class="highlight2">	
 	<section>
 		<div class="span8 offset2" id="padd">
 			<% if @petition.microposts.any? %>
@@ -101,7 +134,33 @@
 			<% end %>
 		</div>
 	</section>
+	</div>
+	
+	<script>
+	$(function(){
+		$('.highlight2').hide()
+		$('#toggle_code2').click(function(){
+			$('.highlight2').toggle({});
+					if ($('#toggle_code2').val() == "View Comments") {
+				$(this).val("Hide Comments");
+			}
+			else {
+				$(this).val("View Comments");
+			}
+		});
+	});
+	</script>	
+	
+	
+	
+	
 <%end%>
+
+
+
+
+
+
 
 
 

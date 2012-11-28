@@ -2,14 +2,13 @@
 
 
 
-<!-- VOTE ON FUTURE CAMPAIGNS --!>	
+<!-- VOTE ON FUTURE CAMPAIGNS --!>
 
 
 <h1> 
 	<span class="yellow">3</span> Votes
 </h1>	
-
-
+	
 
 
 
@@ -21,14 +20,16 @@
 		</p>
 	<%else%>
 		<p class="textwrap2">
-			You have <span class="red"><%= pluralize(@user.votesleft, "vote") %> left</span>! Vote on the campaigns which are most important to you to launch them: <br />
+			You have <span class="red"><%= pluralize(@user.votesleft, "vote") %> left</span>! Vote on the campaigns which are most important to you. Campaigns are launched based on popular vote.<br />
+		<% if current_user.votesleft < 3 %>	
 		<input type="button" value="View my Votes" id="toggle_code" class="btn btn-link"/>
+		<% end %>
 		</p>
 	<% end %>	
 		<% if current_user.vote.present? %>
 			<div class="highlight">
 				<div class="shh">
-					<% if current_user.vote.present? %>		
+					<% if current_user.votesleft < 3 %>		
 						<h4 id="left">My Campaigns</h4> <br/>
 						<% @rating.each do |petition| %>		
 							<% if (current_user.vote.vote1 == petition.id) || (current_user.vote.vote2 == petition.id) || (current_user.vote.vote3 == petition.id)%>
@@ -71,7 +72,7 @@
 	<%end%>
 <%else%>
 	<p class="textwrap">
-		You have <span class="red">3 votes left</span>! Vote on the campaigns which are most important to you to launch them: 
+		You have <span class="red">3 votes left</span>! Vote on the campaigns which are most important to you. Campaigns are launched based on popular vote. 
 	</p>
 <%end%>
 

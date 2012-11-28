@@ -107,11 +107,11 @@
 		<div>
 			<% if signed_in? %>
 				<% if current_user.votesleft == 0  %>
-					<% if (current_page? petitions_path) || (current_page?(edit_petition_path(1..99))) %>
+					<% if (current_page? petitions_path) || (current_page?(edit_petition_path(2..99))) %>
 						<div class="greys">
 							<div class="middle">
 							<%= link_to "3", petitions_path, class: "yellow", id:"lefts" %>
-							<%= link_to "Votes", petitions_path%>	
+							<%= link_to "Vote", petitions_path%>	
 							<img src="/images/check2.png", id="tag" />
 							</div>
 						</div>	
@@ -119,7 +119,7 @@
 						<div class="greys2">
 						<div class="middle">
 						<%= link_to "3", petitions_path, class: "yellow", id:"lefts" %>
-						<%= link_to "Votes", petitions_path%>
+						<%= link_to "Vote", petitions_path%>
 						<img src="/images/check2.png", id="tag" />
 						</div>
 						</div>
@@ -129,7 +129,7 @@
 						<div class="greys">
 							<div class="middle">
 							<%= link_to "3", petitions_path, class: "yellow", id:"lefts" %>
-							<%= link_to "Votes", petitions_path%>	
+							<%= link_to "Vote", petitions_path%>	
 							<img src="/images/xmark2.png", id="tag" />
 							</div>
 						</div>	
@@ -137,7 +137,7 @@
 						<div class="greys2">
 						<div class="middle">
 						<%= link_to "3", petitions_path, class: "yellow", id:"lefts" %>
-						<%= link_to "Votes", petitions_path%>
+						<%= link_to "Vote", petitions_path%>
 						<img src="/images/xmark2.png", id="tag" />
 						</div>
 						</div>
@@ -148,14 +148,14 @@
 				<div class="greys">
 					<div class="middle2">
 					<%= link_to "3", petitions_path, class: "yellow", id:"lefts" %>
-					<%= link_to "Votes", petitions_path%>
+					<%= link_to "Vote", petitions_path%>
 					</div>
 				</div>	
 				<% else %>
 					<div class="greys2">
 					<div class="middle2">
 					<%= link_to "3", petitions_path, class: "yellow", id:"lefts" %>
-					<%= link_to "Votes", petitions_path%>
+					<%= link_to "Vote", petitions_path%>
 					</div>
 					</div>
 				<% end %>

@@ -17,4 +17,14 @@ def newitems(user)
 end
 
 
+def  cart(items)
+	items.each do |f|
+		if f.paid == "no"
+			return true
+		end
+	end
+	return false
+	
+end
+
 end

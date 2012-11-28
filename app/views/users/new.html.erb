@@ -8,27 +8,36 @@
 
 
 <% if current_page? root_path %>
-	<h3><br/>
+	<br/>
+	<h1> What's important to <i>you</i>?  </h1>	
+	<img src="/images/front page logo.png" class="span6" />
+	
+	<h3>
+	<div class="span6">
+		 <br />
 		<div id="logo2">GENERATION</div>
 		<div id="logo2", class="yellow">3</div>
 		<div id="logo2", class="orange">1</div>
 		<div id="logo2", class="red">5</div>
-		<div id="logo2">&nbsp is a platform for <i>collective action</i>.</div>
-			
-			
-				<br /><br/>
-	<img src="/images/front page logo.png" id="frontlogo"/>
-	
-	
-	<br/>
-	<div class="fronttext">
-		If you could change <i>anything</i>, what would it be?	<br /><br />
-		<b><span class="yellow">3</span>&nbspVotes</b> to launch...	<br />
-		<b><span class="orange">1</span>&nbspCampaign</b> based on popular vote...	<br />
-		<b><span class="red">5</span>&nbspFriends</b> is the number of people we ask you share this with <br />
+		&nbsp is a platform for <i>collective action</i>. Follow these 3 steps or click <%= link_to "here", about_path %> to learn more!<br /><br />
+		
+		<!--If you could change <i>anything</i>, what would it be?	<br /><br />--!>
+		<div class="span1">
+		</div>
+		<div class="span6">
+		<b>1) Distribute</b>	<br />
+		<b>2) Participate in</b>	<br />
+		<b>3) Share with</b> <br />
+		</div>
+		<div class="span4">
+		<b><span class="yellow">3</span> Votes</b>	<br />
+		<b><span class="orange">1</span> Campaign</b>	<br />
+		<b><span class="red">5</span> Friends</b> <br />
+		</div>		
+
 	</div>
-	</h3>
-	<h3>Vote, Participate and spread the word! </h3><br />
+	</h3><br />
+	
 <% end %>
 
 
@@ -65,15 +74,14 @@
 <!-- Skip signup form from root_path, or just Signin --!>
 
 	<div id="right">
-	<% if current_page? root_path %>
-		<%= link_to "Start Voting!", petitions_path, class: "btn btn-large btn-primary", id: "belowbutton" %><br />
-		<%= link_to "More info",   about_path, id: "belowbutton" %><br />
+	<% if current_page? root_path %><br /><br />
+		<%= link_to "Start!", petitions_path, class: "btn btn-large btn-primary", id: "belowbutton" %>
 	<% end %>
 		<div id="belowbutton">Already a user? <%= link_to "Sign in!", signin_path%></div>
 	</div>
 	
 	<% if current_page? root_path %>
-	<br /><br /><br /><br /><br /><br /><br />
+	<br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
 	<small class="centers">
 	Generation315 is a non-profit with a goal of making the world a better place, through the use of social networks and an interconnected world. 
 	</small>

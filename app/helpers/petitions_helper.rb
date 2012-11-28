@@ -86,4 +86,17 @@ module PetitionsHelper
 		vote.vote3 = ""
 		vote.save!
 	end		
+	
+	def anyitems(items,petition)
+		items.each do |f|
+			if f.launched == "yes"
+				if f.petition_id == petition.id
+					return true
+				end	
+			end
+		end
+	return false	
+	end
+	
+	
 end

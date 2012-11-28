@@ -6,49 +6,57 @@
 <div class="shh">
 <div class="span2">
 </div>
-<div class="span2">
+<div class="span2" id="center">
 Name
 </div>
-<div class="span2">
+<div class="span2" id="center">
 Cost
 </div>
-<div class="span2">
+<div class="span2" id="center">
 Number of items
 </div>
-<div class="span2">
+<div class="span2" id="right2">
 Total
 </div></div><br /><br /><br />
 
 
 <% @items.each do |item| %>
 <% if item.paid == "no" %>
-	<div class="shh">
-	<div class="span2">
+	
+	<div class= "shh" >
+	<div class="span2" id="cartpic">
 		<%= image_tag(item.pic)  %> 
 	</div>
-	<div class="span2">
+	<span class="span2" id="center">
 		 <%= item.itemname %> 
-	</div>	
-	<div class="span2">
+	</span>	
+	
+	<div class="span2" id="center">
 		<%= (item.itemcost.to_f)/100 %> $
 	</div>
-	<div class="span2">
+	<div class="span2" id="center">
 		<%= item.number %>
 	</div>
-	<div class="span2">
+	<div class="span2" id="right2">
 		<%= (item.itemcost.to_f)*(item.number)/100 %> $
 	</div>
-	<div class="span2">
+	<div class="span2"  id="center">
 		<%= link_to "remove", nomore_path(:item_number => item.id)  %>
 	</div>
 	<br />
 	</div>
 	<% @total += (item.itemcost.to_f)*(item.number)/100 %>
 	<% @list = @list + "#{item.number}X#{item.itemname}@#{(item.itemcost.to_f)/100}," %>
+	<% @no = @no + 1 %>
+
+
 <% end %>	
 <% end %>	
 
-<%= @list %>
+
+
+
+
 
 <div id="bar2"></div>	
 
@@ -61,11 +69,11 @@ Total
 </div>
 <div class="span2">
 </div>
-<div class="span2">
-<%= @total %> $ <br />
+<div class="span2" id="right2">
+<%= @total %> $<br />
 
-5$<br /><% @total = @total+5 %>
-
+5 $<br /><% @total = @total+5 %>
+<div id="bar3"></div>
 <%= @total %> $
 </div>
 <div class="span2">
@@ -153,4 +161,8 @@ $(function(){
         $('.highlight').toggle({});
     });
 });
+
+
+
+
 </script>

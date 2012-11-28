@@ -2,7 +2,7 @@
 	<div class="navbar-inner">
 		<% if !current_page? root_path %>
 		<div id="logoleft">
-			<%= link_to "GENERATION", petitions_path, id: "logo", class: "silver" %>
+			<%= link_to "Generation", petitions_path, id: "logo", class: "silver" %>
 			<%= link_to "3", petitions_path, id: "logo", class: "yellow" %>
 			<%= link_to "1", petitions_path, id: "logo", class: "orange" %>
 			<%= link_to "5", petitions_path, id: "logo", class: "red" %>
@@ -15,8 +15,8 @@
 						<%if current_user.admin? %>
 							<li><%= link_to "Add items", newitem_path %>	</li>
 						<% end %>
-						<%if current_user.itempairs.present? %>
-
+						<%if cart current_user.itempairs %>
+							<li><%= link_to "Shopping Cart", carts_path %>	</li>
 						<% end %>
 						<%if current_user.petitioner == "yes" %>
 							<li><%= link_to "My Campaign", edit_petition_path(current_user.petition_id) %></li>
@@ -39,7 +39,7 @@
 								Account <b class="caret"></b>
 							</a>
 							<ul class="dropdown-menu">
-								<li><%= link_to "Settings", edit_user_path(session[:user_id]) %></li>
+								<li><%= link_to "Settings", edit_user_path(current_user) %></li>
 								<li class="divider"></li>
 								<li>
 									<%= link_to "Sign out", signout_path, method: "delete" %>

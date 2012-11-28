@@ -59,6 +59,7 @@ class PetitionsController < ApplicationController
   	@items = Item.find(:all)
 	@petition = Petition.find(params[:id])
 	@location = edit_petition_path(@petition.id)
+	@prod = anyitems @items,@petition
 	if @petition.petition_type.present?
 	else
 		@petition.build_petition_type
@@ -117,7 +118,7 @@ end
 				uprating @petition
 				votesdown current_user
 				flash[:success] = "Thanks for your vote!"
-				if signed_in? && current_user.vote == 0  && current_user.signer == "yes" && current_user.shares.to_i > 4 
+				if signed_in? && current_user.votesleft == 0  && current_user.signer == "yes" && current_user.shares.to_i > 4 
 					redirect_to done_path
 				else 				
 					redirect_to petitions_path

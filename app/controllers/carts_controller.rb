@@ -19,6 +19,7 @@ class CartsController < ApplicationController
 	@total = 0
 	@payment = Payment.new
 	@list = ""
+	@no = 0
   end
 
   def create

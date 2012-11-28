@@ -1,11 +1,18 @@
 <!--ADDING SIGNATURES TO LAUNCHED CAMPAIGNS..IF NOT SIGNED IN, HAVE SAME BOX BUT ASK TO SIGN IN-->
 
 
-<% provide :title do  %>
-	<%= @petition.name %>
-<%end%>
 
-<h1><%= @petition.name %>  </h1>
+<h1> 
+	<span class="orange">1</span> Campaign
+</h1>	
+
+<p class="textwrap2">
+To participate, watch the video and support the initiatives listed below. <br /></p>
+
+<div id="bar2"></div>
+
+<h4 id="left"><%= @petition.name %></h4> 
+
 
 <!-- VIDEO --!>
 
@@ -17,7 +24,7 @@
 
 <div id="bar2"></div>
 
-<!-- DESCRIPTION --!>
+<!-- DESCRIPTION 
 
 <h4 id="left">Description</h4> 
 <div class="span4", id="formsy2">
@@ -25,18 +32,24 @@
 </div>
 <%= @petition.description.html_safe %> 
 
-<!-- LINKS --!>
+--!>
+
+
+<!-- LINKS
 
 <div class="wid">
 <h4 id="left">References</h4> 
 <%= @petition.links.html_safe  %> 
 </div>	
-
 <div id="bar2"></div>	
 
+ --!>
+ 
+ 
+ 
 <!-- CAMPAIGN GOALS --!>
 
-<h4 id="left">Campaign Goals</h4> 
+<h4 id="left">Goals</h4> 
 <%= @petition.demands.html_safe %> 
 
 <!-- PETITION SIGNATURE BOX --!>
@@ -127,7 +140,7 @@
 
 <h4 id="left">Related Products</h4> 
 
-All profits are used to promote campaigns and support our organization. Thank you!
+*All profits we collect will be used to support ongoing campaigns.
 <div id="container3", class="contained"> 
 	<% @items.each do |item| %>
 		<% if item.launched == "yes" %>
@@ -152,6 +165,11 @@ All profits are used to promote campaigns and support our organization. Thank yo
 
 <!-- MICROPOSTS --!>
 
+
+<input type="button" value="View Comments" id="toggle_code" class="btn btn-link"/><br /><br />
+
+<div class="highlight">
+
 <div class="span8 offset2" id="padd">
 	
 	<% if @petition.microposts.any? %>
@@ -168,6 +186,26 @@ All profits are used to promote campaigns and support our organization. Thank yo
 		</ol>
 	<% end %>
 </div>			
+
+</div>
+
+
+<script>
+$(function(){
+    $('.highlight').hide()
+	$('#toggle_code').click(function(){
+        $('.highlight').toggle({});
+				if ($('#toggle_code').val() == "View Comments") {
+			$(this).val("Hide Comments");
+		}
+		else {
+			$(this).val("View Comments");
+		}
+    });
+});
+</script>
+
+
 
 
 
