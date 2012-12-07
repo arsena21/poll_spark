@@ -19,32 +19,28 @@
 						Thank You for sharing! 
 					<% end %>	
 				<% else %>			
-					You have <span class="red"><%= pluralize(@friendsleft, "share") %></span> left to reach 5! 
+					You have <span class="red"><%= pluralize(@friendsleft, "friend") %></span> left! 
 				<% end %>	
 			<% end %>
 	<% else %>
-		You have <span class="red">5 shares</span> left!
+		You have <span class="red">5 friends</span> left!
 	<% end %>
 </p>
 
 <%= form_tag((@user), :html => {:class => 'form-horizontal' }) do %>
 	<% if signed_in? %>
-		<h4><div id="left">Your e-mail:   </div></h4>
+		<div id="left">From:   </div>
 		<%= text_field_tag :email, nil, :value => current_user.email, class: "span4" %>	
 	<% else %>
-		<h4><div id="left">Your e-mail:   </div></h4>
+		<h4><div id="left">From:   </div></h4>
 		<%= text_field_tag :email, nil, :placeholder => "Your email here", class: "span4" %>
 	<% end %>	
+	<div id="left">To:   </div>
+	<%= text_area_tag :to, nil, :rows => 5, class: "span8", :placeholder => "Separate multiple emails by commas, spaces, brackets. Alternatively, paste directly from your email"%>
 	
-	
-	<h4 id="left">Subject:</h4>
-	<%= text_area_tag :subject,  nil, :rows => 1, class: "span6" %>	
-   
-	<h4 id="left">To:</h4>
-	<%= text_area_tag :to, nil, :rows => 5, class: "span8", :placeholder => "Enter multiple email addresses separated by commas, spaces, or just pasted directly from your email"%>
+	<%= text_area_tag :subject , nil, :rows => 1, class: "span8", :placeholder => "Subject" %>	
 
-	<h4 id="left">Message:</h4>
-	<%= text_area_tag :message, nil, :rows => 5, class: "span8"%> <br />
+	<%= text_area_tag :message , nil, :rows => 5, class: "span8", :placeholder => "Message (don't forget to include a link!)"%> 
 		
 	<% if signed_in? %>
 		<%= submit_tag "Send", class: "btn btn-large btn-primary"%>

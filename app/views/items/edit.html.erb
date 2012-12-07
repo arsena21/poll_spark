@@ -1,24 +1,32 @@
-<br /><br />
+<br /><br /><br /><br />
 	
 		<div class="row">
 		<div class="span4">
 			<%= image_tag @item.pictures_url, :class=>"topspace"%>
 		</div>
 		<div class="span8">
+		
 		<h3><%= @item.name %></h3>
 		<b>Description:</b> <br />
-		<%= @item.description %> <br />
-		<b>Specs:</b> <br />
-		<%= @item.specs %>
+		<%= @item.description %> <br /><br /><br />
+		
+		<% if @item.specs.present? %>
+			<b>Specs:</b> <br />
+			<%= @item.specs %><br /><br /><br />
+		<% end %>
 		<b>Price:</b> <br />
 		<%= @item.cost.to_f/100 %> $<br />
-		<b>About <%= @item.company %>:</b><br />
-		<%= @item.companyinfo %>
+		
+		<% if @item.companyinfo.present? %>
+			<b>About <%= @item.company %>:</b><br />
+			<%= @item.companyinfo %><br />
+		<% end %>
+		
 		</div>
 		</div>
-	 <br /> <br />
+	 <br /> <br /><br /><br />
 
-<div id="belowbutton" class="small">*All profits are used to market and promote campaings listed on the website. Thank you for supporting our organization!*</div> <br />
+<div class="centers">*All profits are used to market and promote campaings listed on the website!*</div> <br />
 
 
 		<% if signed_in? %>
@@ -36,7 +44,7 @@
 	
 	
 		<div class="row">
-			<% if !signed_in? %>
+			<% if !signed_in? %><br />
 				<div class="centers"><%= link_to "Please sign in to purchase", signin_path, class: "btn btn-large btn-primary" %></div>
 			<% end %>	
 		</div>

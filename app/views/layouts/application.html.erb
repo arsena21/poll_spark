@@ -48,13 +48,14 @@
 						</div> 
 					</div> 
 					<%else%>
-						<div class="span2">
+						
 						<% if (current_page? share_path) || (current_page? items_path) || (current_page? petitionnow_path) || (current_page? petitions_path) || (current_page?(edit_petition_path(1..99))) || (current_page? home_path) || (current_page? fitness_path) || (current_page? food_path) || (current_page? fun_path) || (current_page? books_path) %>
 							<%= render 'layouts/sidebar' %>
 						<% else %>
-							
+							<div class="span2">
+							</div>
 						<% end %>
-						</div>
+						
 						<div class="span8" id="white">
 						<div class="buffer">
 							<div class="span12" id ="sizer">

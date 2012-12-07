@@ -15,9 +15,7 @@
 						<%if current_user.admin? %>
 							<li><%= link_to "Add items", newitem_path %>	</li>
 						<% end %>
-						<%if cart current_user.itempairs %>
-							<li><%= link_to "Shopping Cart", carts_path %>	</li>
-						<% end %>
+
 						<%if current_user.petitioner == "yes" %>
 							<li><%= link_to "My Campaign", edit_petition_path(current_user.petition_id) %></li>
 						<%else%>
