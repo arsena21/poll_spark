@@ -1,23 +1,27 @@
 
+<div class="highlight2">
+<h1> 
+	My Shopping Cart
+</h1>
 
 
-<br /><br /><br /><br /><br /><br />
+<br /><br /><br />
 
 <div class="shh">
 <div class="span2">
 </div>
 <div class="span2" id="center">
-Name
+<p class="textwrap3">Name</p>
 </div>
 <div class="span2" id="center">
-Cost
+<p class="textwrap3">Cost</p>
 </div>
 <div class="span2" id="center">
-Number of items
+<p class="textwrap3"># items</p>
 </div>
 <div class="span2" id="right2">
-Total
-</div></div><br /><br /><br />
+<p class="textwrap3">Total</p>
+</div></div><br />
 
 
 <% @items.each do |item| %>
@@ -41,7 +45,7 @@ Total
 		<%= (item.itemcost.to_f)*(item.number)/100 %> $
 	</div>
 	<div class="span2"  id="center">
-		<%= link_to "remove", nomore_path(:item_number => item.id)  %>
+		<%= link_to "remove item", nomore_path(:item_number => item.id)  %>
 	</div>
 	<br />
 	</div>
@@ -70,11 +74,11 @@ Total
 <div class="span2">
 </div>
 <div class="span2" id="right2">
-<%= @total %> $<br />
+<%= @total.round %> $<br />
 
 5 $<br /><% @total = @total+5 %>
 <div id="bar3"></div>
-<%= @total %> $
+<%= @total.round %> $
 </div>
 <div class="span2">
 <br />
@@ -84,81 +88,101 @@ Total
 (Total)
 </div>
 
+</div><br /><br />
+
+
+
 </div>
 
-<br /><br /><br />
 
-<input type="button" value="Checkout" id="toggle_code" class="btn btn-link"/><br /><br />
 
 <div class="highlight">
-<div class="centers">
+<h1> 
+	Checkout
+</h1>
+	  <b>Total:</b><br />
+	  <%= @total.round %> $
+	  
+
+	  
+<div id="bar2"></div>	
 <%= form_for @payment do |f| %>
+	<div class="centers">
 	<%= render 'shared/error_messages', object: f.object %>
 	<%= f.hidden_field :user_id, value: current_user.id %>	
-	<%= f.hidden_field :email, value: current_user.email %>
+	
 
 	<%= f.hidden_field :stripe_card_token %>
 	<%= f.hidden_field :price, value: @total*100 %>
 	<%= f.hidden_field :item_id, value: @list %>
+
+	<div class="span1">	
+	</div>
 	
 	<div class="span4">
-	
+		<div class="bold"><%= label_tag :name, "Name:" %> </div>
+		<%= f.text_field :name, value: current_user.name, class:"span12" %> <br />
+		<div class="bold"><%= label_tag :email, "Email:" %> </div>
+		<%= f.text_field :email, value: current_user.email, class:"span12" %> <br />
+		Shipping Address
+		<%= f.text_field :street, :placeholder => "Street", class:"span12" %>
+		<%= f.text_field :city, :placeholder => "City", class:"span12"  %>
+		<%= f.text_field :country, :placeholder => "Country", class:"span12"  %>
+		<%= f.text_field :postalcode, :placeholder => "Postal Code", class:"span12"  %>
+	</div>
+	<div class="span1">	
 	</div>
 	<div class="span4">
-	  <b>Total:</b><br />
-	  <%= @total %> $
-	</div><br /><br /><br />
-	
-	<div class="span4">
-	</div>
-	<div class="span4">
+
 	  <div class="bold"><%= label_tag :card_number, "Credit Card Number" %> </div>
-	  <%= text_field_tag :card_number, nil, name: nil %>
-	</div><br />
-	
-	<div class="span4">
-	</div>
-	<div class="span4 offset4">
+	  <%= text_field_tag :card_number, nil, name: nil, class:"span12" %>
 	  <%= label_tag :card_code, "Security Code on Card (CVV)" %>
-	  <%= text_field_tag :card_code, nil, name: nil %>
-	</div><br />
-	<div class="span4">
+	  <%= text_field_tag :card_code, nil, name: nil, class:"span12" %>
+	  <%= label_tag :card_month, "Card Expiration" %>
+	  <%= select_month nil, {add_month_numbers: true}, {name: nil, id: "card_month", class:"span12"} %>
+	  <%= select_year nil, {start_year: Date.today.year, end_year: Date.today.year+15}, {name: nil, id: "card_year", class:"span12"} %>
+
 	</div>
-	<div class="span4">
-	<%= label_tag :card_month, "Card Expiration" %>
-	<%= select_month nil, {add_month_numbers: true}, {name: nil, id: "card_month"} %>
-	<%= select_year nil, {start_year: Date.today.year, end_year: Date.today.year+15}, {name: nil, id: "card_year"} %>
-	</div><br />
 	
-	<div class="span4">
-	</div>
+
 	<div class="span4">	
 	<div id="stripe_error">
 		<noscript>JavaScript is not enabled and is required for this form. First enable it in your web browser settings.</noscript>
 	</div>
 	</div>
-	
-	<div class="span4">
-	</div>
-	<div class="span4">	
-	<div class="actions">
-		<%= f.submit "pay", class: "btn btn-large btn-primary" %><br /><br /><br /><br />
-	</div>
-	</div>
+	</div>		
+
+	<br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
+	<div class="actions">	
+	<%= f.submit "pay", class: "btn btn-large btn-primary" %> 
+	</div><br /><br />
 <% end %>
 
-
+<div id="bar2"></div>
 </div>
-</div>
 
 
+<input type="button" value="Checkout" id="toggle_code2" class="btn btn-link"/>
 
 
 <script>
 $(function(){
     $('.highlight').hide()
-	$('#toggle_code').click(function(){
-        $('.highlight').toggle({});
+	$('#toggle_code2').click(function(){
+        
+		
+		
+		
+		if ($('#toggle_code2').val() == "Checkout") {
+			$(this).val("Back");
+			$('.highlight2').toggle({});
+			$('.highlight').delay(700).toggle({});
+		}
+		else {
+			$(this).val("Checkout");
+			$('.highlight2').delay(700).toggle({});
+			$('.highlight').toggle({});				
+		}
     });
 });
 

@@ -70,17 +70,19 @@ position:fixed;
 }
 
 #unstyled2{
-margin-top:100px;
+margin-top:70px;
 width:10%;
 float:right;
 position:fixed;
-margin-left:79%;
-background-color:white;
-padding-left:2%;
+margin-left:82%;
+}
+
+#toggle_code2{
+float:right;
 }
 
 .middle3{
-padding-left:45px;
+
 }
 
 .middle{
@@ -569,6 +571,16 @@ height:40px;
   margin-bottom: 10px;
   font-weight: lighter;
   text-align:justify;
+}
+
+.textwrap3{
+  font-size: 1.7em;
+  letter-spacing: -1px;
+  font-weight: lighter;
+}
+
+.actions{
+  float:right;
 }
 
 img {

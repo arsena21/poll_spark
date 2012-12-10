@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121127202922) do
+ActiveRecord::Schema.define(:version => 20121210000753) do
 
   create_table "authentications", :force => true do |t|
     t.integer  "user_id"
@@ -101,6 +101,10 @@ ActiveRecord::Schema.define(:version => 20121127202922) do
     t.string   "stripe_charge_token"
     t.string   "item_id"
     t.integer  "price"
+    t.string   "street"
+    t.string   "city"
+    t.string   "country"
+    t.string   "postalcode"
   end
 
   create_table "petition_types", :force => true do |t|

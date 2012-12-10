@@ -112,7 +112,7 @@
 							<div class="greys">
 								<div class="middle">
 								<%= link_to "3", petitions_path, class: "yellow", id:"lefts" %>
-								<%= link_to "Vote", petitions_path%>	
+								<%= link_to "Votes", petitions_path%>	
 								<img src="/images/check2.png", id="tag" />
 								</div>
 							</div>	
@@ -120,7 +120,7 @@
 							<div class="greys2">
 							<div class="middle">
 							<%= link_to "3", petitions_path, class: "yellow", id:"lefts" %>
-							<%= link_to "Vote", petitions_path%>
+							<%= link_to "Votes", petitions_path%>
 							<img src="/images/check2.png", id="tag" />
 							</div>
 							</div>
@@ -130,7 +130,7 @@
 							<div class="greys">
 								<div class="middle">
 								<%= link_to "3", petitions_path, class: "yellow", id:"lefts" %>
-								<%= link_to "Vote", petitions_path%>	
+								<%= link_to "Votes", petitions_path%>	
 								<img src="/images/xmark2.png", id="tag" />
 								</div>
 							</div>	
@@ -138,7 +138,7 @@
 							<div class="greys2">
 							<div class="middle">
 							<%= link_to "3", petitions_path, class: "yellow", id:"lefts" %>
-							<%= link_to "Vote", petitions_path%>
+							<%= link_to "Votes", petitions_path%>
 							<img src="/images/xmark2.png", id="tag" />
 							</div>
 							</div>
@@ -149,14 +149,14 @@
 					<div class="greys">
 						<div class="middle2">
 						<%= link_to "3", petitions_path, class: "yellow", id:"lefts" %>
-						<%= link_to "Vote", petitions_path%>
+						<%= link_to "Votes", petitions_path%>
 						</div>
 					</div>	
 					<% else %>
 						<div class="greys2">
 						<div class="middle2">
 						<%= link_to "3", petitions_path, class: "yellow", id:"lefts" %>
-						<%= link_to "Vote", petitions_path%>
+						<%= link_to "Votes", petitions_path%>
 						</div>
 						</div>
 					<% end %>
@@ -290,12 +290,14 @@
 
 
 <div id="unstyled2">
+		<%if signed_in? %>
 		<%if cart current_user.itempairs %>
-			<div class="greys3">
+
 				<div>
 					<%= link_to image_tag("/images/cart.jpg"), carts_path, class:"middle3" %>
 				</div>
-			</div>
+
 		<% else %>
+		<% end %>	
 		<% end %>	
 </div>	
