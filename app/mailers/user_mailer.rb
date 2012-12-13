@@ -25,6 +25,9 @@ class UserMailer < ActionMailer::Base
     mail(:to => "ericarsenault6@gmail.com", :from => "ericarsenault6@gmail.com", :subject => "#{params[:subject]}")
   end  
   
-  
+  def sendme(user)
+	@user = user
+    mail(:to => "#{@user.email}")
+  end   
   
   end

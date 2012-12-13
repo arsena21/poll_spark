@@ -13,6 +13,7 @@ PollSpark::Application.routes.draw do
 	resources :petitions, only: [:new, :create, :show, :index, :edit, :update, :destroy]
 	resources :microposts, only: [:create, :destroy]
 
+match '/sendme', to: 'friends#sendme'
 match '/checkout', to: 'carts#checkout'	
 match '/nomore', to: 'carts#destroy'
 match '/additem', to: 'users#add'

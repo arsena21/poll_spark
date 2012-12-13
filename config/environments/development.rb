@@ -37,8 +37,6 @@ PollSpark::Application.configure do
 
 
   config.action_mailer.delivery_method = :smtp
-  config.action_mailer.default_url_options = { :host => 'localhost:3001' }
+  config.action_mailer.default_url_options = { :host => 'localhost:2005' }
 
-#TWITTER_KEY = 'hslBR5EgaFPDAuisonhVoQ'
-#TWITTER_SECRET = '6A5v4o8oueGBoyY5hokS0JGxQrB3rlqKkLt6QabI'
 end

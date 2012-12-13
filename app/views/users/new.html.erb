@@ -19,21 +19,18 @@
 		<div id="logo2", class="yellow">3</div>
 		<div id="logo2", class="orange">1</div>
 		<div id="logo2", class="red">5</div>
-		&nbsp is a platform for <i>collective action</i>. Follow these 3 steps or click <%= link_to "here", about_path %> to learn more!<br /><br />
+		&nbsp is a platform for <i>collective action</i>. Follow these 3 steps to start making a difference or click <%= link_to "here", about_path %> to learn more!<br /><br />
 		
 		<!--If you could change <i>anything</i>, what would it be?	<br /><br />--!>
-		<div class="span1">
-		</div>
-		<div class="span6">
-		<b>1) Distribute</b>	<br />
-		<b>2) Participate in</b>	<br />
-		<b>3) Share with</b> <br />
-		</div>
-		<div class="span4">
-		<b><span class="yellow">3</span> Votes</b>	<br />
-		<b><span class="orange">1</span> Campaign</b>	<br />
-		<b><span class="red">5</span> Friends</b> <br />
-		</div>		
+
+		1) Distribute <b><span class="yellow">3</span> Votes </b>	<br />
+		2) Participate in <b><span class="orange">1</span> Campaign</b>	<br />
+		3) Share with <b><span class="red">5</span> Friends</b> <br />
+
+		
+		
+		
+	
 
 	</div>
 	</h3><br />
@@ -76,13 +73,8 @@
 	<div id="right">
 	<% if current_page? root_path %><br /><br />
 		<%= link_to "Start!", petitions_path, class: "btn btn-large btn-primary", id: "belowbutton" %>
-	<% end %>
+	<% end %><br /><br />
 		<div id="belowbutton">Already a user? <%= link_to "Sign in!", signin_path%></div>
 	</div>
 	
-	<% if current_page? root_path %>
-	<br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
-	<small class="centers">
-	Generation315 is a non-profit with a goal of making the world a better place, through the use of social networks and an interconnected world. 
-	</small>
-	<% end %>
+
