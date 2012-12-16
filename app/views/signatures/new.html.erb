@@ -6,12 +6,21 @@
 	<span class="orange">1</span> Campaign
 </h1>	
 
-<p class="textwrap2">
-To participate in the campaign, watch the video and follow the instructions (you can also choose not to support the campaign if you wish). <br /></p>
 
-<div id="bar2"></div>
 
-<h4 id="left"><%= @petition.name %></h4> 
+<% if current_user.present? %>
+	<% if current_user.signer == "yes"%>
+	<p class="textwrap2">
+	Thanks for helping us reach our goal! <br /></p>	
+	<% else %>
+	<p class="textwrap2">
+	This campaign is named: <b><%= @petition.name %></b>. Watch the video below! <br /></p>	
+	<% end %>
+<% else %>
+	<p class="textwrap2">
+	This campaign is named: <b><%= @petition.name %></b>. Watch the video below! <br /></p>
+<% end %>
+
 
 
 <!-- VIDEO --!>
@@ -47,21 +56,28 @@ To participate in the campaign, watch the video and follow the instructions (you
  
  
  
-<!-- CAMPAIGN GOALS --!>
-
+<!-- CAMPAIGN GOALS 
 <h4 id="left">Goals</h4> 
 <%= @petition.demands.html_safe %> 
+--!>
+
 
 <!-- PETITION SIGNATURE BOX --!>
 
 
 <% if signed_in? %>
 	<% if @b == "already signed" %>
-		<h4>Thanks for helping us reach <span id="numchange"></span>! </h4>
+	<!--	<h4>Thanks for helping us reach <span id="numchange"></span>! </h4> --!>
 	<% else %>
-		<h4><%= pluralize(@totals.total, "signature") %> have been collected!</h4> <h4>Help us reach <span id="numchange"></span>! </h4>
+		<p id="centers2"><%= pluralize(@totals.total, "signature") %> have been collected!<br />Help us reach <span id="numchange"></span>! </p>
 	<% end %>
+<% else %>
+<p id="centers2"><%= pluralize(@totals.total, "signature") %> have been collected! <br />Help us reach <span id="numchange"></span>! </p>
 <% end %>
+
+
+
+
 
 <div id="formsy">
 <% if signed_in? %>
@@ -94,7 +110,7 @@ To participate in the campaign, watch the video and follow the instructions (you
 					<canvas class="pad" id="canvas" width="400" height="100"></canvas>
 				</div>
 			<% if @b == "ok to sign" %> 
-				<%= f.submit "Participate!", class: "btn btn-large btn-primary", id:"right" %>
+				<%= f.submit "Participate!", class: "btn btn-large btn-primary", id:"right" %><br /><br /><br />
 			<% end %>
 			<% if @b == "already signed" %> 
 				<p>
@@ -125,16 +141,21 @@ To participate in the campaign, watch the video and follow the instructions (you
 			<div class="sig sigWrapper">
 			<div class="typed"></div>
 				<canvas class="pad" id="canvascontent" width="400" height="100"></canvas>
-			</div>
+			</div><br />
 		<%= link_to "Please sign in to participate", signin_path, class: "btn btn-large btn-primary" %>
 	<% end %>
 <% end %>
 </div>
 
 
+
+<% if current_user.present? %>
+<% if current_user.signer == "no"%>
 <div id="bar2"></div>
-
-
+<% end %>
+<% else %>
+<div id="bar2"></div>
+<% end %>
 
 <!-- ITEMS --!>
 
