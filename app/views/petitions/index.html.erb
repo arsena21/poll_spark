@@ -11,11 +11,10 @@
 	
 
 
-
 <%if signed_in? %>
 	<%if @user.votesleft == 0 %>
 		<p class="textwrap">
-			Thanks for Voting!<br />
+			Thanks for Voting! You will be e-mailed if your campaign gets voted in :)<br />
 			<input type="button" value="View my Votes" id="toggle_code" class="btn btn-link"/>
 		</p>
 	<%else%>
@@ -85,7 +84,7 @@
 <!-- This section refers to a class imageholder and block which are used by JS: blocksit and blocksithelp...to make into pinterest array. see blocksithelp.js --!>	
 
 	
-<div id="belowbutton" class="small">*Campaigns are listed in order of popularity</div><br />
+<div id="right2" class="small">*Campaigns are listed in order of popularity</div><br />
 <div id="container", class="contained">
 	<% @rating.each do |petition| %>
 		<% if petition.pass == "pass" %>			<!-- campaigns need to "pass" before being visible by public --!>
@@ -105,6 +104,9 @@
 		<% end %>
 	<% end %>
 </div>
+
+<br /><br /><br />
+
 
 
 

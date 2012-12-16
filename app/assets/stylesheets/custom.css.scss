@@ -85,6 +85,8 @@ margin-left:82%;
 float:right;
 }
 
+
+
 .middle3{
 
 }
@@ -430,7 +432,7 @@ html,body{
 
 
 #body {
-    padding-bottom: 25px;    /* height of footer */
+    /* height of footer */
 	
 }
 
@@ -472,6 +474,29 @@ height:40px;
 	margin-left:40px;
 	margin-right:40px;
 }
+
+.block2{
+
+	float:left;
+	padding: 15px;
+	background:#fff;
+	margin-bottom:10px;
+	line-height:1.7;
+	box-shadow: 0 1px 3px rgba(34,25,25,0.4);
+	-moz-box-shadow: 0 1px 3px rgba(34,25,25,0.4);
+	-webkit-box-shadow: 0 1px 3px rgba(34,25,25,0.4);
+
+	transition: box-shadow 1s;
+	-moz-transition: -moz-box-shadow 1s;
+	-webkit-transition: -webkit-box-shadow 1s;
+}
+.block2:hover {
+	box-shadow: 0 1px 13px rgba(34,25,25,1);
+	-moz-box-shadow: 0 1px 13px rgba(34,25,25,1);
+	-webkit-box-shadow: 0 1px 13px rgba(34,25,25,1);
+}
+
+
 
 .block{
 	padding: 15px;
@@ -574,7 +599,6 @@ height:40px;
   letter-spacing: -1px;
   margin-bottom: 10px;
   font-weight: lighter;
-  text-align:justify;
 }
 
 .textwrap3{
@@ -656,6 +680,7 @@ float:right;
 
 #belowbutton{
 float:right;
+font-size: 2em;
 }
 
 /* microposts */
@@ -670,6 +695,16 @@ margin: 0 auto;
 position:relative;
 }
 
+.centers2{
+text-align:center; 
+margin: 0 auto;
+position:relative;
+  font-size: 2em;
+  letter-spacing: -2px;
+  margin-bottom: 15px;
+  margin-top: 30px;
+}
+
 .bold{
 font-weight: bold;
   font-size: 10px;
@@ -678,8 +713,8 @@ font-weight: bold;
 #centers{
 margin-left: 30%;
 margin-right: 30%;
-
 }
+
 #right1{
 text-align:right
 }

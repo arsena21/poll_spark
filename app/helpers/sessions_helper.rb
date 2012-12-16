@@ -56,10 +56,15 @@ module SessionsHelper
 		@friend = Friend.new(:email => email, :user_id => user)
 		@friend.save
 		a =+ 1
+		current_user.shares = current_user.shares.to_i + 1
+		current_user.save
 		end
 	end
 
-
+	def doneshare(user)
+		user.shares = 5
+		user.save
+	end
 
 
 end

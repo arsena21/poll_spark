@@ -71,13 +71,14 @@ class UsersController < ApplicationController
     end
   end
 
+  
   def edit
-  	@user = current_user
+  	@user = User.find(params[:id])
 	@status = @user.confirmed
 		if @status == "false"
+			session[:user_id] = @user.id
 			confirm @user
-			sign_in @user
-			flash[:success] = "Account created!"
+			flash[:success] = "Successfully logged in!"
 			redirect_to petitions_path
 		end
   end

@@ -1,25 +1,4 @@
-<!-- <% provide :title do  %>
-	<% "Sign in" %>
-<%end%>
 
-
-<h1>Sign in</h1>
-
-<%= form_for(:session, url: sessions_path) do |f| %>
-
-  <%= f.label :email %>
-  <%= f.text_field :email %>
-
-  <%= f.label :password %>
-  <%= f.password_field :password %>
-
-  <%= f.submit "Sign in", class: "btn btn-large btn-primary" %>
-<% end %>
-
-New user? <%= link_to "Sign up now!", signup_path %>
-
-
---!>
 
 
 <% provide :title do  %>
@@ -28,14 +7,72 @@ New user? <%= link_to "Sign up now!", signup_path %>
 
 
 <h1>Sign in</h1>
-<!--
-<a href="/auth/twitter"><img src="/images/twitter_64.png" height="64px" style="width:64px !important" /></a> --!>
-<a href="/auth/facebook"><img src="/images/facebook_64.png" height="64px" style="width:64px !important" /></a>
+
+<div class="small">
+
+*You will <b>only</b> receive 2 emails: one to verify your account, and a second if a campaign you voted for is launched.* <br /><i>(We <u>also</u> hate spam!)</i><br/><br/>
+
+</div><br />
+
+<div class="row" > 
+	<div class="span1" > 
+	</div>
+	
+	<div class="span2" > 
+		<div class="textwrap3"><div id="center">Option 1: </div></div><br />
+			<div class="block2">
+				
+				<div class="imgholder3">
+					<a href="/auth/facebook"><img src="/images/facebook_64.png" /></a>
+				</div>
+		</div>
+	</div>
+	<div class="span1" > 
+	</div>
+	<div class="span2" > 	
+		<div class="textwrap3"><div id="center">Option 2: </div></div><br />
+		<div class="block2">
+			
+			<div class="imgholder3">
+				<a href="/auth/twitter"><img src="/images/google_64.png" /></a>
+			</div>
+		</div>
+	</div>
+	<div class="span1" > 
+	</div>
+	<div class="span4" > 	
+		<div class="textwrap3"><div id="center">Option 3: </div></div><br />
+		  <%= form_for(@user) do |f| %>
+		  <%= render 'shared/error_messages', object: f.object %>
+
+		  <%= f.label :name %>
+		  <%= f.text_field :name, class:"span12" %>
+
+		  <%= f.label :email %>
+		  <%= f.text_field :email, class:"span12" %>
+
+		  <%= f.label :country %>
+		  <%= f.text_field :country, class:"span12" %>
+		  
+		  <%= f.label :password %>
+		  <%= f.password_field :password, class:"span12" %>
+
+		  <%= f.label :password_confirmation, "Confirmation" %>
+		  <%= f.password_field :password_confirmation, class:"span12" %>
+		  <div class="votes">
+		  <div class="row">
+		  <%= f.submit "Signup!", class: "btn btn-large btn-primary" %>
+		  </div>
+		  Returning User? <%= link_to " login here", "/auth/identity" %> <br />
+		  <%= link_to "Create an account", "/auth/identity/register" %>
+		  </div>
+		<% end %>
+	</div>
+	
+	
+	
+</div>
 
 
-<p>
-  <strong>Don&rsquo;t use these services?</strong>
-  <%= link_to "Create an account", "/auth/identity/register" %> or
-  <%= link_to "login", "/auth/identity" %> with a password.
-</p>
+  
 

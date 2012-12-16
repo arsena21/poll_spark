@@ -27,7 +27,7 @@ class UserMailer < ActionMailer::Base
   
   def sendme(user)
 	@user = user
-    mail(:to => "#{@user.email}")
+    mail(:to => "#{@user.email}", :subject => "Reminder...")
   end   
   
   end

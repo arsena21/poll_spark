@@ -129,6 +129,9 @@ end
 						if current_user.votesleft == 0 && current_user.shares.to_i < 4 
 							flash[:success] = "Thanks for voting, help us spread the word by sharing with friends!"
 							redirect_to share_path
+						else
+							flash[:success] = "Thanks for voting!"
+							redirect_to petitions_path						
 						end
 					end
 				end
@@ -152,6 +155,9 @@ end
     flash[:success] = "Petition proposal destroyed."
     redirect_to root_path
   end
+  
+  
+
   
 end
 
