@@ -49,10 +49,7 @@ class PetitionsController < ApplicationController
 	@totals = Signature.last[:total]
 	@user = current_user
   end
- 
-  def show
-  	@petition = Petition.find(params[:id])
-  end  
+  
   
   def edit
   	@user = current_user
@@ -74,6 +71,7 @@ class PetitionsController < ApplicationController
 end
   
   def update
+	
 	@petition = Petition.find(params[:id])
 	@user = current_user
 	if params[:done] || params[:almostdone]

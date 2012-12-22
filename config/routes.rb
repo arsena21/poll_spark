@@ -10,9 +10,10 @@ PollSpark::Application.routes.draw do
 	resources :signatures
 	resources :friends, only: [:create, :new, :email_share]
     resources :sessions, only: [:new, :create, :destroy]
-	resources :petitions, only: [:new, :create, :show, :index, :edit, :update, :destroy]
+	resources :petitions, only: [:new, :create, :index, :edit, :update, :destroy]
 	resources :microposts, only: [:create, :destroy]
 
+match '/nope', to: 'signatures#nope'	
 match '/sendme', to: 'friends#sendme'
 match '/checkout', to: 'carts#checkout'	
 match '/nomore', to: 'carts#destroy'

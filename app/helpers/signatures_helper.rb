@@ -3,7 +3,9 @@ module SignaturesHelper
 	
 	
 	def test
-		Signature.find_by_email(current_user.email).present?
+		if current_user.signer == "yes"
+		return true
+		end
 	end
 	
 	def find

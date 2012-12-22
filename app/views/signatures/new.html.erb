@@ -7,18 +7,20 @@
 </h1>	
 
 
-
 <% if current_user.present? %>
 	<% if current_user.signer == "yes"%>
-	<p class="textwrap2">
-	Thanks for helping us reach our goal! <br /></p>	
+		<p class="textwrap2">
+			Thanks for helping us reach our goal! <br />
+		</p>	
 	<% else %>
-	<p class="textwrap2">
-	This campaign is named: <b><%= @petition.name %></b>. Watch the video below! <br /></p>	
+		<p class="textwrap2">
+			This campaign is named: <b><%= @petition.name %></b>. Watch the video below! <br />
+		</p>	
 	<% end %>
 <% else %>
 	<p class="textwrap2">
-	This campaign is named: <b><%= @petition.name %></b>. Watch the video below! <br /></p>
+		This campaign is named: <b><%= @petition.name %></b>. Watch the video below! <br />
+	</p>
 <% end %>
 
 
@@ -69,10 +71,10 @@
 	<% if @b == "already signed" %>
 	<!--	<h4>Thanks for helping us reach <span id="numchange"></span>! </h4> --!>
 	<% else %>
-		<p id="centers2"><%= pluralize(@totals.total, "signature") %> have been collected!<br />Help us reach <span id="numchange"></span>! </p>
+		<p class="textwrap2" id="center"><%= pluralize(@totals.total, "signature") %> have been collected!<br />Help us reach <span id="numchange"></span>! </p>
 	<% end %>
 <% else %>
-<p id="centers2"><%= pluralize(@totals.total, "signature") %> have been collected! <br />Help us reach <span id="numchange"></span>! </p>
+	<p class="textwrap2" id="center"><%= pluralize(@totals.total, "signature") %> have been collected! <br />Help us reach <span id="numchange"></span>! </p>
 <% end %>
 
 
@@ -110,7 +112,12 @@
 					<canvas class="pad" id="canvas" width="400" height="100"></canvas>
 				</div>
 			<% if @b == "ok to sign" %> 
-				<%= f.submit "Participate!", class: "btn btn-large btn-primary", id:"right" %><br /><br /><br />
+				<div class="row">
+				<%= f.submit "Participate!", class: "btn btn-large btn-primary", id:"right" %>
+				</div>
+				<div div id="right2" class="small">
+					<%= link_to "I don't support this", {:action => "nope", :controller=>"signatures"}  %>
+				</div>
 			<% end %>
 			<% if @b == "already signed" %> 
 				<p>
@@ -120,7 +127,8 @@
 		<% end %>
 	<% end %>
 <% end %>
-	  
+
+
 	 
 <% if @b == "no user" %>
 	<%= form_for(@signature, :html => { :class => "sigPad"} ) do |f| %>
@@ -150,11 +158,11 @@
 
 
 <% if current_user.present? %>
-<% if current_user.signer == "no"%>
-<div id="bar2"></div>
-<% end %>
+	<% if current_user.signer == "no"%>
+		<div id="bar2"></div>
+	<% end %>
 <% else %>
-<div id="bar2"></div>
+	<div id="bar2"></div>
 <% end %>
 
 <!-- ITEMS --!>
@@ -193,7 +201,6 @@
 
 
 <div class="highlight">
-
 <div class="span8 offset2" id="padd">
 	
 	<% if @petition.microposts.any? %>

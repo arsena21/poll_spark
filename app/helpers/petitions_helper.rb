@@ -11,6 +11,11 @@ module PetitionsHelper
 		current_user.vote.save
 	end	
 	
+	def link_to_submit(text)
+	  link_to_function text, "$(this).closest('form').submit()"
+	end	
+	
+	
 	def record2(petition)
 		if current_user.vote.vote2.nil? 
 			current_user.vote.vote2 = petition.id

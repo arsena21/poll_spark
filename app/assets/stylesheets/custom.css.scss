@@ -49,7 +49,7 @@ font-size: 0.8em;
 	border-top: 1px solid #79CDCD;
 	width: 120%;
 }
-	
+
 #bar2{
 	border-top: 1px solid #79CDCD;
 	position: center;
@@ -226,7 +226,7 @@ overflow: auto;
 }
 
 .yellow {
-color: #E8A317;
+color: #FFEF00;
 }
 
 #center{
@@ -268,6 +268,10 @@ margin-right:10px;
 #lefti{
 text-align:left;
 float:left;
+}
+
+#blue{
+color:#08C;
 }
 
 h1 {
@@ -370,15 +374,11 @@ margin-right:40px;
 .orange {
   color: orange;
 }
-.yellow {
-  color: yellow;
-}
+
 .red {
   color: red;
 }
-.blue {
-  color: #4775FF;
-}
+
 
 .leftpadd{
 margin-left:61%;
@@ -433,7 +433,7 @@ html,body{
 
 #body {
     /* height of footer */
-	
+
 }
 
 #push {
@@ -726,7 +726,7 @@ margin-right: 30%;
 
 
 #right1{
-text-align:right
+float:right;
 }
 #right{
 float:right; 

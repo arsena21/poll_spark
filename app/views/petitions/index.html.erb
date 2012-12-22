@@ -14,7 +14,7 @@
 <%if signed_in? %>
 	<%if @user.votesleft == 0 %>
 		<p class="textwrap">
-			Thanks for Voting! You will be e-mailed if your campaign gets voted in :)<br />
+			Thanks for voting! You will be e-mailed if your campaign gets launched. <br />
 			<input type="button" value="View my Votes" id="toggle_code" class="btn btn-link"/>
 		</p>
 	<%else%>
@@ -33,15 +33,13 @@
 						<% @rating.each do |petition| %>		
 							<% if (current_user.vote.vote1 == petition.id) || (current_user.vote.vote2 == petition.id) || (current_user.vote.vote3 == petition.id)%>
 								<div class="block" id="img4">
-									<div class="imgholder">
-										<%= link_to image_tag(petition.pics_url), edit_petition_path(petition)  %>
-									</div>
 									<strong>
 										<%= link_to petition.name, edit_petition_path(petition)	, {:style=>'color:#000000;'} %>
 									</strong>
-									<div class="meta">
-										<%= petition.rating %> Votes
+									<div class="imgholder">
+										<%= link_to image_tag(petition.pics_url), edit_petition_path(petition)  %>
 									</div>
+
 									<% if(current_user.vote.vote1 == petition.id) && (current_user.vote.vote3 == petition.id) && (current_user.vote.vote2 == petition.id)%>
 									You voted <b>three times</b> for this campaign
 									<% else %>
@@ -59,7 +57,9 @@
 											<% end %>							
 										<% end %>
 									<% end %>	<br />
-									<%= link_to "Remove vote", :action => "remove", :order_param => petition.id, :controller=>"users" %><br />
+									<div class="centers">
+									<%= link_to "Remove vote", {:action => "remove", :order_param => petition.id, :controller=>"users"}  %><br />
+									</div>
 								</div>
 							<% end %>	
 						<% end %>
@@ -90,15 +90,35 @@
 		<% if petition.pass == "pass" %>			<!-- campaigns need to "pass" before being visible by public --!>
 			<% if petition.launched == "no" %>
 				<div class="block">
+					<strong>
+						<%= link_to petition.name, edit_petition_path(petition)	, {:style=>'color:#000000;'} %>	
+					</strong>					
+					
 					<div class="imgholder">
 						<%= link_to image_tag(petition.pics_url), edit_petition_path(petition)  %>
 					</div>
-					<strong>
-						<%= link_to petition.name, edit_petition_path(petition)	, {:style=>'color:#000000;'} %>
-					</strong>
-					<div class="meta">
-						<%= petition.rating %> Votes
-					</div>
+
+					
+						
+
+						<div><%=  "#{petition.rating} Votes"	 %></div>
+						
+						
+			
+			<% if signed_in? %>
+				<% if @user.votesleft != 0 %>
+					<%= form_for(petition, :class => "form") do |f| %>
+						<div class="centers">
+							<%= link_to_submit "Quick Vote" %>
+						</div>	
+					<% end %>
+				<% else %>	
+				<% end %>	
+			<% else %>		
+				<div class="centers">
+				<%= link_to "Sign in to vote", signin_path %>
+				</div>
+			<% end %>	
 				</div>
 			<% end %>	
 		<% end %>
@@ -297,7 +317,10 @@ $(function(){
 			$(this).val("View my Votes");
 		}
     });
-});
+	
+	
+	
+	});
 </script>
 
 

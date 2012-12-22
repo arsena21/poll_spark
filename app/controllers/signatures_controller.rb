@@ -56,5 +56,28 @@ class SignaturesController < ApplicationController
     end
   end
   
+  def nope
+	if signed_in?
+	signature current_user
+		if signed_in? && current_user.votesleft == 0  && current_user.signer == "yes" && current_user.shares.to_i > 4 
+			flash[:success] = "Thanks for participating in Generation 315!"
+			redirect_to done_path
+		else       
+			if current_user.signer == "yes" && current_user.votesleft == 0
+				flash[:success] = "Hopefully a campaign you believe in will get launched! Help us spread the word by sharing with friends."
+				redirect_to share_path
+			else
+				flash[:success] = "Hopefully a campaign you believe in will get launched! Help us determine the next campaign by voting 3 times."
+				redirect_to petitions_path
+			end
+		end	
+	else
+	redirect_to signin_path
+	flash[:notice] = "Please sign in!"
+	
+	end
+	
+  end
+  
   
   end
