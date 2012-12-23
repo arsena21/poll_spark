@@ -3,6 +3,7 @@ Rails.application.config.middleware.use OmniAuth::Builder do
   provider :twitter, 'gAUhwMPpyEzVg4J3XdnTog', 'P6STUgxt19rlNrbetKOL9ukCY9TPv8E7zPb4gZcqXU'
   provider :facebook, '260799227376971', 'a9f139f31a924d9e1f7583080647c835'
   provider :identity
+  provider :google, '860642848197.apps.googleusercontent.com', 'C0i-vqIK0bmpzMql5QCmiijW'
 end
 OmniAuth.config.on_failure = Proc.new { |env|
   OmniAuth::FailureEndpoint.new(env).redirect_to_failure
