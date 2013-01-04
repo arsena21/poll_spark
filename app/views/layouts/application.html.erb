@@ -1,32 +1,33 @@
 <!DOCTYPE html>
 <html>
 	<head>
+		<meta name="msvalidate.01" content="909B5A31BD032686EFFA3E119B9A036B" />
 		<title><%= full_title(yield(:title)) %></title>
 		<script src="//ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
-		
+
 		<!--Stripe.js is a payment tool-->
 		<script type="text/javascript" src="https://js.stripe.com/v1/"></script>
-		
-		<%= javascript_include_tag "application" %> 
+
+		<%= javascript_include_tag "application" %>
 		<script src="http://ajax.cdnjs.com/ajax/libs/json2/20110223/json2.js"></script>
-		
+
 		<%= stylesheet_link_tag    "application", media: "all" %>
-		
+
 		<!--below is for stripe.js, the location of STRIPE_PUBLIC_KEY is in Initializers/stripe.rb-->
 		<%= tag :meta, :name => "stripe-key", :content => STRIPE_PUBLIC_KEY %>
-		
+
 		<%= csrf_meta_tags %>
-		<%= render 'layouts/shim' %>    
+		<%= render 'layouts/shim' %>
 	</head>
-	
-	
+
+
 	<% if (current_page? root_path) || (current_page? done_path) %>
-		<body class="toot" id="whiteback">  
+		<body class="toot" id="whiteback">
 	<% else %>
 		<body class="toot" id="greyback">
 	<% end %>
 		<div id="holder">
-			<%= render 'layouts/header' %>	
+			<%= render 'layouts/header' %>
 			<% if (yield(:toppage)).present? %>
 				<h1><%= infull_title(yield(:toppage)) %></h1>
 			<%end%>
@@ -43,19 +44,19 @@
 									<div class="alert alert-<%= key %>"><%= value %></div>
 								<% end %>
 								<%= yield %>
-								<div id="push"></div>	
+								<div id="push"></div>
 							</div>
-						</div> 
-					</div> 
+						</div>
+					</div>
 					<%else%>
-						
+
 						<% if (current_page? share_path) || (current_page? items_path) || (current_page? petitionnow_path) || (current_page? petitions_path) || (current_page?(edit_petition_path(1..99))) || (current_page? home_path) || (current_page? fitness_path) || (current_page? food_path) || (current_page? fun_path) || (current_page? books_path) %>
 							<%= render 'layouts/sidebar' %>
 						<% else %>
 							<div class="span2">
 							</div>
 						<% end %>
-						
+
 						<div class="span8" id="white">
 						<div class="buffer">
 							<div class="span12" id ="sizer">
@@ -64,11 +65,11 @@
 									<div class="alert alert-<%= key %>"><%= value %></div>
 								<% end %>
 								<%= yield %>
-								<div id="push"></div>	
+								<div id="push"></div>
 							</div>
-						</div> 
-					</div> 
-					<%end%>					
+						</div>
+					</div>
+					<%end%>
 				</div>
 			</div>
 			<!-- <%= debug(params) if Rails.env.development? %> --!>
