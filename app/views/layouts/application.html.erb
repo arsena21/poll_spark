@@ -26,7 +26,7 @@
 		<body class="toot" id="greyback">
 	<% end %>
 		<div id="holder">
-			<%= render 'layouts/header' %>	
+			 <%= render 'layouts/header' %>	 
 			<% if (yield(:toppage)).present? %>
 				<h1><%= infull_title(yield(:toppage)) %></h1>
 			<%end%>
@@ -50,7 +50,9 @@
 					<%else%>
 						
 						<% if (current_page? share_path) || (current_page? items_path) || (current_page? petitionnow_path) || (current_page? petitions_path) || (current_page?(edit_petition_path(1..99))) || (current_page? home_path) || (current_page? fitness_path) || (current_page? food_path) || (current_page? fun_path) || (current_page? books_path) %>
-							<%= render 'layouts/sidebar' %>
+							<!--<%= render 'layouts/sidebar' %>--!>
+							<div class="span2">
+							</div>
 						<% else %>
 							<div class="span2">
 							</div>

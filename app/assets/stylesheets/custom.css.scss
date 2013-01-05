@@ -15,6 +15,10 @@ height: 64px;
 width: 64px;
 }
 
+.lightgray{
+color:white;
+}
+
 #socialiconsmall{
 height: 32px;
 width: 32px;
@@ -323,6 +327,7 @@ p {
 }
 #logoright{
   margin-right: 30px;
+    color: white;
 }
 
 #logo {
@@ -348,7 +353,9 @@ p {
   float:left;
 }
 
-
+.white{
+color:white;
+}
 
 #white {
 	background-color: white;
@@ -478,7 +485,6 @@ height:40px;
 .block2{
 
 	float:left;
-	padding: 15px;
 	background:#fff;
 	margin-bottom:10px;
 	line-height:1.7;
@@ -500,7 +506,7 @@ height:40px;
 
 .block{
 	padding: 15px;
-	background:#fff;
+	background:#FAFAFA;
 	margin-bottom:10px;
 	line-height:1.7;
 	box-shadow: 0 1px 3px rgba(34,25,25,0.4);
@@ -589,6 +595,7 @@ height:40px;
   letter-spacing: -1px;
   margin-bottom: 30px;
   font-weight: lighter;
+  line-height:110%;
 }
 
 .textwrap2{
@@ -598,6 +605,7 @@ height:40px;
   letter-spacing: -1px;
   margin-bottom: 10px;
   font-weight: lighter;
+  line-height:110%;
 }
 
 .textwrap3{

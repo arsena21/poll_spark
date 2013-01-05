@@ -6,9 +6,12 @@
 </h1>	<br /><br />
 
 
-	<p id="centers2">Help reach our goal by sharing with 5 friends and family. <br />
-	Numbers <i>will</i> make a difference!	</p><br /><br />
+	<div class="textwrap2" id="center">Help reach our goal by sharing with 5 friends and family. <br />
+	Numbers <i>will</i> make a difference!	</div><br /><br />
 <p class="textwrap2">
+
+
+
 	<!--
 	<% if signed_in? %>
 			<% if @friendsleft.to_i == 5 %>
@@ -28,6 +31,8 @@
 		You have <span class="red">5 friends</span> left!
 	<% end %>
 	--!>
+	
+
 </p>
 	
 	
@@ -68,24 +73,25 @@
 <div class="span6">
 	<% if signed_in? %>
 		<h4><div id="right1">Or...   </div></h4>
-		<div id="textright">Send a link to 5 friends from your personal email. Click the link below to send yourself a reminder!</div>
+		<div class="textwrap2" id="center">Send a link to 5 friends from your personal email. Click the link below to send yourself a reminder!</div>
 		<%= link_to "Send me a reminder email!", sendme_path, class: "btn btn-large btn-primary", id:"right" %>
 	<% end %>
 </div>
 </div>
 --!>
 
-<div class="row">
-<div class="span4">
-</div>
-<div class="span4">
+
+
+<div id="center">
+
 	<% if signed_in? %>
 		<%= link_to "Send me a reminder email!", sendme_path, class: "btn btn-large btn-primary" %>
 	<% else %>
 		<%= link_to "Please sign in to share!", signin_path, class: "btn btn-large btn-primary" %>
 	<% end %>
+
 </div>
-</div>
+
 
 
 
