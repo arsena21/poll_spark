@@ -10,7 +10,7 @@
 <!--Petitions that have PASSED are below -->
 
 <% if @petition.pass == "pass"%>
-	
+
 	<!-- DESCRIPTION --!>
 	<h4 id="left">Description</h4>
 	<div class="span4", id="formsy2">
@@ -19,11 +19,11 @@
 	<%= @petition.description.html_safe %>
 
 	<!-- LINKS --!>
-	
-	
+
+
 <input type="button" value="View References" id="toggle_code" class="btn btn-link"/>
 
-<div class="highlight">	
+<div class="highlight">
 	<div class="wid">
 	<h4 id="left">References</h4>
 	<%= @petition.links.html_safe  %>
@@ -31,7 +31,7 @@
 </div>
 
 	<div id="bar2"></div>
-	
+
 <script>
 $(function(){
     $('.highlight').hide()
@@ -46,63 +46,68 @@ $(function(){
     });
 });
 </script>
-	
-	
-	
-	
-	
-	
+
+
+
+
+
+
 	<!-- CAMPAIGN GOALS --!>
 	<h4 id="left">Campaign Goals</h4>
 	<%= @petition.demands.html_safe %>
 
 	<!--VOTE FORM BELOW-->
-	
+
 		<% if signed_in? %>
 			<% if @user.votesleft != 0 %>
 				<%= form_for(@petition) do |f| %>
 					<div class="centers">
 						<%= f.submit "Vote for this campaign", class: "btn btn-large btn-primary" %>
-					</div>	
+					</div>
 				<% end %>
-			<% end %>	
+			<% end %>
 			<% if @user.votesleft == 0 %>
 				<div class="centers"><div class="btn btn-large btn-info">Thanks for voting!</div></div>
-			<% end %>	
-		<% end %>		
-		
+			<% end %>
+		<% end %>
+
 		<div class="row">
 			<% if !signed_in? %>
 				<div class="centers"><%= link_to "Sign in to vote", signin_path, class: "btn btn-large btn-primary" %></div>
-			<% end %>	
-		</div>
-		
-		
+			<% end %>
+			<div id='fb-root'></div>
+    <script src='http://connect.facebook.net/en_US/all.js'></script>
+    <p><a onclick='postToFeed(); return false;' style="position:absolute">Post to Feed</a></p>
+    <p id='msg'></p>
 
-		
+		</div>
+
+
+
+
 		<!--PRODUCTS for sale IN THE BLOCKSIT.JS THING-->
-		
-		
+
+
 		<% if @prod %>
 		<div id="bar2"></div>
-		<h4 id="left">Related Products</h4> 
-		<div id="container3", class="contained"> 
+		<h4 id="left">Related Products</h4>
+		<div id="container3", class="contained">
 			<% @items.each do |item| %>
 				<% if item.launched == "yes" %>
-					<!--  if (item.home == @petition.petition_type.home) || (item.fun == @petition.petition_type.fun) ||(item.book == @petition.petition_type.book) ||(item.fitness == @petition.petition_type.fitness)  
+					<!--  if (item.home == @petition.petition_type.home) || (item.fun == @petition.petition_type.fun) ||(item.book == @petition.petition_type.book) ||(item.fitness == @petition.petition_type.fitness)
 					--!>
 					<% if item.petition_id == @petition.id %>
 						<div class="block">
 							<div class="imgholder">
 								<%= link_to image_tag(item.pictures_url), edit_item_path(:id => item.id)  %> <br />
-							</div>	
+							</div>
 							<strong>
 								<%= link_to item.name, edit_item_path(:id => item.id)	, {:style=>'color:#000000;'} %>
 							</strong>
 							<div class="meta">
 								<%= item.cost.to_f/100 %> $
-							</div> 
-						</div>					
+							</div>
+						</div>
 					<% end %>
 				<% end %>
 			<% end %>
@@ -111,12 +116,12 @@ $(function(){
 
 	<div id="bar2"></div>
 
-	
-	
+
+
 	<!--MICROPOSTS BELOW-->
-	
+
 	<input type="button" value="View Comments" id="toggle_code2" class="btn btn-link"/><br /><br /><br /><br />
-	<div class="highlight2">	
+	<div class="highlight2">
 	<section>
 		<div class="span8 offset2" id="padd">
 			<% if @petition.microposts.any? %>
@@ -135,7 +140,7 @@ $(function(){
 		</div>
 	</section>
 	</div>
-	
+
 	<script>
 	$(function(){
 		$('.highlight2').hide()
@@ -149,11 +154,11 @@ $(function(){
 			}
 		});
 	});
-	</script>	
-	
-	
-	
-	
+	</script>
+
+
+
+
 <%end%>
 
 
@@ -241,20 +246,43 @@ $(function(){
 			<!-- THIS IS FOR THE BLOCKSIT.JS...to make images line up nice -->
 
 			<script>
-			var editor = new wysihtml5.Editor("wysihtml5-textarea2", { // id of textarea element
+			/*var editor = new wysihtml5.Editor("wysihtml5-textarea2", { // id of textarea element
 			  toolbar:      "wysihtml5-toolbar2", // id of toolbar element
 			  parserRules:  wysihtml5ParserRules // defined in parser rules set
-			});
+			});*/
 			</script>
-			<script>var editor = new wysihtml5.Editor("wysihtml5-textarea", { // id of textarea element
+			<script>/*var editor = new wysihtml5.Editor("wysihtml5-textarea", { // id of textarea element
 			  toolbar:      "wysihtml5-toolbar", // id of toolbar element
 			  parserRules:  wysihtml5ParserRules // defined in parser rules set
-			});
+			});*/
 			</script>
-			<script>var editor = new wysihtml5.Editor("wysihtml5-textarea3", { // id of textarea element
+			<script>/*var editor = new wysihtml5.Editor("wysihtml5-textarea3", { // id of textarea element
 			  toolbar:      "wysihtml5-toolbar3", // id of toolbar element
 			  parserRules:  wysihtml5ParserRules // defined in parser rules set
-			});
+			});*/
+
+			FB.init({appId: "260799227376971", status: true, cookie: true});
+
+      function postToFeed() {
+
+        // calling the API ...
+        var obj = {
+          method: 'feed',
+          redirect_uri: 'http://localhost:3333/petitions',
+          link: 'http://localhost:3333/petitions',
+          picture: 'http://localhost:3333/images/front_page_logo.png',
+          name: 'Change By Five',
+          caption: 'Support Petition',
+          description: 'Vote For this campaign'
+        };
+
+        function callback(response) {
+          document.getElementById('msg').innerHTML = "Post ID: " + response['post_id'];
+        }
+
+        FB.ui(obj, callback);
+      }
+
 			</script>
 
 
