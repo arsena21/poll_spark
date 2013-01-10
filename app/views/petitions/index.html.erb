@@ -5,10 +5,10 @@
 <!-- VOTE ON FUTURE CAMPAIGNS --!>
 
 
-<h1> 
+<h1>
 	<span class="yellow">3</span> Votes
-</h1>	
-	
+</h1>
+
 
 
 <%if signed_in? %>
@@ -20,17 +20,17 @@
 	<%else%>
 		<p class="textwrap2">
 			You have <span class="red"><%= pluralize(@user.votesleft, "vote") %> left</span>! Vote on the campaigns which are most important to you. Campaigns are launched based on popular vote.<br />
-		<% if current_user.votesleft < 3 %>	
+		<% if current_user.votesleft < 3 %>
 		<input type="button" value="View my Votes" id="toggle_code" class="btn btn-link"/>
 		<% end %>
 		</p>
-	<% end %>	
+	<% end %>
 		<% if current_user.vote.present? %>
 			<div class="highlight">
 				<div class="shh">
-					<% if current_user.votesleft < 3 %>		
+					<% if current_user.votesleft < 3 %>
 						<h4 id="left">My Campaigns</h4> <br/>
-						<% @rating.each do |petition| %>		
+						<% @rating.each do |petition| %>
 							<% if (current_user.vote.vote1 == petition.id) || (current_user.vote.vote2 == petition.id) || (current_user.vote.vote3 == petition.id)%>
 								<div class="block" id="img4">
 									<strong>
@@ -45,23 +45,23 @@
 									<% else %>
 										<% if (current_user.vote.vote2 == petition.id) && (current_user.vote.vote3 == petition.id)%>
 										You voted <b>twice</b> for this campaign
-										<% else %>							
+										<% else %>
 											<% if (current_user.vote.vote1 == petition.id) && (current_user.vote.vote3 == petition.id)%>
 												You voted <b>twice</b> for this campaign
-											<% else %>							
+											<% else %>
 												<% if (current_user.vote.vote1 == petition.id) && (current_user.vote.vote2 == petition.id) %>
 												You voted <b>twice</b> for this campaign
-												<% else %>	
+												<% else %>
 													You voted <b>once</b> for this campaign
-												<% end %>	
-											<% end %>							
+												<% end %>
+											<% end %>
 										<% end %>
 									<% end %>	<br />
 									<div class="centers">
 									<%= link_to "Remove vote", {:action => "remove", :order_param => petition.id, :controller=>"users"}  %><br />
 									</div>
 								</div>
-							<% end %>	
+							<% end %>
 						<% end %>
 					<% end %>
 				</div>
@@ -71,7 +71,7 @@
 	<%end%>
 <%else%>
 	<p class="textwrap">
-		You have <span class="red">3 votes left</span>! Vote on the campaigns which are most important to you. Campaigns are launched based on popular vote. 
+		You have <span class="red">3 votes left</span>! Vote on the campaigns which are most important to you. Campaigns are launched based on popular vote.
 	</p>
 <%end%>
 
@@ -81,9 +81,9 @@
 
 
 
-<!-- This section refers to a class imageholder and block which are used by JS: blocksit and blocksithelp...to make into pinterest array. see blocksithelp.js --!>	
+<!-- This section refers to a class imageholder and block which are used by JS: blocksit and blocksithelp...to make into pinterest array. see blocksithelp.js --!>
 
-	
+
 <div id="right2" class="small">*Campaigns are listed in order of popularity</div><br />
 <div id="container", class="contained">
 	<% @rating.each do |petition| %>
@@ -91,36 +91,36 @@
 			<% if petition.launched == "no" %>
 				<div class="block">
 					<strong>
-						<%= link_to petition.name, edit_petition_path(petition)	, {:style=>'color:#000000;'} %>	
-					</strong>					
-					
+						<%= link_to petition.name, edit_petition_path(petition)	, {:style=>'color:#000000;'} %>
+					</strong>
+
 					<div class="imgholder">
 						<%= link_to image_tag(petition.pics_url), edit_petition_path(petition)  %>
 					</div>
 
-					
-						
+
+
 
 						<div><%=  "#{petition.rating} Votes"	 %></div>
-						
-						
-			
+
+
+
 			<% if signed_in? %>
 				<% if @user.votesleft != 0 %>
 					<%= form_for(petition, :class => "form") do |f| %>
 						<div class="centers">
 							<%= link_to_submit "Quick Vote" %>
-						</div>	
+						</div>
 					<% end %>
-				<% else %>	
-				<% end %>	
-			<% else %>		
+				<% else %>
+				<% end %>
+			<% else %>
 				<div class="centers">
 				<%= link_to "Sign in to vote", signin_path %>
 				</div>
-			<% end %>	
+			<% end %>
 				</div>
-			<% end %>	
+			<% end %>
 		<% end %>
 	<% end %>
 </div>
@@ -130,13 +130,13 @@
 
 
 
-<!-- The following section is for ADMIN...which has access to ALL petitions, not just the ones with a "pass" --!>	
-	
+<!-- The following section is for ADMIN...which has access to ALL petitions, not just the ones with a "pass" --!>
+
 <%if signed_in? %>
 	<% if current_user.admin? %>
 		<section id="row"><div id="bar2"></div></section>
 		<p class="textwrap">NOT YET PASSED</p>
-		<div id="container", class="contained"> 
+		<div id="container", class="contained">
 			<% @rating.each do |petition| %>
 				<% if petition.pass == "no" %>
 					<div class="block">
@@ -147,11 +147,11 @@
 							<%= link_to petition.name, edit_petition_path(petition)	, {:style=>'color:#000000;'} %>
 						</strong>
 					</div>
-				<% end %>	
+				<% end %>
 			<% end %>
 		</div>
 	<% end %>
-<% end %>	
+<% end %>
 
 <!-- CURRENT CAMPAIGN --!>
 
@@ -159,7 +159,7 @@
 	<% if current_user.admin? %>
 		<section id="row"><div id="bar2"></div></section>
 		<p class="textwrap">CURRENT CAMPAIGN</p>
-		<div id="container", class="contained"> 
+		<div id="container", class="contained">
 			<% @rating.each do |petition| %>
 				<% if petition.launched == "yes" %>
 					<div class="block">
@@ -170,11 +170,11 @@
 							<%= link_to petition.name, edit_petition_path(petition)	, {:style=>'color:#000000;'} %>
 						</strong>
 					</div>
-				<% end %>	
+				<% end %>
 			<% end %>
 		</div>
 	<% end %>
-<% end %>	
+<% end %>
 
 
 
@@ -183,33 +183,33 @@
 <!-- CURRENT CAMPAIGN --!>
 
 
-<!--						
+<!--
 <%= link_to "View Current Campaign!", new_signature_path, class: "btn btn-large btn-primary", id: "right" %>
 
 <div id="bar2"></div>
 <h1>
-	<span class="orange">1</span> Campaign 
-</h1>	
+	<span class="orange">1</span> Campaign
+</h1>
 --!>
 <!--
 <% @rating.each do |petition| %>
-	<% if petition.pass == "pass" %>		
-		<% if petition.launched == "yes" %>     
+	<% if petition.pass == "pass" %>
+		<% if petition.launched == "yes" %>
 			<h4>Time remaining: <span id="countbox1"></span></h4>
 			<section class="block">
 				<div id="padd"><h4><%= link_to "Campaign Name: #{petition.name}", new_signature_path %></h4></div>
 				<div class="imgholder2">
 					<%= link_to image_tag(petition.pics_url), new_signature_path, id:"img2" %>
-				</div>							
-				<p class="textwrap"><%= truncate(petition.description, :length=>400 )  %></p>							
-				<h4><div class="meta"><%= @totals %> Paticipants</div></h4>	
+				</div>
+				<p class="textwrap"><%= truncate(petition.description, :length=>400 )  %></p>
+				<h4><div class="meta"><%= @totals %> Paticipants</div></h4>
 				<div class="centers">
 					<%= link_to "Paticipate!", new_signature_path	, class: "btn btn-large btn-primary" %>
 				</div>
 			</section>
-		<% end %>	
+		<% end %>
 	<% end %>
-<% end %>					
+<% end %>
 
 
 <div id="bar2"></div>
@@ -221,18 +221,18 @@
 <h1><span class="red">5</span> Friends </h1>
 
 <section class="block" id="padd">
-	<p class="textwrap">...is our request. Tackling these challenges will require a little effort from everyone.  
+	<p class="textwrap">...is our request. Tackling these challenges will require a little effort from everyone.
 	Help make these campaings successful by sharing with your friends and family!</p>
 	<div class="centers">
 		<%= link_to "Share!", share_path	, class: "btn btn-large btn-primary" %>
 	</div>
-</section>	
+</section>
 
 --!>
 
-<!-- SCRIPT FOR COUNTOWN TIMER ONLY --!>	
+<!-- SCRIPT FOR COUNTOWN TIMER ONLY --!>
 
-<!-- 
+<!--
 <script type="text/javascript">
 //######################################################################################
 // Author: ricocheting.com
@@ -301,8 +301,7 @@ window.onload=function(){
 };
 </script>
 
---!>	
-
+--!>
 
 
 <script>
@@ -317,11 +316,12 @@ $(function(){
 			$(this).val("View my Votes");
 		}
     });
-	
-	
-	
+
+
+
 	});
-</script>
+
+	</script>
 
 
 
