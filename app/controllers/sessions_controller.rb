@@ -9,14 +9,14 @@ class SessionsController < ApplicationController
     user = User.from_omniauth(env["omniauth.auth"])
     puts "************************88"
     puts user.inspect
-	if user.confirmed == "true"
+	#if user.confirmed == "true"
 		session[:user_id] = user.id
 		flash[:success] = "Successfully logged in!"
 		redirect_to petitions_path
-	else
-		UserMailer.registration_confirmation(user).deliver
-		redirect_to petitions_path, notice: "A confirmation e-mail has been send to your inbox."
-	end
+#	else
+#		UserMailer.registration_confirmation(user).deliver
+#		redirect_to petitions_path, notice: "A confirmation e-mail has been send to your inbox."
+#	end
   end
 
   def destroy
