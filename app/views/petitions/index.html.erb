@@ -13,12 +13,12 @@
 
 <%if signed_in? %>
 	<%if @user.votesleft == 0 %>
-		<p class="textwrap">
+		<div class="textwrap2">
 			Thanks for voting! You will be e-mailed if your campaign gets launched. <br />
 			<input type="button" value="View my Votes" id="toggle_code" class="btn btn-link"/>
-		</p>
+		</div>
 	<%else%>
-		<p class="textwrap2">
+		<div class="textwrap2">
 			You have <span class="red"><%= pluralize(@user.votesleft, "vote") %> left</span>! Vote on the campaigns which are most important to you. Campaigns are launched based on popular vote.<br />
 		<% if current_user.votesleft < 3 %>
 		<input type="button" value="View my Votes" id="toggle_code" class="btn btn-link"/>

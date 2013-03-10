@@ -1,6 +1,7 @@
 $(document).ready(function() {
 
 
+	
 
 $(window).load(function() {
 	first = $('#sizer').height();
@@ -23,3 +24,6 @@ $(window).resize(function() {
 	});	
 
 });
+
+
+

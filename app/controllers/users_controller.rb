@@ -1,10 +1,10 @@
 class UsersController < ApplicationController
 
   def new
-	@user = User.new
-	if current_user.present?
-		redirect_to petitions_path
-	end
+  	@user = User.new
+  	if current_user.present?
+  		redirect_to petitions_path
+  	end
   end
 
   def destroy
@@ -71,7 +71,7 @@ class UsersController < ApplicationController
     end
   end
 
-  
+
   def edit
   	@user = User.find(params[:id])
 	@status = @user.confirmed

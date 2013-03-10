@@ -1,15 +1,11 @@
 
 
-<style type="text/css">
-img{
-	width: 30px !important;
-}
-</style>
+
 <% provide :title do  %>
 	<% "Sign in" %>
 <%end%>
 
-
+<div class="row">
 <h1>Sign in</h1>
 
 <div class="small">
@@ -27,11 +23,16 @@ img{
 			<div id="center">Option 1:
 			</div>
 		</div><br />
-		<div class="block2">
-			<div>
-				<a href="/auth/facebook"><img src="/images/facebook_64.png" /></a>
-			</div>
+		<div class="span3" >
 		</div>
+			<div class="span6" >
+				<div class="block2">
+					<div>
+						<a href="/auth/facebook"><img src="/images/facebook_64.png" height="60" style="width:60px" /></a>
+					</div>
+				</div>
+			</div>
+
 	</div>
 
 	<div class="span1" >
@@ -42,11 +43,16 @@ img{
 			<div id="center">Option 2:
 			</div>
 		</div><br />
-		<div class="block2">
-			<div>
-				<a href="/auth/google"><img src="/images/google_64.png" width="30px" height="30px" /></a>
-			</div>
+		<div class="span3" >
 		</div>
+			<div class="span6" >
+				<div class="block2">
+					<div>
+						<a href="/auth/google"><img src="/images/google_64.png" height="60" style="width:60px" /></a>
+					</div>
+				</div>
+			</div>
+
 	</div>
 
 	<div class="span1" >
@@ -96,8 +102,7 @@ img{
 				  </div>
 				  	<div class="votes">
 				  		<div class="row"><%= submit_tag "Login", :class => "btn btn-large btn-primary" %></div>
-						New User? <%= link_to " signup here", "#", :onclick => "$('#login_form_div').hide();$('#signup_form_div').show();" %> <br />
-						<!-- <%= link_to "Create an account", "/auth/identity/register" %> -->
+						New User? <%= link_to " signup here", "#", :onclick => "$('#login_form_div').hide();$('#signup_form_div').show();", :class => "resizing"%> <br />
 					  </div>
 				<% end %>
 			</div>
@@ -131,16 +136,18 @@ img{
 			      </div>
 			      <div class="votes">
 				  		<div class="row"><%= submit_tag "Sign Up", :class => "btn btn-large btn-primary" %></div>
-						Returning User? <%= link_to " login here", "#", :onclick => "$('#signup_form_div').hide();$('#login_form_div').show();" %> <br />
-						<%= link_to "Create an account", "/auth/identity/register" %>
+						Returning User? <%= link_to " login here", "#", :onclick => "$('#signup_form_div').hide();$('#login_form_div').show();", :class => "resizing" %> <br />
 				  </div>
 			    <% end %>
 			</div>
 </div>
+</div>
+
 
 <script type="text/javascript">
 $("document").ready(function(){
 	$("#signup_form_div").hide();
+
 });
 </script>
 
