@@ -1,6 +1,9 @@
 <li>
   <span class="content"><%= micropost.content %></span>
-  <span >Posted by <%= micropost.user.name %></span> <br />
+  <% if !micropost.user.nil? %>
+  <span >Posted by <%= micropost.user.name %></span>
+  <% end %>
+  <br />
   <span class="timestamp">
     <%= time_ago_in_words(micropost.created_at) %> ago.
   </span>
