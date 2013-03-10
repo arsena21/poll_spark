@@ -2,20 +2,20 @@
 
 
 
-<h1> 
+<h1>
 	<span class="orange">1</span> Campaign
-</h1>	
+</h1>
 
 
 <% if current_user.present? %>
 	<% if current_user.signer == "yes"%>
 		<div class="textwrap2">
 			Thanks for helping us reach our goal! <br />
-		</div>	
+		</div>
 	<% else %>
 		<div class="textwrap2">
 			This campaign is named: <b><%= @petition.name %></b>. Watch the video below! <br />
-		</div>	
+		</div>
 	<% end %>
 <% else %>
 	<div class="textwrap2">
@@ -35,13 +35,13 @@
 
 <div id="bar2"></div>
 
-<!-- DESCRIPTION 
+<!-- DESCRIPTION
 
-<h4 id="left">Description</h4> 
+<h4 id="left">Description</h4>
 <div class="span4", id="formsy2">
 	<%= image_tag(@petition.pics_url) %>
 </div>
-<%= @petition.description.html_safe %> 
+<%= @petition.description.html_safe %>
 
 --!>
 
@@ -49,22 +49,22 @@
 <!-- LINKS
 
 <div class="wid">
-<h4 id="left">References</h4> 
-<%= @petition.links.html_safe  %> 
-</div>	
-<div id="bar2"></div>	
+<h4 id="left">References</h4>
+<%= @petition.links.html_safe  %>
+</div>
+<div id="bar2"></div>
 
  --!>
- 
- 
- 
-<!-- CAMPAIGN GOALS 
-<h4 id="left">Goals</h4> 
-<%= @petition.demands.html_safe %> 
+
+
+
+<!-- CAMPAIGN GOALS
+<h4 id="left">Goals</h4>
+<%= @petition.demands.html_safe %>
 --!>
 
 
-<!-- PETITION SIGNATURE BOX --!>
+<!-- PETITION SIGNATURE BOX updated --!>
 
 
 <% if signed_in? %>
@@ -86,10 +86,10 @@
 	<% if !(@b == "already signed") %>
 		<%= form_for(@signature, :html => { :class => "sigPad"} ) do |f| %>
 			<%= render 'shared/error_messages', object: f.object %>
-			
+
 			<%= f.hidden_field :user_id, :value => current_user.id %>
 			<%= f.hidden_field :petition_id, :value => @petition.id %>
-			
+
 			<%= f.label :name %>
 			<%= f.text_field :name, :value => current_user.name %>
 
@@ -111,7 +111,7 @@
 					<div class="typed"></div>
 					<canvas class="pad" id="canvas" width="400" height="100"></canvas>
 				</div>
-			<% if @b == "ok to sign" %> 
+			<% if @b == "ok to sign" %>
 				<div class="row">
 				<%= f.submit "Participate!", class: "btn btn-large btn-primary", id:"right" %>
 				</div>
@@ -119,9 +119,9 @@
 					<%= link_to "I don't support this", {:action => "nope", :controller=>"signatures"}  %>
 				</div>
 			<% end %>
-			<% if @b == "already signed" %> 
+			<% if @b == "already signed" %>
 				<p>
-					You have already participated in this campaign! Thank you for your participation! 
+					You have already participated in this campaign! Thank you for your participation!
 				</p>
 			<% end %>
 		<% end %>
@@ -129,7 +129,7 @@
 <% end %>
 
 
-	 
+
 <% if @b == "no user" %>
 	<%= form_for(@signature, :html => { :class => "sigPad"} ) do |f| %>
 		<%= f.label :name %>
@@ -167,29 +167,29 @@
 
 <!-- ITEMS --!>
 
-<!-- 
-<h4 id="left">Related Products</h4> 
+<!--
+<h4 id="left">Related Products</h4>
 
 *All profits we collect will be used to support ongoing campaigns.
-<div id="container3", class="contained"> 
+<div id="container3", class="contained">
 	<% @items.each do |item| %>
 		<% if item.launched == "yes" %>
 			<% if item.petition_id == @petition.id %>
 				<div class="block">
 					<div class="imgholder">
 						<%= link_to image_tag(item.pictures_url), edit_item_path(:id => item.id)  %> <br />
-					</div>	
+					</div>
 					<strong>
 						<%= link_to item.name, edit_item_path(:id => item.id)	, {:style=>'color:#000000;'} %>
 					</strong>
 					<div class="meta">
 						<%= item.cost.to_f/100 %> $
-					</div> 
+					</div>
 				</div>
 			<% end %>
 		<% end %>
-	<% end %> 
-</div> 
+	<% end %>
+</div>
 <div id="bar2"></div>
 
  --!>
@@ -202,7 +202,7 @@
 
 <div class="highlight">
 <div class="span8 offset2" id="padd">
-	
+
 	<% if @petition.microposts.any? %>
 		<h3 id="padd">Comments (<%= @petition.microposts.count %>)</h3>
 		<ol class="microposts">
@@ -213,10 +213,10 @@
 	<% else %>
 		<h3>Post the first comment! </h3>
 		<ol class="microposts">
-			<%= render 'shared/micropost_form' %>		
+			<%= render 'shared/micropost_form' %>
 		</ol>
 	<% end %>
-</div>			
+</div>
 
 </div>
 
@@ -241,8 +241,8 @@ $(function(){
 
 
 
-	
-	
+
+
 <!-- SCRIPT FOR SIGNATURE PAD --!>
 
 <script type="text/javascript">
@@ -254,14 +254,14 @@ $(function(){
 
 <script type="text/javascript">
 function checkValues(){
-	var img = document.getElementById("canvas")	
+	var img = document.getElementById("canvas")
 	var crazyDataUrl = img.toDataURL();
 	document.getElementById("canvascontent").src = crazyDataUrl;
 }
 </script>
 
-	
-<!-- SCRIPT FOR NUMBER ONLY --!>	
+
+<!-- SCRIPT FOR NUMBER ONLY --!>
 
 
 
@@ -269,19 +269,19 @@ function checkValues(){
 
 function GetNumber(currentnumber, targetnumber){
 	document.getElementById(targetnumber).innerHTML="100000";
-	
+
 	if(currentnumber < 5000){
 		document.getElementById(targetnumber).innerHTML="20,000";
-	} 
+	}
 	else if (currentnumber >= 5000 && currentnumber < 10000){
 		document.getElementById(targetnumber).innerHTML="35,000";
-	} 
+	}
 	else if (currentnumber >= 10000 && currentnumber < 50000){
 		document.getElementById(targetnumber).innerHTML="100,000";
-	} 	
+	}
 	else if (currentnumber >= 100000 && currentnumber < 200000){
 		document.getElementById(targetnumber).innerHTML="300,000";
-	} 	
+	}
 	else if (currentnumber >= 200000 && currentnumber < 400000){
 		document.getElementById(targetnumber).innerHTML="500,000";
 	}
@@ -290,33 +290,33 @@ function GetNumber(currentnumber, targetnumber){
 	}
 	else if (currentnumber >= 800000 && currentnumber < 1500000){
 		document.getElementById(targetnumber).innerHTML="2,000,000";
-	}  	
+	}
 	else if (currentnumber >= 1500000 && currentnumber < 400000){
 		document.getElementById(targetnumber).innerHTML="5,000,000";
-	} 
+	}
 	else if (currentnumber >= 4000000 && currentnumber < 8000000){
 		document.getElementById(targetnumber).innerHTML="10,000,000";
 	}
 	else if (currentnumber >= 8000000 && currentnumber < 20000000){
 		document.getElementById(targetnumber).innerHTML="30,000,000";
-	} 
+	}
 	else if (currentnumber >= 30000000 && currentnumber < 40000000){
 		document.getElementById(targetnumber).innerHTML="50,000,000";
-	}  
+	}
 	else if (currentnumber >= 40000000 && currentnumber < 80000000){
 		document.getElementById(targetnumber).innerHTML="100,000,000";
-	} 
+	}
 	else if (currentnumber >= 80000000 && currentnumber < 150000000){
 		document.getElementById(targetnumber).innerHTML="200,000,000";
-	}   
+	}
 	else if (currentnumber >= 150000000 && currentnumber < 400000000){
 		document.getElementById(targetnumber).innerHTML="400,000,000";
-	} 	
+	}
 }
 
 window.onload=function(){
-	var i = "<%= @totals %>"	
-	GetNumber(i,'numchange');	
+	var i = "<%= @totals %>"
+	GetNumber(i,'numchange');
 
 };
 
