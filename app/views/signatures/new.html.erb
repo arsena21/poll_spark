@@ -14,7 +14,10 @@
 		</div>
 	<% else %>
 		<div class="textwrap2">
-			This campaign is named: <b><%= @petition.name %></b>. Watch the video below! <br />
+			This campaign is named: <b><% if !@petition.nil? %>
+				<%= @petition.name %>
+				<% end %>
+				</b>. Watch the video below! <br />
 		</div>
 	<% end %>
 <% else %>
@@ -39,9 +42,13 @@
 
 <h4 id="left">Description</h4>
 <div class="span4", id="formsy2">
-	<%= image_tag(@petition.pics_url) %>
+	<% if !@petition.nil? %>
+		<%= image_tag(@petition.pics_url) %>
+	<% end %>
 </div>
-<%= @petition.description.html_safe %>
+<% if !@petition.nil? %>
+	<%= @petition.description.html_safe %>
+<% end %>
 
 --!>
 
@@ -50,7 +57,9 @@
 
 <div class="wid">
 <h4 id="left">References</h4>
+<% if !@petition.nil? %>
 <%= @petition.links.html_safe  %>
+<% end %>
 </div>
 <div id="bar2"></div>
 
@@ -60,7 +69,9 @@
 
 <!-- CAMPAIGN GOALS
 <h4 id="left">Goals</h4>
+<% if !@petition.nil? %>
 <%= @petition.demands.html_safe %>
+<% end %>
 --!>
 
 
@@ -109,10 +120,15 @@
 				</ul>
 				<div class="sig sigWrapper">
 					<div class="typed"></div>
-					<canvas class="pad" id="canvas" width="400" height="100"></canvas>
+					<canvas class="pad" id="canvas" width="400" height="100" value="TEST CANVAS"></canvas>
 				</div>
 			<% if @b == "ok to sign" %>
+				<img id="MyPix" />
+				<!--<textarea  id="signature_pic_data" ></textarea> -->
+				<%= f.text_area :image_data,{:id=>"signature_pic_data", :style=>"display:none;"} %>
+				<input type="button" onclick="putImage()" value="Save Image" />
 				<div class="row">
+
 				<%= f.submit "Participate!", class: "btn btn-large btn-primary", id:"right" %>
 				</div>
 				<div div id="right2" class="small">
@@ -150,6 +166,7 @@
 			<div class="typed"></div>
 				<canvas class="pad" id="canvascontent" width="400" height="100"></canvas>
 			</div><br />
+
 		<%= link_to "Please sign in to participate", signin_path, class: "btn btn-large btn-primary" %>
 	<% end %>
 <% end %>
@@ -222,6 +239,9 @@
 
 
 <script>
+
+
+
 $(function(){
     $('.highlight').hide()
 	$('#toggle_code').click(function(){
@@ -249,6 +269,17 @@ $(function(){
 	$(document).ready(function () {
 	  $('.sigPad').signaturePad({drawOnly:true});
 	  });
+
+	  function putImage() {
+          var canvas1 = document.getElementById("canvas");
+          if (canvas1.getContext) {
+              var ctx = canvas1.getContext("2d");
+              var myImage = canvas1.toDataURL("image/png");
+          }
+          var imageElement = document.getElementById("MyPix");
+          imageElement.src = myImage;
+          $("#signature_pic_data").val(myImage);
+      }
 </script>
 
 
