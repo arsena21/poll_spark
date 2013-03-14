@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121210000753) do
+ActiveRecord::Schema.define(:version => 20130313185731) do
 
   create_table "authentications", :force => true do |t|
     t.integer  "user_id"
@@ -143,8 +143,9 @@ ActiveRecord::Schema.define(:version => 20121210000753) do
     t.integer  "total"
     t.string   "remember_token"
     t.string   "signaturepic"
-    t.string   "user_id"
+    t.integer  "user_id",        :limit => 255
     t.string   "petition_id"
+    t.text     "image_data"
   end
 
   create_table "users", :force => true do |t|
